@@ -88,3 +88,13 @@ body {
   width: 10px;
   height: 10px;
 }
+
+.segment {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  transform-origin: 100% 100%;
+  text-align: center;
+  padding-top: 20px;
+  font-weight: bold;
+}

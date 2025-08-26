@@ -163,6 +163,16 @@ export default function ReferralLink() {
           }
         }}
         >
+          <div className="flex justify-end">
+            <button className="close-backdrop my-bg-gray rounded-full p-3 mb-3"
+            onClick={(e) => {
+              const target = e.target as HTMLElement;
+              if (target.classList.contains('close-backdrop')) {
+                setShowModal(false);
+                setInputRefCode('');
+              }
+            }}>Close</button>
+          </div>
           <div className="my-bg-dark p-3 rounded-md my-border-gray">
             {successMessage && (
               <div className="my-bg-blue my-text-white text-center p-1 mb-3 w-full rounded-md">

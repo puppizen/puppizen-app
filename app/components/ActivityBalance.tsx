@@ -137,7 +137,7 @@ export default function ActivityBalance({ activity, userId }: {activity: string,
             ) : task.status === 'max' ? (
               <button className="my-border-gray my-text-gray rounded-md text-sm px-4 py-1" disabled>Max</button>
             ) : (
-              <button className="my-border-gray my-text-gray rounded-md text-sm px-4 py-1">----</button>
+              <button className="my-border-gray my-text-gray rounded-md text-sm px-4 py-1">Claim</button>
             )
             }
           </div>

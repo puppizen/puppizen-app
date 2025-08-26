@@ -194,7 +194,7 @@ export default function SocialTasks({ category }: { category: string }) {
             }
           }}
         >
-          <div className="place-items-end">
+          <div className="flex justify-end">
             <button className="close-backdrop my-bg-gray rounded-full p-3 mb-3"
             onClick={(e) => {
               const target = e.target as HTMLElement;

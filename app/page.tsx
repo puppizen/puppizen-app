@@ -9,7 +9,7 @@ import Image from 'next/image';
 
 export default function Home() {
   return (
-    <div>
+    <div className="pb-15">
       <UserTGData />
 
       <div className='py-5'>
