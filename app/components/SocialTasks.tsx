@@ -171,7 +171,7 @@ export default function SocialTasks({ category }: { category: string }) {
               <button className="my-border-white rounded-full text-sm px-4 py-1"
               onClick={() => handleStart(task)}>Start</button>
             ) : (
-              <button className="my-bg-blue rounded-md text-sm px-4 py-1"
+              <button className="my-bg-blue rounded-full text-sm px-4 py-1"
               onClick={() => {
                 setCurrentTask(task);
                 setShowModal(true);
