@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --background-blue: #0098EA;
+  --background-blue-1: #58BBF1;
+  --background-blue-2: #91D2F5; 
+  --background-blue-4: #C4E7FA;
+  --foreground: #F7F9FB;
+  --foreground-light: #f7f9fb54;
+  --foreground-lighter: #f7f9fb09;
+}
+
+body {
+  height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Poppins, sans-serif;
+  padding: 1rem;
+}
+
+.my-border-blue {
+  border: 1px solid var(--background-blue);
+}
+.my-border-white {
+  border: 1px solid var(--foreground);
+}
+.my-border-gray {
+  border: 1px solid var(--foreground-light);
+}
+
+.my-bg-white {
+  background-color: var(--foreground);
+}
+.my-bg-dark {
+  background-color: var(--background);
+}
+.my-bg-gray {
+  background-color: var(--foreground-light);
+}
+.my-bg-blue {
+  background-color: var(--background-blue);
+}
+.my-bg-blue-1 {
+  background-color: var(--background-blue-1);
+}
+.my-bg-blue-2 {
+  background-color: var(--background-blue-2);
+}
+.my-bg-blue-4 {
+  background-color: var(--background-blue-4);
+}
+.my-bg-lightgray {
+  background-color: var(--foreground-lighter);
+}
+.my-bg-gradient {
+  background: linear-gradient(to right, #2D83EC, #1AC9FF);
+}
+
+.my-text-white {
+  color: var(--foreground);
+}
+
+.my-text-black {
+  color: var(--background);
+}
+.my-text-gray {
+  color: var(--foreground-light);
+}
+.my-text-blue {
+  color: var(--background-blue);
+}
+
+.my-text-xs {
+  font-size: 8px;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.small-square {
+  width: 10px;
+  height: 10px;
+}

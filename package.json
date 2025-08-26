@@ -1,0 +1,37 @@
+{
+  "name": "puppizen-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@telegram-apps/sdk": "^3.11.4",
+    "@tonconnect/sdk": "^3.2.0",
+    "@tonconnect/ui-react": "^2.2.0",
+    "@twa-dev/sdk": "^8.0.2",
+    "dotenv": "^17.2.1",
+    "idb": "^8.0.3",
+    "ioredis": "^5.7.0",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.16.4",
+    "next": "15.3.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "telegraf": "^4.16.3"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.4",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
