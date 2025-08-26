@@ -194,6 +194,17 @@ export default function SocialTasks({ category }: { category: string }) {
             }
           }}
         >
+          <div className="place-items-end">
+            <button className="close-backdrop my-bg-gray rounded-full p-3 mb-3"
+            onClick={(e) => {
+              const target = e.target as HTMLElement;
+              if (target.classList.contains('close-backdrop')) {
+                setShowModal(false);
+                setCurrentTask(null);
+                setInputCode('');
+              }
+            }}>Close</button>
+          </div>
           <div className="my-bg-dark p-3 rounded-md my-border-gray">
             <h3 className="font-semibold mb-8">Enter keyword to claim reward</h3>
             <div className="flex justify-between items-center mb-10">

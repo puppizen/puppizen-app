@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
 
   images: {
-    remotePatterns: [new URL('https://kingofoc.github.io/image-pApp/p')]
+    remotePatterns: [new URL('https://puppizen.github.io/puppizen/')]
   },
 };
 
