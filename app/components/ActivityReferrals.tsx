@@ -118,7 +118,7 @@ export default function ActivityTasksCompleted({ activity, userId }: {activity: 
           <div className="flex justify-center gap-3">
             <Image src={task.iconUrl} width={26} height={26} alt="" />
             <div>
-              <p className="flex items-center text-sm font-lighter ">{task.name} 
+              <p className="flex items-center text-sm">{task.name} 
                 <span className="my-text-xs my-text-gray ml-5">{taskProgress} / {task.goal}</span></p>
               <p className="flex items-center gap-3 mt-0.5">  
                 <span className="text-xs my-text-white my-bg-gradient px-3 rounded-full">+{task.reward} </span>
@@ -129,15 +129,15 @@ export default function ActivityTasksCompleted({ activity, userId }: {activity: 
 
           <div>
             {task.status === 'done' ? (
-              <button className="my-border-gray my-text-gray rounded-md text-sm px-4 py-1" disabled>Done</button>
+              <button className="my-border-gray my-text-gray rounded-full text-sm px-4 py-1" disabled>Done</button>
             ) : task.status === 'claim' ? (
               <button className="my-bg-blue rounded-md text-sm px-4 py-1"
                 onClick={() => handleClaim(task.id, task.reward, userId)}
               >Claim</button>
             ) : task.status === 'max' ? (
-              <button className="my-border-gray my-text-gray rounded-md text-sm px-4 py-1" disabled>Max</button>
+              <button className="my-border-gray my-text-gray rounded-full text-sm px-4 py-1" disabled>Max</button>
             ) : (
-              <button className="my-border-gray my-text-gray rounded-md text-sm px-4 py-1">Claim</button>
+              <button className="my-border-gray my-text-gray rounded-full text-sm px-4 py-1">Claim</button>
             )
             }
           </div>

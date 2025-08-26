@@ -118,7 +118,7 @@ export default function PartnersTasks({ category }: { category: string }) {
           <div className="flex justify-center gap-3">
               <Image src={task.iconUrl} width={26} height={26} alt="" />
             <div>
-              <p className="text-sm font-semibold">{task.name}</p>
+              <p className="text-sm">{task.name}</p>
               <p className="flex items-center gap-3 mt-0.5">  
                 <span className="text-xs my-text-white my-bg-gradient px-3 rounded-full">+{task.reward} </span>
                 <span className="text-xs my-text-gray my-bg-gray px-3 rounded-full">{task.completed} / {task.max} </span>
@@ -128,21 +128,21 @@ export default function PartnersTasks({ category }: { category: string }) {
 
           <div>
             {task.status === 'done' ? (
-              <button className="my-border-gray my-text-gray rounded-md text-sm px-4 py-1" disabled>
+              <button className="my-border-gray my-text-gray rounded-full text-sm px-4 py-1" disabled>
                 Done
               </button>
             ) : task.status === 'claim' ? (
-              <button className="my-bg-blue rounded-md text-sm px-4 py-1" 
+              <button className="my-bg-blue rounded-full text-sm px-4 py-1" 
                 onClick={() => handleClaim(task.id, task.reward, userId)}
               >Claim
               </button>
             ) : task.status === 'start' ? (
-              <button className="relative my-border-white rounded-md text-sm px-4 py-1"
+              <button className="relative my-border-white rounded-full text-sm px-4 py-1"
               onClick={() => 
                   handleStart(task)
                 }>Start</button>
             ) : (
-              <button className="my-border-gray my-text-gray rounded-md text-sm px-4 py-1"
+              <button className="my-border-gray my-text-gray rounded-full text-sm px-4 py-1"
               >Max
               </button>
             )}

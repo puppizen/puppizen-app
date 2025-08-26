@@ -66,7 +66,7 @@ export default function Leaderboard() {
                 src={user.profile_url || '/puppizen-image.png'}
                 width={36} height={36} alt='' loading='lazy'
               />
-              <p className="font-medium">{user.username || `User ${user.userId}`}</p>
+              <p className="">{user.username || `User ${user.userId}`}</p>
             </div>
             <p className="font-medium">{user.balance}</p>
           </li>

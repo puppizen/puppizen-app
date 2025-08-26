@@ -42,13 +42,13 @@ export default function Summary() {
 
   return (
     <div className="mb-3">
-      <h1 className="mb-2 font-semibold">Stats</h1>
-      <div className="flex justify-between gap-3">
-        <div className="p-3 my-border-gray rounded-md w-full font-medium">
+      <h1 className="mb-2 font-semibold text-lg">Stats</h1>
+      <div className="flex justify-between my-bg-gradient gap-3 rounded-md">
+        <div className="px-4 py-1 my-bg-white rounded-full w-full font-medium">
           <p>Total Users</p>
           <p>{summaryTotalUsers}</p>
         </div>
-        <div className="p-3 my-border-gray rounded-md w-full font-medium">
+        <div className="px-3 py-1 my-bg-white rounded-full w-full font-medium">
           <p>Points Claimed</p> 
           <p>{summaryTotalBalance}</p>
         </div>

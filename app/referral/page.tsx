@@ -140,7 +140,7 @@ export default function ReferralLink() {
                   src={user.profile_url || '/puppizen-image.png'}
                   width={36} height={36} alt=''
                 />
-                <p className="font-medium">{user.username}</p>
+                <p className="">{user.username}</p>
               </div>
               <div>
                 <p className="font-medium">{user.balance.toLocaleString()}</p>
