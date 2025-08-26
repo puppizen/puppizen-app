@@ -195,7 +195,7 @@ export default function SocialTasks({ category }: { category: string }) {
           }}
         >
           <div className="flex justify-end">
-            <button className="close-backdrop my-bg-gray rounded-full p-3 mb-3"
+            <button className="close-backdrop my-bg-gray rounded-full px-4 py-1 mb-3"
             onClick={(e) => {
               const target = e.target as HTMLElement;
               if (target.classList.contains('close-backdrop')) {

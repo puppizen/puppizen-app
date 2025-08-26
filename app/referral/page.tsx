@@ -106,7 +106,7 @@ export default function ReferralLink() {
   return (
     <div className='pb-15'>
       <div className='w-full mb-1 p-1'>
-        <p className='text-xs'>Your referral code is:   {refCode}</p>
+        <p className='text-xs'>Your referral code is: {refCode}</p>
       </div>
       <div className='flex flex-row gap-2 justify-between mb-8'>
         <button className='flex-1 p-3 my-bg-gradient rounded-md font-medium' onClick={handleShare}>Send an Invitation</button>
@@ -164,7 +164,7 @@ export default function ReferralLink() {
         }}
         >
           <div className="flex justify-end">
-            <button className="close-backdrop my-bg-gray rounded-full p-3 mb-3"
+            <button className="close-backdrop my-bg-gray rounded-full px-4 py-1 mb-3"
             onClick={(e) => {
               const target = e.target as HTMLElement;
               if (target.classList.contains('close-backdrop')) {
