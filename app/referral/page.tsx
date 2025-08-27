@@ -117,8 +117,8 @@ export default function ReferralLink() {
 
       <div>
         <div className='flex justify-center gap-5 mb-2'>
-          <Image src='/friends.svg' width={36} height={36} alt='frirnds'></Image>
-          <Image src='/arrow.svg' width={24} height={24} alt='frirnds'></Image>
+          <Image src='/friends.svg' width={36} height={36} alt=''></Image>
+          <Image src='/arrow.svg' width={24} height={24} alt=''></Image>
           <Image src='/puppizen-coin.png' width={36} height={36} alt='puppizen' className='rotate-45'></Image>
         </div>
         <p className='text-center'>Earn 2.5 Puppizen for each invited friend. 
@@ -175,8 +175,9 @@ export default function ReferralLink() {
           </div>
           <div className="my-bg-dark p-3 rounded-md my-border-gray">
             {successMessage && (
-              <div className="my-bg-blue my-text-white text-center p-1 mb-3 w-full rounded-md">
-                {successMessage}
+              <div className="flex gap-2 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
+                <Image src='/check-good' width={24} height={24} alt='success' />
+                <span className='text-sm'>{successMessage}</span>
               </div>
             )}
             <h3 className="font-medium mb-8">Enter referral code to claim +1 Puppizen</h3>
