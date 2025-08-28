@@ -107,11 +107,12 @@ export default function SocialTasks({ category }: { category: string }) {
       const data = await res.json();
 
       if (res.ok) {
-        updateTaskStatus(currentTask.id, 'claim');
         setSuccessMessage(data.success || 'Task completed! Claim your rewards');
         setTimeout(() => {
           setShowModal(false);
         }, 5000);
+
+        updateTaskStatus(currentTask.id, 'claim');
         setInputCode('');
         setCurrentTask(null);
         
