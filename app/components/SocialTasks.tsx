@@ -108,12 +108,13 @@ export default function SocialTasks({ category }: { category: string }) {
 
       if (res.ok) {
         updateTaskStatus(currentTask.id, 'claim');
+        setSuccessMessage(data.success || 'Task completed! Claim your rewards');
         setTimeout(() => {
           setShowModal(false);
         }, 5000);
         setInputCode('');
         setCurrentTask(null);
-        setSuccessMessage(data.success || 'Task completed! Claim your rewards')
+        
       } else {
         setErrorMessage(data.error || 'Incorrect verify code. Try again.');
       }
