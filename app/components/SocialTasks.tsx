@@ -213,7 +213,7 @@ export default function SocialTasks({ category }: { category: string }) {
           </div>
           <div className="my-bg-dark p-3 rounded-md my-border-gray">
             {successMessage && (
-              <div className="flex gap-2 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
+              <div className="flex items-center gap-1 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
                 <Image src='/check-good.svg' width={20} height={20} alt="success"/>
                 <p className="text-xs">
                   {successMessage}
@@ -222,7 +222,7 @@ export default function SocialTasks({ category }: { category: string }) {
             )}
 
             {errorMessage && (
-              <div className="flex gap-2 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
+              <div className="flex items-center gap-1 bg-red-600 my-text-white px-3 py-1 mb-3 w-full rounded-md">
                 <Image src='/error.svg' width={20} height={20} alt="error"/>
                 <p className="text-xs">
                   {errorMessage}
