@@ -25,6 +25,8 @@ export default function SocialTasks({ category }: { category: string }) {
   const [userId, setUserId] = useState<number | null>(null);
   const [cachedTasks, setCachedTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect (() => {
     const tgUser = window.Telegram.WebApp.initDataUnsafe?.user;
@@ -102,14 +104,18 @@ export default function SocialTasks({ category }: { category: string }) {
         body: JSON.stringify({ taskId: currentTask?.id ?? '', inputCode }),
       });
       
+      const data = await res.json();
+
       if (res.ok) {
         updateTaskStatus(currentTask.id, 'claim');
-        setShowModal(false);
+        setTimeout(() => {
+          setShowModal(false);
+        }, 5000);
         setInputCode('');
         setCurrentTask(null);
+        setSuccessMessage(data.success || 'Task completed! Claim your rewards')
       } else {
-        const error = await res.json();
-        alert(error.error || 'Invalid code. Try again.');
+        setErrorMessage(data.error || 'Incorrect verify code. Try again.');
       }
     } catch (error) {
       console.error(error)
@@ -206,7 +212,25 @@ export default function SocialTasks({ category }: { category: string }) {
             }}>Close</button>
           </div>
           <div className="my-bg-dark p-3 rounded-md my-border-gray">
-            <h3 className="font-semibold mb-8">Enter keyword to claim reward</h3>
+            {successMessage && (
+              <div className="flex gap-2 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
+                <Image src='/check-good.svg' width={20} height={20} alt="success"/>
+                <p className="text-xs">
+                  {successMessage}
+                </p>
+              </div>
+            )}
+
+            {errorMessage && (
+              <div className="flex gap-2 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
+                <Image src='/error.svg' width={20} height={20} alt="error"/>
+                <p className="text-xs">
+                  {errorMessage}
+                </p>
+              </div>
+            )}
+
+            <h3 className="font-normal mb-8">Enter keyword to claim reward</h3>
             <div className="flex justify-between items-center mb-10">
               <div className="flex justify-center gap-3">
                 <Image src={currentTask.iconUrl} width={26} height={26} alt="" />

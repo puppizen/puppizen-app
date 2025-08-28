@@ -18,8 +18,8 @@ export async function POST(req: NextRequest) {
   }
 
   if (task.code !== inputCode) {
-    return NextResponse.json({ error: 'Invalid code' }, { status: 401 });
+    return NextResponse.json({ error: 'Incorrect verify code. Try again.' }, { status: 401 });
   }
 
-  return NextResponse.json({ success: true });
+  return NextResponse.json({ success: 'Task completed! Claim your rewards' });
 }

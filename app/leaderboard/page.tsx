@@ -4,7 +4,7 @@ import Summary from "../components/Summary";
 
 export default function LeaderBoard() {
   return (
-    <div>
+    <div className="pb-15">
       <Summary />
 
       <Leaderboard />

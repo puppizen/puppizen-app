@@ -84,7 +84,7 @@ export default function ReferralLink() {
 
       setTimeout(() => {
         setShowModal(false)
-      }, 2000)
+      }, 5000)
     } else {
       setErrorMessage(data.error || 'Oops! Invalid referral code.');
     }
@@ -176,11 +176,23 @@ export default function ReferralLink() {
           <div className="my-bg-dark p-3 rounded-md my-border-gray">
             {successMessage && (
               <div className="flex gap-2 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
-                <Image src='/check-good' width={24} height={24} alt='success' />
-                <span className='text-sm'>{successMessage}</span>
+                <Image src='/check-good.svg' width={20} height={20} alt='success'/>
+                <p className='text-xs'>
+                  {successMessage}
+                </p>
               </div>
             )}
-            <h3 className="font-medium mb-8">Enter referral code to claim +1 Puppizen</h3>
+
+            {errorMessage && (
+              <div className='flex gap-2 bg-red-600 my-text-white px-3 py-1 mb-3 w-full rounded-md'>
+                <Image src='/error.svg' width={20} height={20} alt='error'/>
+                <p className='text-xs'>
+                  {errorMessage}
+                </p>
+              </div>
+            )}
+
+            <h3 className="font-normal mb-8">Enter referral code to claim +1 Puppizen</h3>
 
             <input
               type="text"
@@ -189,14 +201,6 @@ export default function ReferralLink() {
               className="my-border-gray rounded-md p-3 w-full mb-10 outline-0"
               placeholder="Referral code"
             />
-
-            {errorMessage && (
-              <div>
-                <p className='text-xs text-red-500 mt-1 -mb-9 indent-1'>
-                  {errorMessage}
-                </p>
-              </div>
-            )}
 
             <button
               onClick={() => handleSubmitRefCode()}

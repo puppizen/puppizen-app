@@ -9,7 +9,7 @@ export default function Footer() {
 
   const navItems = [
     { href: '/', label: 'Home', icon: '/home.svg' },
-    { href: '/tasks', label: 'Tasks', icon: '/earn.svg' },
+    { href: '/tasks', label: 'Earn', icon: '/earn.svg' },
     { href: '/presale', label: 'Presale', icon: '/presale.svg' },
     { href: '/airdrop', label: 'Drop', icon: '/airdrop.svg' },
     { href: '/referral', label: 'Frens', icon: '/referral.svg' },
