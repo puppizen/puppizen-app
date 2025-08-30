@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     user.taskCompleted += 1;
 
     if (referrer) {
-      referrer.balance += refReward
+      referrer.balance += refReward.toFixed(2)
       await referrer.save();
     }
   } 
