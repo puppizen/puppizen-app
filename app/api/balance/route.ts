@@ -16,11 +16,11 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   await connectDb();
 
-  const { reward, userId, taskId, referredBy } = await request.json();
+  const { reward, userId, taskId } = await request.json();
 
   const user = await User.findOne({ userId });
   const task = await Task.findById(taskId);
-  const referrer = referredBy ? await User.findOne({ userId: referredBy }) : null;
+  const referrer = user?.referredBy ? await User.findOne({ userId: user.referredBy }) : null;
 
   const REFERRAL_PERCENTAGE = 0.1;
   const refReward = reward * REFERRAL_PERCENTAGE;
