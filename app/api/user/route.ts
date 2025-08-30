@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
       username,
       profile_url,
       isBot,
-      balance: 0.5,
+      balance: 1,
       referrals: 0,
       referredUsers: [],
       taskCompleted: 0,
@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
       verifiedTasks: [],
       claimedTasks: [],
       startedTasks: [],
-      refCode
+      refCode,
     });
   }
 
@@ -107,3 +107,39 @@ export async function POST(request: NextRequest) {
     refCode: user.refCode,
   });
 }
+
+
+// // app/api/daily-claim/route.ts
+// import { NextRequest, NextResponse } from 'next/server';
+// import connectDb from '@/lib/mongodb';
+// import { DailyClaim } from '@/models/dailyClaim';
+// import { User } from '@/models/user';
+
+// export async function POST(request: NextRequest) {
+//   await connectDb();
+
+//   const { userId, reward } = await request.json();
+//   const today = new Date();
+//   today.setHours(0, 0, 0, 0); // Normalize to midnight
+
+//   const existingClaim = await DailyClaim.findOne({ userId, date: today });
+//   if (existingClaim) {
+//     return NextResponse.json({ error: 'Already claimed today' }, { status: 400 });
+//   }
+
+//   const user = await User.findOne({ userId });
+//   if (!user) {
+//     return NextResponse.json({ error: 'User not found' }, { status: 404 });
+//   }
+
+//   user.balance += reward;
+//   await user.save();
+
+//   const claim = new DailyClaim({ userId, date: today, reward });
+//   await claim.save();
+
+//   return NextResponse.json({
+//     success: true,
+//     balance: Number(user.balance).toFixed(3),
+//   });
+// }
