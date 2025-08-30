@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
   const referrer = user?.referredBy ? await User.findOne({ userId: user.referredBy }) : null;
 
   const REFERRAL_PERCENTAGE = 0.1;
-  const refReward = reward * REFERRAL_PERCENTAGE;
+  const refReward = Number((reward * REFERRAL_PERCENTAGE).toFixed(2));
 
   if (!user || !task) {
     return NextResponse.json({ error: 'User or Task not found' }, { status: 404 });
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     user.taskCompleted += 1;
 
     if (referrer) {
-      referrer.balance += refReward.toFixed(2)
+      referrer.balance += refReward;
       await referrer.save();
     }
   } 
