@@ -16,10 +16,14 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   await connectDb();
 
-  const { reward, userId, taskId } = await request.json();
+  const { reward, userId, taskId, referredBy } = await request.json();
 
   const user = await User.findOne({ userId });
   const task = await Task.findById(taskId);
+  const referrer = referredBy ? await User.findOne({ userId: referredBy }) : null;
+
+  const REFERRAL_PERCENTAGE = 0.1;
+  const refReward = reward * REFERRAL_PERCENTAGE;
 
   if (!user || !task) {
     return NextResponse.json({ error: 'User or Task not found' }, { status: 404 });
@@ -28,7 +32,7 @@ export async function POST(request: NextRequest) {
   if (!user.completedTasks.includes(taskId)) {
     user.completedTasks.push(taskId);
 
-    if (task.completed <= task.max) {
+    if (task.completed < task.max) {
       task.completed += 1;
     }
     
@@ -36,6 +40,11 @@ export async function POST(request: NextRequest) {
 
     user.balance += reward;
     user.taskCompleted += 1;
+
+    if (referrer) {
+      referrer.balance += refReward
+      await referrer.save();
+    }
   } 
 
   user.verifiedTasks = user.verifiedTasks?.filter((id: string) => id !== taskId) || [];
