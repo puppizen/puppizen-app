@@ -84,7 +84,7 @@ export default function PartnersTasks({ category }: { category: string }) {
     // Wait 5 hours then update to verify
     setTimeout(() => {
       updateTaskStatus(task.id, 'claim');
-    }, 4000000);
+    }, 1000000);
   };
 
   const handleClaim = async (taskId: string, reward: number, userId: number | null) => {

@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
       const started = user?.startedTasks?.find((t: { taskId: string; }) => t.taskId === taskId);
       if (started) {
         const elapsed = Date.now() - new Date(started.startedAt).getTime();
-        if (elapsed > 4000000) {
+        if (elapsed > 1000000) {
           status = 'claim';
         } else {
           status = 'start';
