@@ -63,12 +63,12 @@ export async function POST(req: NextRequest) {
 
   // Apply referral
   user.referredBy = referrer.userId;
-  user.balance += 2;
+  user.balance += 20;
   await user.save();
 
   referrer.referredUsers.push(userId);
   referrer.referrals += 1;
-  referrer.balance += 5; // Reward amount
+  referrer.balance += 100; // Reward amount
   await referrer.save();
 
   return NextResponse.json({ success: 'Congratulations! Welcome bonus earned' });

@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
       username,
       profile_url,
       isBot,
-      balance: 1,
+      balance: 100,
       referrals: 0,
       referredUsers: [],
       taskCompleted: 0,
