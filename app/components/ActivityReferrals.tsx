@@ -118,11 +118,13 @@ export default function ActivityTasksCompleted({ activity, userId }: {activity: 
           <div className="flex justify-center gap-3">
             <Image src={task.iconUrl} width={26} height={26} alt="" />
             <div>
-              <p className="flex items-center text-sm">{task.name} 
-                <span className="my-text-xs my-text-gray ml-5">{taskProgress} / {task.goal}</span></p>
+              <p className="flex items-center text-sm gap-1">
+                <span>{task.name}</span>
+                <span className="my-text-xs my-text-gray">{taskProgress} / {task.goal}</span>
+              </p>
               <p className="flex items-center gap-3 mt-0.5">  
-                <span className="text-xs my-text-white my-bg-gradient px-3 rounded-full">+{task.reward} </span>
-                <span className="text-xs my-text-gray my-bg-gray px-3 rounded-full">{task.completed} / {task.max} </span>
+                <span className="text-xs my-text-white my-bg-gradient px-3 rounded-full">+{task.reward}</span>
+                <span className="text-xs my-text-gray my-bg-gray px-3 rounded-full">{task.completed} / {task.max}</span>
               </p>                           
             </div>
           </div>
