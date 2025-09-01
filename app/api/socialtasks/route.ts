@@ -30,14 +30,12 @@ export async function GET(request: NextRequest) {
       status = 'done';
     } else if (user?.claimedTasks?.includes(taskId)) {
       status = 'claim';
-    } else if (user?.verifiedTasks?.includes(taskId)) {
-      status = 'verify';
     } else {
       const started = user?.startedTasks?.find((t: { taskId: string; }) => t.taskId === taskId);
       if (started) {
         const elapsed = Date.now() - new Date(started.startedAt).getTime();
-        if (elapsed > 20000) {
-          status = 'verify';
+        if (elapsed > 400000) {
+          status = 'claim';
         } else {
           status = 'start';
         }
@@ -48,7 +46,6 @@ export async function GET(request: NextRequest) {
       id: taskId,
       category: task.category,
       name: task.name,
-      code: task.code,
       max: maxReached,
       completed: completed,
       reward: task.reward,
@@ -58,13 +55,12 @@ export async function GET(request: NextRequest) {
     }; 
   });
 
-  type TaskStatus = 'start' | 'verify' | 'claim' | 'max' | 'done'
+  type TaskStatus = 'start' | 'claim' | 'max' | 'done'
   const statusPriority: Record<TaskStatus, number> = {
     start: 1,
-    verify: 2,
-    claim: 3,
-    max: 4,
-    done: 5
+    claim: 2,
+    max: 3,
+    done: 4
   }
   
   tasksWithStatus.sort((a, b) => {
@@ -88,7 +84,6 @@ export async function POST(request: NextRequest) {
   const user = await User.findOne({ userId });
 
   // Remove taskId from all status arrays first
-  user.verifiedTasks = user.verifiedTasks?.filter((id: string) => id !== taskId) || [];
   user.claimedTasks = user.claimedTasks?.filter((id: string) => id !== taskId) || [];
   user.startedTasks = user.startedTasks?.filter((t: { taskId: string; }) => t.taskId !== taskId) || [];
 
@@ -97,11 +92,6 @@ export async function POST(request: NextRequest) {
     case 'start': 
       if (!user.startedTasks?.some((t: { taskId: string; }) => t.taskId === taskId)) {
       user.startedTasks.push({ taskId, startedAt: new Date() });
-      }
-      break;
-    case 'verify':
-      if (!user.verifiedTasks?.includes(taskId)) {
-        user.verifiedTasks.push(taskId);
       }
       break;
     case 'claim':
