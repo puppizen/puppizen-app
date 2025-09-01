@@ -121,8 +121,8 @@ export default function ReferralLink() {
           <Image src='/arrow.svg' width={24} height={24} alt=''></Image>
           <Image src='/puppizen-coin.png' width={36} height={36} alt='puppizen' className='rotate-45'></Image>
         </div>
-        <p className='text-center'>Earn 5 $Puppizen for each invited friend. 
-          <br /> Your friends earn 2 $Puppizen for using your referral code</p>
+        <p className='text-center'>Earn 100 $Puppizen for each invited friend. 
+          <br /> Your friends earn 20 $Puppizen for using your referral code</p>
       </div>
 
       <ul className='mt-8'>
@@ -192,7 +192,7 @@ export default function ReferralLink() {
               </div>
             )}
 
-            <h3 className="font-normal mb-8">Enter referral code to claim +2 Puppizen</h3>
+            <h3 className="font-normal mb-8">Enter referral code to claim + 20 Puppizen</h3>
 
             <input
               type="text"
