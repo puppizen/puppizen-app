@@ -33,7 +33,8 @@ export async function POST(req: NextRequest) {
   );
 
   if (messageText === '/start' && chatId) {
-    const replyText = `🐶 *Ready to earn like a good pup?*\n\n` +
+    const replyText = 
+    `🐶 Ready to earn like a good pup?\n\n` +
     `Play Puppizen and earn real rewards 💎\n\n` +
     `💎 Complete Tasks – Quick, simple, and rewarding\n` +
     `💎 Invite Friends – Grow your crew and earn more\n` +

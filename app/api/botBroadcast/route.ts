@@ -11,17 +11,38 @@ export async function GET() {
   const users = await User.find({ chatId: { $exists: true, $ne: null } });
 
   for (const user of users) {
+    const replyText = 
+    `👋 Hey ${user.username || 'there'}! \n\n` +
+    `New tasks and rewards 💎 are waiting for you in Puppizen 🐾 \n\n` +
+    `With each completed task, you're climbing higher toward success \n` +
+    `Complete more task, claim rewards and wag your way to the top 🐾`;
+
     await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_id: user.chatId,
-        text: `👋 Hey ${user.username || 'there'}! New tasks and rewards are waiting for you in Puppizen 🐾`,
+        text: replyText,
+        parse_mode: 'Markdown',
         reply_markup: {
           inline_keyboard: [
             [
-              { text: 'Earn More', url: 'https://t.me/PuppizenBot/earn' },
-              { text: 'Invite Friends', url: 'https://t.me/puppizen' }
+              {
+                text: 'Earn Puppizen',
+                url: 'https://t.me/PuppizenBot/earn'
+              }
+            ],
+            [
+              {
+                text: 'Telegram Community',
+                url: 'https://t.me/puppizen'
+              }
+            ],
+            [
+              {
+                text: 'X Community',
+                url: 'https://x.com/puppizen'
+              }
             ]
           ]
         }
