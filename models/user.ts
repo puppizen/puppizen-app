@@ -15,10 +15,6 @@ const userSchema = new Schema({
     type: Boolean,
     default: false
   },
-  chatId: {
-    type: Number,
-    unique: true
-  },
   profile_url: {
     type: String,
   },
