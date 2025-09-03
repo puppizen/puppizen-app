@@ -31,4 +31,4 @@ async function sendBroadcast() {
 // ⏱️ Run every 20 seconds
 setInterval(() => {
   sendBroadcast().catch(console.error);
-}, 20 * 1000);
+}, 20 * 100000);
