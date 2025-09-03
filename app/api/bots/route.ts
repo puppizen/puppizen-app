@@ -1,14 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextRequest } from 'next/server';
 
 const TELEGRAM_API = 'https://api.telegram.org';
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
-export default async function POST(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).send('Method Not Allowed');
-  }
+export async function POST(req: NextRequest) {
 
-  const update = req.body;
+  const update = await req.json();
 
   // Check if it's a /start command
   const messageText = update?.message?.text;
@@ -32,5 +29,5 @@ export default async function POST(req: NextApiRequest, res: NextApiResponse) {
     });
   }
 
-  res.status(200).end();
+  return new Response('OK', { status: 200 });
 }
