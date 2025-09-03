@@ -75,13 +75,13 @@ export default function Leaderboard() {
               <Image 
                 className="my-border-blue rounded-md"
                 src={user.profile_url || '/puppizen-image.png'}
-                width={36} height={36} alt='' loading='lazy'
+                width={24} height={24} alt='' loading='lazy'
               />
               <p className="flex gap-1 items-center">
-                <span>{user.username || `User ${user.userId}`}</span> 
+                <span className="text-sm">{user.username || `User ${user.userId}`}</span> 
                 <span className="my-text-xs">{getReward(index)}</span></p>
             </div>
-            <p className="font-medium">{user.balance}</p>
+            <p className="text-sm">{user.balance}</p>
           </li>
         ))}
       </ul>

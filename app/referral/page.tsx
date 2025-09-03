@@ -69,12 +69,14 @@ export default function ReferralLink() {
   const handleSubmitRefCode = async () => {
     const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
 
-    if (!tgUser?.id || !inputRefCode) return;
+    const trimmedCode = inputRefCode.trim();
+
+    if (!tgUser?.id || !trimmedCode) return;
 
     const res = await fetch('/api/referral', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId: tgUser.id, refCode: inputRefCode })
+      body: JSON.stringify({ userId: tgUser.id, refCode: trimmedCode })
     });
 
     const data = await res.json();
@@ -138,12 +140,12 @@ export default function ReferralLink() {
                 <Image 
                   className="my-border-blue rounded-md"
                   src={user.profile_url || '/puppizen-image.png'}
-                  width={36} height={36} alt=''
+                  width={24} height={24} alt='' loading='lazy'
                 />
-                <p className="">{user.username}</p>
+                <p className="text-sm">{user.username}</p>
               </div>
               <div>
-                <p className="font-medium">{user.balance.toLocaleString()}</p>
+                <p className="text-sm">{user.balance.toLocaleString()}</p>
               </div>
             </li>
           ))
