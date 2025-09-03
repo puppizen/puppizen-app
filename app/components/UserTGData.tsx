@@ -21,7 +21,7 @@ export default function UserTGData() {
         photoUrl: tgUser.photo_url || ''
       });
 
-      fetch('/api/user', {
+      fetch('/api/bots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
