@@ -136,6 +136,7 @@ export default function ReferralLink() {
         {displayReferredList.length > 0 ? (
           displayReferredList.map((user, index) => (
             <li className="flex justify-between items-center p-3" key={index}>
+              <p className="text-sm font-light">#{index + 1}</p>
               <div className="flex items-center gap-2">
                 <Image 
                   className="my-border-blue rounded-md"
