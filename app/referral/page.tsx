@@ -135,10 +135,9 @@ export default function ReferralLink() {
         
         {displayReferredList.length > 0 ? (
           displayReferredList.map((user, index) => (
-            <li className="flex gap-2 items-center p-3" key={index}>
-              <p className="text-sm font-light">#{index + 1}</p>
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
+            <li className="flex justify-between items-center p-3" key={index}>
+              <div className="flex items-center gap-2">
+                <p className="text-sm font-light">#{index + 1}</p>
                 <Image 
                   className="my-border-blue rounded-md"
                   src={user.profile_url || '/puppizen-image.png'}
@@ -146,10 +145,7 @@ export default function ReferralLink() {
                 />
                 <p className="text-sm">{user.username}</p>
               </div>
-              <div>
-                <p className="text-sm">{user.balance.toLocaleString()}</p>
-              </div>
-              </div>
+              <p className="text-sm">{user.balance.toLocaleString()}</p>
             </li>
           ))
         ) : (
