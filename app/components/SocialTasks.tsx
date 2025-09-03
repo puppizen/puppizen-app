@@ -83,7 +83,7 @@ export default function PartnersTasks({ category }: { category: string }) {
 
     setTimeout(() => {
       updateTaskStatus(task.id, 'claim');
-    }, 400000);
+    }, 60000);
   };
 
   const handleClaim = async (taskId: string, reward: number, userId: number | null) => {

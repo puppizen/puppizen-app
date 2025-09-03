@@ -37,10 +37,13 @@ export default function Leaderboard() {
 
   const getBadge = (rank: number) => {
     switch (rank) {
-      case 0: return '💎'; // Platinum
-      case 1: return '🥇'; // Gold
-      case 2: return '🥈'; // Silver
+      case 0: return '💎 +20'; // Platinum
+      case 1: return '💎 +15'; // Gold
+      case 2: return '💎 +10'; // Silver
+      case 3: return '💎 +5'; // Silver
       default: return '🥉'; // Others
+      // case 1: return '🥇'; // Gold
+      // case 2: return '🥈'; // Silver
     }
   };
 

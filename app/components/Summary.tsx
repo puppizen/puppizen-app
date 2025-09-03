@@ -45,11 +45,11 @@ export default function Summary() {
       <h1 className="mb-2 font-semibold text-2xl">Stats</h1>
       <div className="flex justify-between my-bg-gradient gap-3 rounded-md p-3 my-text-black">
         <div className="px-4 py-1 my-bg-white rounded-full w-full font-medium text-center">
-          <p>Total Users</p>
+          <p className="text-sm">Total Users</p>
           <p>{summaryTotalUsers}</p>
         </div>
         <div className="px-3 py-1 my-bg-white rounded-full w-full font-medium text-center">
-          <p>Points Claimed</p> 
+          <p className="text-sm">Points Claimed</p> 
           <p>{summaryTotalBalance}</p>
         </div>
       </div>
