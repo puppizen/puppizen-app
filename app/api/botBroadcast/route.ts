@@ -1,10 +1,11 @@
 import { User } from '@/models/user';
 import connectDb from '@/lib/mongodb';
+import { NextResponse } from 'next/server';
 
 const TELEGRAM_API = 'https://api.telegram.org';
 const BOT_TOKEN = process.env.BOT_TOKEN!;
 
-export async function sendMessageToStoredUsers() {
+export async function GET() {
   await connectDb();
 
   const users = await User.find({ chatId: { $exists: true, $ne: null } });
@@ -27,4 +28,6 @@ export async function sendMessageToStoredUsers() {
       }),
     });
   }
+
+  return NextResponse.json({ status: 'Broadcast sent to all users' });
 }
