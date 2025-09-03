@@ -37,15 +37,23 @@ export default function Leaderboard() {
 
   const getBadge = (rank: number) => {
     switch (rank) {
-      case 0: return '💎 +20'; // Platinum
-      case 1: return '💎 +15'; // Gold
-      case 2: return '💎 +10'; // Silver
-      case 3: return '💎 +5'; // Silver
+      case 0: return '💎'; // Platinum
+      case 1: return '🥇'; // Gold
+      case 2: return '🥈'; // Silver
       default: return '🥉'; // Others
-      // case 1: return '🥇'; // Gold
-      // case 2: return '🥈'; // Silver
     }
   };
+
+  const getReward = (reward: number) => {
+    switch (reward) {
+      case 0: return '35💎';
+      case 1: return '25💎';
+      case 2: return '20💎';
+      case 3: return '15💎';
+      case 4: return '5💎'
+      default: return '';
+    }
+  }
 
   const displayTopUsers = users.length > 0 ? users : cachedUsers
 
@@ -69,7 +77,9 @@ export default function Leaderboard() {
                 src={user.profile_url || '/puppizen-image.png'}
                 width={36} height={36} alt='' loading='lazy'
               />
-              <p className="">{user.username || `User ${user.userId}`}</p>
+              <p className="flex gap-1 items-center">
+                <span>{user.username || `User ${user.userId}`}</span> 
+                <span className="my-text-xs">{getReward(index)}</span></p>
             </div>
             <p className="font-medium">{user.balance}</p>
           </li>
