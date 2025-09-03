@@ -80,6 +80,7 @@ export async function POST(request: NextRequest) {
       username,
       profile_url,
       isBot,
+      chatId: 0,
       balance: 100,
       referrals: 0,
       referredUsers: [],

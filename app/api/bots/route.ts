@@ -1,4 +1,5 @@
 import type { NextRequest } from 'next/server';
+import { User } from '@/models/user';
 
 const TELEGRAM_API = 'https://api.telegram.org';
 const BOT_TOKEN = process.env.BOT_TOKEN;
@@ -7,8 +8,29 @@ export async function POST(req: NextRequest) {
   const update = await req.json();
 
   // Check if it's a /start command
+  const userId = update?.message?.from?.id;
+  const username = update?.message?.from?.username ?? 'Anonymous';
+  const isBot = update?.message?.from?.is_bot ?? false;
   const messageText = update?.message?.text;
   const chatId = update?.message?.chat?.id;
+
+  if (!userId || !chatId || isBot) {
+    return new Response('Invalid Telegram user', { status: 400 });
+  }
+
+  await User.updateOne(
+    { userId },
+    {
+      $set: {
+        userId,
+        chatId,
+        username,
+        isBot,
+        last_active: new Date(),
+      },
+    },
+    { upsert: true }
+  );
 
   if (messageText === '/start' && chatId) {
     const replyText = `🐶 *Ready to earn like a good pup?*\n\n` +
