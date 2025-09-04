@@ -14,8 +14,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
 
-  if (user.adsWatchedToday < 5) {
-    return NextResponse.json({ error: 'Not enough ads watched' }, { status: 403 });
+  if (user.adsWatchedToday !== 5) {
+    return NextResponse.json({ error: 'You must watch 5 ads to claim reward' }, { status: 403 });
+  }
+
+  // ✅ Check if reward already claimed today
+  const now = new Date();
+  const lastClaimDate = new Date(user.lastClaimedAt || 0);
+  const sameDay = lastClaimDate.toDateString() === now.toDateString();
+
+  if (sameDay) {
+    return NextResponse.json({ error: 'Reward already claimed today' }, { status: 403 });
   }
 
   await User.updateOne(
