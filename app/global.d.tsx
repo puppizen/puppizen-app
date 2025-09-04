@@ -15,6 +15,15 @@ declare global {
           ready: () => void;
         };
       };
+      Adsgram: {
+        init: (config: { blockId: string }) => {
+          show: () => Promise<{
+            done: boolean;
+            error: boolean;
+            description?: string;
+          }>;
+        };
+      };
     }
   }
   

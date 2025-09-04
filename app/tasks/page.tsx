@@ -7,6 +7,7 @@ import SocialTasks from '../components/SocialTasks'
 import ActivityTasks from '../components/ActivityTasks'
 import PartnersTasks from '../components/PartnersTasks'
 import Image from 'next/image'
+import Link from 'next/link'
 
 type TaskCategory = 'social' | 'activity' | 'partners'
 
@@ -21,14 +22,16 @@ export default function TaskPage() {
     <div className='pb-15'>
       <PreSaleLink />
 
-      <div className='flex flex-row justify-between items-center p-3 rounded-md my-bg-gradient mt-10'>
-        <div className='flex flex-row gap-3'>
-          <Image src='/calender.svg' width={20} height={20} alt=''></Image>
-          <span className='font-medium'>Daily Check-in</span>
-        </div>
-        <div>
-          <button className="p-3 rounded-full my-bg-white my-text-black px-4 py-1">Claim</button>
-        </div>
+      <div className='mt-10'>
+        <Link href='/dailyReward' className="flex flex-row justify-between items-center p-3 rounded-md my-bg-gradient">
+          <div className='flex flex-row gap-3'>
+            <Image src='/calender.svg' width={20} height={20} alt=''></Image>
+            <span className='font-medium'>Daily Check-in</span>
+          </div>
+          <div>
+            <button className="p-3 rounded-full my-bg-white my-text-black px-4 py-1">Claim</button>
+          </div>
+        </Link>
       </div>
 
       <div className='pt-5'>

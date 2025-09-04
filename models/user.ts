@@ -56,6 +56,8 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
+  dailyCount: { type: Number, default: 0 },
+  lastRewardAt: { type: Date, default: null }
 });
 
 export const User = models.User || model('User', userSchema);

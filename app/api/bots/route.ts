@@ -26,7 +26,6 @@ export async function POST(req: NextRequest) {
         chatId,
         username,
         isBot,
-        last_active: new Date(),
       },
     },
     { upsert: true }

@@ -10,7 +10,10 @@ export async function GET(request: NextRequest) {
   const userId = searchParams.get('userId');
   const user = await User.findOne({ userId });
 
-  return NextResponse.json({ balance: user.balance });
+  return NextResponse.json({ 
+    balance: user.balance,
+    dailyCount: user.dailyCount,
+    });
 }
 
 export async function POST(request: NextRequest) {
@@ -53,7 +56,6 @@ export async function POST(request: NextRequest) {
   await user.save();
 
   return NextResponse.json({
-    userId: user.userId,
-    balance: user.balance,
+    userId: user.userId
   });
 }
