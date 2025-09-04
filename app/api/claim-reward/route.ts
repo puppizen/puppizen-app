@@ -1,17 +1,18 @@
-// // api/verify/route
-
 import { NextRequest, NextResponse } from 'next/server';
 import connectDb from '@/lib/mongodb';
 import { User } from '@/models/user';
-// import { Task } from '@/models/tasks';
 
-const REWARD_AMOUNT = 50;
+const REWARD_AMOUNT = 400;
 
 export async function POST(request: NextRequest) {
   await connectDb();
   const { userId } = await request.json();
 
   const user = await User.findOne({ userId });
+
+  if (!user) {
+    return NextResponse.json({ error: 'User not found' }, { status: 404 });
+  }
 
   if (user.adsWatchedToday < 5) {
     return NextResponse.json({ error: 'Not enough ads watched' }, { status: 403 });
@@ -21,13 +22,16 @@ export async function POST(request: NextRequest) {
     { userId },
     {
       $inc: { balance: REWARD_AMOUNT },
-      $set: {
-        lastClaimedAt: new Date()
-      }
+      $set: { lastClaimedAt: new Date() }
     }
   );
 
-  return NextResponse.json({ message: 'Reward claimed' });
+  const updatedUser = await User.findOne({ userId });
+
+  return NextResponse.json({
+    message: 'Reward claimed',
+    balance: updatedUser.balance
+  });
 }
 
 // export async function POST(req: NextRequest) {
