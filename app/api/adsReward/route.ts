@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
   // If it's been more than 24 hours, reset the counter
   const adsWatchedToday = hoursSinceLastAd >= 24 ? 0 : user.adsWatchedToday;
 
-  if (adsWatchedToday >= 5) {
+  if (adsWatchedToday >= 5 && hoursSinceLastAd < 24) {
     return NextResponse.json({ error: 'Daily ad limit reached' }, { status: 403 });
   }
 
@@ -39,5 +39,5 @@ export async function POST(request: NextRequest) {
     }
   );
 
-  return NextResponse.json({ adsWatchedToday: updateCount });
+  return NextResponse.json({ adsWatchedToday });
 }

@@ -5,7 +5,7 @@ import connectDb from '@/lib/mongodb';
 import { User } from '@/models/user';
 // import { Task } from '@/models/tasks';
 
-const REWARD_AMOUNT = 400;
+const REWARD_AMOUNT = 50;
 
 export async function POST(request: NextRequest) {
   await connectDb();
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     }
   );
 
-  return NextResponse.json({ message: 'Reward claimed', newBalance: user.balance + REWARD_AMOUNT });
+  return NextResponse.json({ message: 'Reward claimed' });
 }
 
 // export async function POST(req: NextRequest) {
