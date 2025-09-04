@@ -8,26 +8,29 @@ export async function POST(request: NextRequest) {
 
   const user = await User.findOne({ userId });
   const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const today = now.toDateString();
 
-  const lastAdDate = new Date(user.lastAdWatchedAt || 0);
-  const isSameDay = lastAdDate >= today;
+  const lastAdDate = new Date(user.lastAdWatchedAt || 0).toDateString();
+  const isSameDay = lastAdDate === today;
 
-  if (isSameDay && user.adsWatchedToday >= 5) {
+  // Reset count if it's a new day
+  const adsWatchedToday = isSameDay ? user.adsWatchedToday : 0;
+
+  if (adsWatchedToday >= 5) {
     return NextResponse.json({ error: 'Daily ad limit reached' }, { status: 403 });
   }
 
-  const newCount = isSameDay ? user.adsWatchedToday + 1 : 1;
+  const updateCount = adsWatchedToday + 1;
 
   await User.updateOne(
     { userId },
     {
       $set: {
-        adsWatchedToday: newCount,
+        adsWatchedToday: updateCount,
         lastAdWatchedAt: now
       }
     }
   );
 
-  return NextResponse.json({ adsWatchedToday: newCount });
+  return NextResponse.json({ adsWatchedToday: updateCount });
 }
