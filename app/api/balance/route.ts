@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({ 
     balance: user.balance,
-    dailyCount: user.dailyCount,
+    adsWatchedToday: user.adsWatchedToday || 0,
     });
 }
 

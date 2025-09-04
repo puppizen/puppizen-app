@@ -1,6 +1,6 @@
 import Link from "next/link";
-import AdsgramReward from "../components/AdsReward";
 import Footer from "../components/Footer";
+import WatchAdsForReward from "../components/AdsReward";
 
 export default function DailyReward() {
   return (
@@ -11,7 +11,7 @@ export default function DailyReward() {
         </Link>
       </div>
 
-      <AdsgramReward />
+      <WatchAdsForReward />
 
       <Footer />
     </div>
