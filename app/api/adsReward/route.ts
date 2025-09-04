@@ -6,15 +6,22 @@ export async function POST(request: NextRequest) {
   await connectDb();
   const { userId } = await request.json();
 
+  if (!userId) {
+    return NextResponse.json({ error: 'Missing userId' }, { status: 400 });
+  }
+
   const user = await User.findOne({ userId });
+
+  if (!user) {
+    return NextResponse.json({ error: 'User not found' }, { status: 404 });
+  }
+  
   const now = new Date();
-  const today = now.toDateString();
+  const lastAdWatchedAt = new Date(user.lastAdWatchedAt || 0);
+  const hoursSinceLastAd = (now.getTime() - lastAdWatchedAt.getTime()) / (1000 * 60 * 60);
 
-  const lastAdDate = new Date(user.lastAdWatchedAt || 0).toDateString();
-  const isSameDay = lastAdDate === today;
-
-  // Reset count if it's a new day
-  const adsWatchedToday = isSameDay ? user.adsWatchedToday : 0;
+  // If it's been more than 24 hours, reset the counter
+  const adsWatchedToday = hoursSinceLastAd >= 24 ? 0 : user.adsWatchedToday;
 
   if (adsWatchedToday >= 5) {
     return NextResponse.json({ error: 'Daily ad limit reached' }, { status: 403 });
