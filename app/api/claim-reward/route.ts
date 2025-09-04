@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
 
   const user = await User.findOne({ userId });
 
-  if (user.adsWatchedToday < 3) {
+  if (user.adsWatchedToday < 5) {
     return NextResponse.json({ error: 'Not enough ads watched' }, { status: 403 });
   }
 

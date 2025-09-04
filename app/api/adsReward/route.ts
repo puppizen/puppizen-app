@@ -13,6 +13,10 @@ export async function POST(request: NextRequest) {
   const lastAdDate = new Date(user.lastAdWatchedAt || 0);
   const isSameDay = lastAdDate >= today;
 
+  if (isSameDay && user.adsWatchedToday >= 5) {
+    return NextResponse.json({ error: 'Daily ad limit reached' }, { status: 403 });
+  }
+
   const newCount = isSameDay ? user.adsWatchedToday + 1 : 1;
 
   await User.updateOne(

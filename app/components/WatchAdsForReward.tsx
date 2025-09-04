@@ -88,15 +88,15 @@ export default function WatchAdsForReward() {
         Today&apos;s free count:
       </span>
       <span>
-        {adsWatched || 0} /3
+        {adsWatched || 0} / 5
       </span>
     </p>
 
     <button
       onClick={handleAdWatch}
-      disabled={loadingAd || adsWatched >= 3}
-      className={`w-full px-4 py-2 rounded my-text-white mb-3 ${
-        adsWatched >= 3 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
+      disabled={loadingAd || adsWatched >= 5}
+      className={`w-full p-3 rounded my-text-white mb-3 ${
+        adsWatched >= 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
       }`}
     >
       {loadingAd ? 'Loading Ad...' : 'Watch Ad'}
@@ -106,9 +106,9 @@ export default function WatchAdsForReward() {
 
     <button
       onClick={handleClaimReward}
-      disabled={adsWatched < 3 || claiming}
-      className={`w-full px-4 py-2 rounded my-text-white mb-3 ${
-        adsWatched >= 3 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
+      disabled={adsWatched < 5 || claiming}
+      className={`w-full p-3 rounded my-text-white mb-3 ${
+        adsWatched < 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
       }`}
     >
       {claiming ? 'Claiming...' : 'Claim Reward'}
