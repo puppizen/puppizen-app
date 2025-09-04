@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDb from '@/lib/mongodb';
 import { User } from '@/models/user';
 
-const REWARD_AMOUNT = 400;
+const REWARD_AMOUNT = 50;
 
 export async function POST(request: NextRequest) {
   await connectDb();
