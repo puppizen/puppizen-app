@@ -2,7 +2,7 @@ import { User } from "@/models/user";
 import connectDb from "@/lib/mongodb";
 import { NextResponse, NextRequest } from 'next/server';
 
-const MAX_DAILY_REWARDS = 3;
+const MAX_DAILY_COUNT = 3;
 const ADS_REWARD = 200;
 
 export async function POST(request: NextRequest) {
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
   const isSameDay = lastRewardDate >= today;
 
   // Check daily limit
-  if (isSameDay && user.dailyCount >= MAX_DAILY_REWARDS) {
+  if (isSameDay && user.dailyCount >= MAX_DAILY_COUNT) {
     return NextResponse.json({ error: "Daily reward limit reached" }, { status: 403 });
   }
 
