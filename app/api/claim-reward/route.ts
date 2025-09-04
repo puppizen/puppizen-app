@@ -22,7 +22,6 @@ export async function POST(request: NextRequest) {
     {
       $inc: { balance: REWARD_AMOUNT },
       $set: {
-        adsWatchedToday: 0,
         lastClaimedAt: new Date()
       }
     }
