@@ -32,7 +32,7 @@ export default function WatchAdsForReward() {
     setError(null);
 
     try {
-      const AdController = window.Adsgram.init({ blockId: 'YOUR_BLOCK_ID' });
+      const AdController = window.Adsgram.init({ blockId: 'int-14464' });
       const result = await AdController.show();
 
       if (result.done && !result.error) {
@@ -80,10 +80,10 @@ export default function WatchAdsForReward() {
   };
 
   return (
-    <div className="p-3">
+    <div className="p-2">
     <h3 className="text-xl font-bold mb-8 my-text-gray">Watch Ad to claim today&apos;s reward</h3>
 
-    <p className="flex justify-between items-center my-text-white mb-2 font-normal text-sm">
+    <p className="flex justify-between items-center my-text-white mb-5 font-normal text-sm">
       <span>
         Today&apos;s free count:
       </span>
@@ -95,7 +95,7 @@ export default function WatchAdsForReward() {
     <button
       onClick={handleAdWatch}
       disabled={loadingAd || adsWatched >= 3}
-      className={`w-full px-4 py-2 rounded my-text-white ${
+      className={`w-full px-4 py-2 rounded my-text-white mb-3 ${
         adsWatched >= 3 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
       }`}
     >
@@ -107,7 +107,7 @@ export default function WatchAdsForReward() {
     <button
       onClick={handleClaimReward}
       disabled={adsWatched < 3 || claiming}
-      className={`w-full px-4 py-2 rounded my-text-white ${
+      className={`w-full px-4 py-2 rounded my-text-white mb-3 ${
         adsWatched >= 3 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
       }`}
     >

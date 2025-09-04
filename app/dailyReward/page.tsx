@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Footer from "../components/Footer";
-import WatchAdsForReward from "../components/AdsReward";
+import WatchAdsForReward from "../components/WatchAdsForReward";
 
 export default function DailyReward() {
   return (

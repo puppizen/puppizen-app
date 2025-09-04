@@ -42,7 +42,7 @@ export default function Summary() {
 
   return (
     <div className="mb-3">
-      <h1 className="mb-2 font-semibold text-2xl">Stats</h1>
+      <h1 className="mb-2 font-bold text-2xl my-text-gray">Stats</h1>
       <div className="flex justify-between my-bg-gradient gap-3 rounded-md p-3 my-text-black">
         <div className="px-4 py-1 my-bg-white rounded-full w-full font-medium text-center">
           <p className="text-sm">Total Users</p>
