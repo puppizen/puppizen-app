@@ -20,6 +20,7 @@ declare global {
           show: () => Promise<{
             done: boolean;
             error: boolean;
+            state: 'load' | 'render' | 'playing' | 'destroy';
             description?: string;
           }>;
         };
