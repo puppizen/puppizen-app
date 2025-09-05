@@ -32,10 +32,10 @@ export default function WatchAdsForReward() {
     setError(null);
 
     try {
-      const AdController = window.Adsgram.init({ blockId: 'int-14464' });
+      const AdController = window.Adsgram.init({ blockId: '14582' });
       const result = await AdController.show();
 
-      if (result.done && result.state === 'destroy' && !result.error && result.description === 'completed') {
+      if (result.done && !result.error) {
         const res = await fetch('/api/adsReward', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -52,6 +52,7 @@ export default function WatchAdsForReward() {
     } catch (err) {
       setError('Adsgram error: ' + err);
     }
+
     setLoadingAd(false);
   };
 
