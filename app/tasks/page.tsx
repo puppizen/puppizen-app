@@ -25,7 +25,7 @@ export default function TaskPage() {
       <div className='mt-10'>
         <Link href='/dailyReward' className="flex flex-row justify-between items-center p-3 rounded-md my-bg-gradient">
           <div className='flex flex-row gap-3'>
-            <Image src='/calender.svg' width={20} height={20} alt=''></Image>
+            <Image src='/calender.svg' width={20} height={20} alt='' />
             <span className='font-medium'>Daily Check-in</span>
           </div>
           <div>

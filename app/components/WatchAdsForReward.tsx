@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useEffect, useState } from 'react';
 
@@ -84,29 +85,29 @@ export default function WatchAdsForReward() {
   return (
     <div className="p-2">
       <div className="mb-5">
-        <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with ads</h3>
-
-        <p className="flex justify-between items-center my-text-white mb-5 font-normal text-sm">
-          <span>
-            Today&apos;s free count:
-          </span>
-          <span>
-            {adsWatched || 0} / 5
-          </span>
-        </p>
-
-        <button
-          onClick={handleAdWatch}
-          disabled={loadingAd || adsWatched >= 5}
-          className={`w-full p-3 rounded my-text-white mb-3 ${
-            adsWatched >= 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
-          }`}
-        >
-          {loadingAd ? 'Loading Ad...' : 'Watch Ad'}
-        </button>
-
+        <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with ads</h3>  
         {error && <p className="mt-4 text-red-500">{error}</p>}
 
+        <div className="flex justify-between items-center p-3 rounded-md my-bg-gray">
+          <div className="flex gap-1 items-center">
+            <Image src="/yt-icon.svg" width={24} height={24} alt="ads" />
+            <div>
+              <p className="my-text-white text-sm">Today: </p>
+              <span>{adsWatched || 0} / 5</span>
+            </div>
+          </div>
+          
+          <button
+            onClick={handleAdWatch}
+            disabled={loadingAd || adsWatched >= 5}
+            className={`px-4 py-1 rounded-full my-text-white mb-3 ${
+              adsWatched >= 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
+            }`}
+          >
+            {loadingAd ? 'Loading Ad...' : 'Watch Ad'}
+          </button>
+        </div>
+        
         <button
           onClick={handleClaimReward}
           disabled={adsWatched < 5 || claiming}
