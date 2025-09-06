@@ -88,19 +88,19 @@ export default function WatchAdsForReward() {
         <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with ads</h3>  
         {error && <p className="mt-4 text-red-500">{error}</p>}
 
-        <div className="flex justify-between items-center p-3 rounded-md my-bg-gray mb-1">
+        <div className="flex justify-between items-center p-3 rounded-md my-bg-gray mb-3">
           <div className="flex gap-3 items-center">
             <Image src="/television.svg" width={24} height={24} alt="ads" />
             <div className="flex gap-2 items-center my-text-white">
-              <p className="text-sm">Today: </p>
-              <span className="text-xs">{adsWatched || 0} / 5</span>
+              <p className="">Today: </p>
+              <span className="text-sm">{adsWatched || 0} / 5</span>
             </div>
           </div>
           
           <button
             onClick={handleAdWatch}
             disabled={loadingAd || adsWatched >= 5}
-            className={`px-4 py-1 rounded-full my-text-white mb-3 ${
+            className={`px-4 py-1 rounded-full my-text-white ${
               adsWatched >= 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
             }`}
           >
