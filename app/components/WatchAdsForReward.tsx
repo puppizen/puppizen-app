@@ -88,12 +88,12 @@ export default function WatchAdsForReward() {
         <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with ads</h3>  
         {error && <p className="mt-4 text-red-500">{error}</p>}
 
-        <div className="flex justify-between items-center p-3 rounded-md my-bg-gray">
-          <div className="flex gap-1 items-center">
-            <Image src="/yt-icon.svg" width={24} height={24} alt="ads" />
-            <div>
-              <p className="my-text-white text-sm">Today: </p>
-              <span>{adsWatched || 0} / 5</span>
+        <div className="flex justify-between items-center p-3 rounded-md my-bg-gray mb-1">
+          <div className="flex gap-3 items-center">
+            <Image src="/television.svg" width={24} height={24} alt="ads" />
+            <div className="flex gap-2 items-center my-text-white">
+              <p className="text-sm">Today: </p>
+              <span className="text-xs">{adsWatched || 0} / 5</span>
             </div>
           </div>
           
