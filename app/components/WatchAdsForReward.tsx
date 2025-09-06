@@ -83,17 +83,17 @@ export default function WatchAdsForReward() {
   };
 
   return (
-    <div className="p-2">
+    <div className="">
       <div className="mb-5">
         <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with ads</h3>  
         {error && <p className="mt-4 text-red-500">{error}</p>}
 
         <div className="flex justify-between items-center p-3 rounded-md my-bg-gray mb-3">
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-1 items-center">
             <Image src="/television.svg" width={36} height={36} alt="ads" />
-            <div className="flex gap-1 items-center my-text-white">
+            <div className="flex gap-2 items-center my-text-white">
               <p className="">Today: </p>
-              <span className="text-sm">{adsWatched || 0} / 5</span>
+              <span className="text-xs">{adsWatched || 0} / 5</span>
             </div>
           </div>
           

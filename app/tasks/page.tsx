@@ -29,7 +29,7 @@ export default function TaskPage() {
             <span className='font-medium'>Daily Check-in</span>
           </div>
           <div>
-            <button className="p-3 rounded-full my-bg-white my-text-black px-4 py-1">Claim</button>
+            <button className="rounded-full my-bg-white my-text-black px-4 py-1">Claim</button>
           </div>
         </Link>
       </div>
