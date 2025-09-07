@@ -1,6 +1,5 @@
 'use client'
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function WatchAdsForReward() {
 
@@ -25,11 +24,13 @@ export default function WatchAdsForReward() {
           <Image src='/calender.svg' width={20} height={20} alt='' />
           <span className='font-medium'>Daily Check-in</span>
         </div>
-        <Link href="/dailyReward "
-        onClick={handleResetCount}
-        className="rounded-full my-bg-white my-text-black px-4 py-1">
-          Claim
-        </Link>
+        <div>
+          <button
+          onClick={handleResetCount}
+          className="rounded-full my-bg-white my-text-black px-4 py-1">
+            Claim
+          </button>
+        </div>
       </div>
     </div>
   );
