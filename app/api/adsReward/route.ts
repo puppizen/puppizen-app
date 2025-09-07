@@ -2,13 +2,11 @@ import { User } from "@/models/user";
 import connectDb from "@/lib/mongodb";
 import { NextResponse, NextRequest } from 'next/server';
 
+const REQUIRED_ADS = 5
+
 export async function POST(request: NextRequest) {
   await connectDb();
   const { userId } = await request.json();
-
-  if (!userId) {
-    return NextResponse.json({ error: 'Missing userId' }, { status: 400 });
-  }
 
   const user = await User.findOne({ userId });
 
@@ -16,11 +14,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
   
-  const now = new Date();
-  const lastAdWatchedAt = new Date(user.lastAdWatchedAt || 0);
-  const hoursSinceLastAd = (now.getTime() - lastAdWatchedAt.getTime()) / (1000 * 60 * 60);
+  const now = new Date().toISOString().slice(0, 10);
+  const hoursSinceLastAd = new Date(user.lastAdWatchedAt || 0).toISOString().slice(0, 10);
 
-  if (user.adsWatchedToday === 5 && hoursSinceLastAd < 24) {
+  if (user.adsWatchedToday === REQUIRED_ADS && hoursSinceLastAd === now) {
     return NextResponse.json({ error: 'Daily ad limit reached' }, { status: 403 });
   }
 

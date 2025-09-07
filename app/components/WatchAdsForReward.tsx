@@ -16,12 +16,6 @@ export default function WatchAdsForReward() {
 
     if (tgUser.id) {
       setUserId(tgUser.id)
-
-      fetch(`/api/balance?userId=${tgUser.id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setAdsWatched(data.adsWatchedToday)
-      })
     }
   }, [])
 
@@ -30,11 +24,14 @@ export default function WatchAdsForReward() {
     const result = await AdController.show();
 
     if (result.done && !result.error) {
-      await fetch('/api/adsReward', {
+      const res = await fetch('/api/adsReward', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId })
       });
+
+      const data = await res.json()
+      setAdsWatched(data.adsWatchedToday)
     } else {
       setErrorMessage("Ads not watched to the end!")
     }
