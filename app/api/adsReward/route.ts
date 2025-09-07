@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
   const lastAdWatchedAt = new Date(user.lastAdWatchedAt || 0);
   const hoursSinceLastAd = (now.getTime() - lastAdWatchedAt.getTime()) / (1000 * 60 * 60);
 
-  if (user.adsWatchedToday >= 5 && hoursSinceLastAd < 24) {
+  if (user.adsWatchedToday === 5 && hoursSinceLastAd < 24) {
     return NextResponse.json({ error: 'Daily ad limit reached' }, { status: 403 });
   }
 

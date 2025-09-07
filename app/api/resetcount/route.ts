@@ -32,10 +32,13 @@ export async function POST(request: NextRequest) {
     { userId },
     {
       $set: {
-        adsWatchedToday: resetAdswatchedToday
+        adsWatchedToday: resetAdswatchedToday,
+        lastAdWatchedAt: now
       }
     }
   );
 
-  return NextResponse.json({ });
+  return NextResponse.json({ 
+    adsWatchedToday: resetAdswatchedToday
+  });
 }
