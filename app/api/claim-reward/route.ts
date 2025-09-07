@@ -3,6 +3,7 @@ import connectDb from '@/lib/mongodb';
 import { User } from '@/models/user';
 
 const REWARD_AMOUNT = 50;
+const REQUIRED_ADS = 5;
 
 export async function POST(request: NextRequest) {
   await connectDb();
@@ -14,51 +15,30 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
 
-  if (user.adsWatchedToday !== 5) {
-    return NextResponse.json({ error: 'You must watch 5 ads to claim reward' }, { status: 403 });
+  if (user.adsWatchedToday !== REQUIRED_ADS) {
+    return NextResponse.json({ error: `You must watch ${REQUIRED_ADS} ads to claim reward` }, { status: 403 });
   }
 
-  // ✅ Check if reward already claimed today
-  const now = new Date();
-  const lastClaimDate = new Date(user.lastClaimedAt || 0);
-  const sameDay = lastClaimDate.toDateString() === now.toDateString();
+  const nowUTC = new Date().toISOString().slice(0, 10);
+  const lastClaimUTC = new Date(user.lastClaimedAt || 0).toISOString().slice(0, 10);
 
-  if (sameDay) {
+  if (nowUTC === lastClaimUTC) {
     return NextResponse.json({ error: 'Reward already claimed today' }, { status: 403 });
   }
 
+  // Update user
   await User.updateOne(
-    { userId },
+    {userId},
     {
       $inc: { balance: REWARD_AMOUNT },
       $set: { lastClaimedAt: new Date() }
     }
   );
 
-  const updatedUser = await User.findOne({ userId });
+  console.log(`✅ Reward claimed: User ${userId} at ${user.lastClaimedAt.toISOString()}`);
 
   return NextResponse.json({
-    message: 'Reward claimed',
-    balance: updatedUser.balance
+    success: "Daily Reward claimed",
+    balance: user.balance
   });
 }
-
-// export async function POST(req: NextRequest) {
-//   await connectDb();
-//   const { taskId, inputCode } = await req.json();
-
-//   if (!taskId || !inputCode) {
-//     return NextResponse.json({ error: 'Missing data' }, { status: 400 });
-//   }
-
-//   const task = await Task.findById(taskId);
-//   if (!task) {
-//     return NextResponse.json({ error: 'Task not found' }, { status: 404 });
-//   }
-
-//   if (task.code !== inputCode) {
-//     return NextResponse.json({ error: 'Incorrect verify code. Try again.' }, { status: 401 });
-//   }
-
-//   return NextResponse.json({ success: 'Task completed! Claim your rewards' });
-// }

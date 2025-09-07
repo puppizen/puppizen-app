@@ -7,7 +7,8 @@ export default function WatchAdsForReward() {
   const [adsWatched, setAdsWatched] = useState(0);
   const [loadingAd, setLoadingAd] = useState(false);
   const [claiming, setClaiming] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const userId = typeof window !== 'undefined'
     ? window.Telegram?.WebApp?.initDataUnsafe?.user?.id
@@ -30,7 +31,7 @@ export default function WatchAdsForReward() {
 
   const handleAdWatch = async () => {
     setLoadingAd(true);
-    setError(null);
+    setErrorMessage(null);
 
     try {
       const AdController = window.Adsgram.init({ blockId: '14582' });
@@ -46,12 +47,12 @@ export default function WatchAdsForReward() {
         const data = await res.json();
         setAdsWatched(data.adsWatchedToday);
       } else {
-        setError('Ad not completed or failed to load');
+        setErrorMessage('Ad not completed or failed to load');
       } 
       
       console.log(result);
     } catch (err) {
-      setError('Adsgram error: ' + err);
+      setErrorMessage('Adsgram error: ' + err);
     }
 
     setLoadingAd(false);
@@ -59,7 +60,7 @@ export default function WatchAdsForReward() {
 
   const handleClaimReward = async () => {
     setClaiming(true);
-    setError(null);
+    setErrorMessage(null);
 
     try {
       const res = await fetch('/api/claim-reward', {
@@ -71,12 +72,12 @@ export default function WatchAdsForReward() {
       const data = await res.json();
 
       if (res.ok) {
-        setAdsWatched(0);
+        setSuccessMessage(data.success || "Daily reward claimed");
       } else {
-        setError(data.error || 'Claim failed');
+        setErrorMessage(data.error || 'Claim failed');
       }
     } catch (err) {
-      setError('Claim error: ' + err);
+      setErrorMessage('Claim error: ' + err);
     }
 
     setClaiming(false);
@@ -85,8 +86,24 @@ export default function WatchAdsForReward() {
   return (
     <div className="">
       <div className="mb-5">
-        <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with ads</h3>  
-        {error && <p className="mt-4 text-red-500">{error}</p>}
+        <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with ads</h3>
+        {successMessage && (
+          <div className="flex items-center gap-1 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
+            <Image src='/check-good.svg' width={20} height={20} alt='success'/>
+            <p className='text-xs'>
+              {successMessage}
+            </p>
+          </div>
+        )}
+
+        {errorMessage && (
+          <div className='flex items-center gap-1 bg-red-600 my-text-white px-3 py-1 mb-3 w-full rounded-md'>
+            <Image src='/error.svg' width={20} height={20} alt='error'/>
+            <p className='text-xs'>
+              {errorMessage}
+            </p>
+          </div>
+        )}
 
         <div className="flex justify-between items-center p-3 rounded-md my-bg-gray mb-3">
           <div className="flex gap-1 items-center">

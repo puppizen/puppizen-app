@@ -18,23 +18,24 @@ export async function POST(request: NextRequest) {
   
   const now = new Date();
   const lastAdWatchedAt = new Date(user.lastAdWatchedAt || 0);
-  const hoursSinceLastAd = (now.getTime() - lastAdWatchedAt.getTime()) / (1000 * 60 * 60);
 
-  if (user.adsWatchedToday >= 5 && hoursSinceLastAd < 24) {
-    return NextResponse.json({ error: 'Daily ad limit reached' }, { status: 403 });
+  const today = now.toISOString().split('T')[0];
+  const lastWatchedDate = lastAdWatchedAt.toISOString().split('T')[0];
+
+  // If it's been more than 24 hours, reset the counter
+  let resetAdswatchedToday = user.adsWatchedToday
+  if (lastWatchedDate !== today) {
+    resetAdswatchedToday = 0
   }
-
-  const updateCount = user.adsWatchedToday + 1;
 
   await User.updateOne(
     { userId },
     {
       $set: {
-        adsWatchedToday: updateCount,
-        lastAdWatchedAt: now
+        adsWatchedToday: resetAdswatchedToday
       }
     }
   );
 
-  return NextResponse.json({ adsWatchedToday: updateCount });
+  return NextResponse.json({ });
 }
