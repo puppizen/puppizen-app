@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
   }
   
   const today = new Date().toISOString().slice(0, 10);
-  const lastAdWatchedAt = new Date(user.lastAdWatchedAt || 0).toISOString().slice(0, 10);
+  const lastAdWatchedAt = user.lastAdWatchedAt || 0;
 
   // If it's been more than 24 hours, reset the counter
   if (lastAdWatchedAt === today) {
@@ -26,15 +26,5 @@ export async function POST(request: NextRequest) {
 
   await user.save()
 
-  // await User.updateOne(
-  //   { userId },
-  //   {
-  //     $set: {
-  //       adsWatchedToday: resetAdswatchedToday,
-  //       lastAdWatchedAt: now
-  //     }
-  //   }
-  // );
-
-  return NextResponse.json({ success: "Count reseted"});
+  return NextResponse.json({ success: "Count reset"});
 }
