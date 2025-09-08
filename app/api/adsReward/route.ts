@@ -14,10 +14,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
   
-  const now = new Date().toISOString().slice(0, 10);
-  const hoursSinceLastAd = new Date(user.lastAdWatchedAt || 0).toISOString().slice(0, 10);
+  const today = new Date().toDateString();
+  const lastAdWatchedAt = new Date(user.lastAdWatchedAt).toDateString();
 
-  if (user.adsWatchedToday === REQUIRED_ADS && hoursSinceLastAd === now) {
+  if (user.adsWatchedToday === REQUIRED_ADS && lastAdWatchedAt === today) {
     return NextResponse.json({ error: 'Daily ad limit reached' }, { status: 403 });
   }
 
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     {
       $set: {
         adsWatchedToday: updateCount,
-        lastAdWatchedAt: now
+        lastAdWatchedAt: today
       }
     }
   );

@@ -16,12 +16,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
   
-  const today = new Date().toISOString().slice(0, 10);
-  const lastAdWatchedAt = user.lastAdWatchedAt || 0;
+  const today = new Date().toDateString();
+  const lastAdWatchedAt = new Date(user.lastAdWatchedAt).toDateString();
 
   // If it's been more than 24 hours, reset the counter
   if (lastAdWatchedAt === today) {
-    user.adsWatchedToday = 0
+    user.adsWatchedToday = 0;
+    user.lastAdWatchedAt = today;
   }
 
   await user.save()
