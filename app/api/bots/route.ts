@@ -15,6 +15,7 @@ export async function POST(req: NextRequest) {
   const chatId = update?.message?.chat?.id;
 
   const payment = update?.message?.successful_payment;
+  const preCheckoutQuery = update?.pre_checkout_query;
 
   if (!userId || !chatId || isBot) {
     return new Response('Invalid Telegram user', { status: 400 });
@@ -73,6 +74,22 @@ export async function POST(req: NextRequest) {
         }
       }),
     });
+  }
+
+  // pre check-out query
+  if (preCheckoutQuery) {
+    const queryId = preCheckoutQuery.id;
+
+    await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/answerPreCheckoutQuery`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        pre_checkout_query_id: queryId,
+        ok: true // or false if you want to reject the payment
+      }),
+    });
+
+    return new Response('PreCheckout answered', { status: 200 });
   }
 
 
