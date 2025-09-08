@@ -19,10 +19,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: `You must watch ${REQUIRED_ADS} ads to claim reward` }, { status: 403 });
   }
 
-  const nowUTC = new Date().toISOString().slice(0, 10);
+  const now = new Date().toISOString().slice(0, 10);
   const lastClaimUTC = new Date(user.lastClaimedAt || 0).toISOString().slice(0, 10);
 
-  if (nowUTC === lastClaimUTC) {
+  if (now === lastClaimUTC) {
     return NextResponse.json({ error: 'Reward already claimed today' }, { status: 403 });
   }
 
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
     {userId},
     {
       $inc: { balance: REWARD_AMOUNT },
-      $set: { lastClaimedAt: new Date() }
+      $set: { lastClaimedAt: now }
     }
   );
 

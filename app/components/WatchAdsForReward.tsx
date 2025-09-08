@@ -9,13 +9,19 @@ export default function WatchAdsForReward() {
   // const [loadingAd, setLoadingAd] = useState(false);
   // const [claiming, setClaiming] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  // const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const tgUser = window.Telegram.WebApp.initDataUnsafe?.user;
 
     if (tgUser.id) {
       setUserId(tgUser.id)
+
+      fetch(`/api/balance?userId=${tgUser.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setAdsWatched(data.adsWatchedToday)
+      })
     }
   }, [])
 
@@ -39,18 +45,34 @@ export default function WatchAdsForReward() {
     console.log(result)
   }
 
+  const handleClaimReward = async () => {
+    const res = await fetch('/api/claim-reward', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      setSuccessMessage(data.succes || "Daily reward claimed")
+    } else {
+      setErrorMessage(data.error)
+    }
+  }
+
   return (
     <div className="">
       <div className="mb-5">
         <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with ads</h3>
-        {/* {successMessage && (
+        {successMessage && (
           <div className="flex items-center gap-1 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
             <Image src='/check-good.svg' width={20} height={20} alt='success'/>
             <p className='text-xs'>
               {successMessage}
             </p>
           </div>
-        )} */}
+        )}
 
         {errorMessage && (
           <div className='flex items-center gap-1 bg-red-600 my-text-white px-3 py-1 mb-3 w-full rounded-md'>
@@ -82,7 +104,7 @@ export default function WatchAdsForReward() {
         </div>
         
         <button
-          // onClick={handleClaimReward}
+          onClick={handleClaimReward}
           disabled={adsWatched < 5}
           className={`w-full p-3 rounded my-text-white mb-3 ${
             adsWatched < 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
