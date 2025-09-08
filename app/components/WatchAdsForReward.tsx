@@ -62,12 +62,9 @@ export default function WatchAdsForReward() {
   }
 
   const handleClaimWithStars = async () => {
-    window.Telegram.WebApp.openInvoice({
-      slug: "daily_reward_with_stars",
-      amount: 5,
-      currency: "stars",
-      description: "Daily check-in with stars"
-    })
+    const invoiceLink = "https://t.me/$1O4PyYVM-VEKAgAA9ULPHj_sVSU"
+
+    window.Telegram.WebApp.openInvoice(invoiceLink)
   }
 
   return (

@@ -14,12 +14,7 @@ declare global {
           };
           ready: () => void;
 
-          openInvoice: (params: {
-            slug: string;
-            amount: number;
-            currency: 'stars';
-            description: string;
-          }) => void;
+          openInvoice: (invoiceLink: string) => void;
         };
       };
       Adsgram: {
