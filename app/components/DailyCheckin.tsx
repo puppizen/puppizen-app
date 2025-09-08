@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image';
 
-export default function WatchAdsForReward() {
+export default function DailyCheckIn() {
 
   const handleResetCount = async () => {
     const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
