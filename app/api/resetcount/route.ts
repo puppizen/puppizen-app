@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 
   // If it's been more than 24 hours, reset the counter
   if (lastAdWatchedAt === today) {
-    user.adswatchedToday = 0
+    user.adsWatchedToday = 0
   }
 
   await user.save()
