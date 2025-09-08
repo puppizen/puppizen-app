@@ -3,7 +3,7 @@ import connectDb from '@/lib/mongodb';
 import { User } from '@/models/user';
 
 const REWARD_AMOUNT = 50;
-const REQUIRED_ADS = 5;
+const REQUIRED_ADS = 10;
 
 export async function POST(request: NextRequest) {
   await connectDb();

@@ -61,10 +61,20 @@ export default function WatchAdsForReward() {
     }
   }
 
+  const handleClaimWithStars = async () => {
+    window.Telegram.WebApp.openInvoice({
+      slug: "daily_reward_with_stars",
+      amount: 5,
+      currency: "XTR",
+      description: "Daily check-in with stars"
+    })
+  }
+
   return (
     <div className="">
       <div className="mb-5">
         <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with ads</h3>
+
         {successMessage && (
           <div className="flex items-center gap-1 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
             <Image src='/check-good.svg' width={20} height={20} alt='success'/>
@@ -88,7 +98,7 @@ export default function WatchAdsForReward() {
             <Image src="/television.svg" width={36} height={36} alt="ads" />
             <div className="flex gap-2 items-center my-text-white">
               <p className="">Today: </p>
-              <span className="text-xs">{adsWatched || 0} / 5</span>
+              <span className="text-xs">{adsWatched || 0} / 10</span>
             </div>
           </div>
           
@@ -96,7 +106,7 @@ export default function WatchAdsForReward() {
             onClick={handleAdWatch}
             disabled={adsWatched >= 5}
             className={`px-4 py-1 rounded-full my-text-white ${
-              adsWatched >= 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
+              adsWatched >= 10 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
             }`}
           >
             Watch Ad
@@ -105,9 +115,9 @@ export default function WatchAdsForReward() {
         
         <button
           onClick={handleClaimReward}
-          disabled={adsWatched < 5}
-          className={`w-full p-3 rounded my-text-white mb-3 ${
-            adsWatched < 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
+          disabled={adsWatched < 10}
+          className={`w-full p-3 rounded-md my-text-white mb-3 ${
+            adsWatched < 10 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
           }`}
         >
           Claim Reward
@@ -116,6 +126,9 @@ export default function WatchAdsForReward() {
 
       <div>
         <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with stars</h3>
+        <button onClick={handleClaimWithStars} className="my-bg-blue w-full p-3 rounded-md my-text-white">
+          Check-in with 5 stars 
+        </button>
       </div>
   </div>
   );

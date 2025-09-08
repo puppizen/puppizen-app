@@ -14,6 +14,8 @@ export async function POST(req: NextRequest) {
   const messageText = update?.message?.text;
   const chatId = update?.message?.chat?.id;
 
+  const payment = update?.message?.successful_payment;
+
   if (!userId || !chatId || isBot) {
     return new Response('Invalid Telegram user', { status: 400 });
   }
@@ -72,6 +74,49 @@ export async function POST(req: NextRequest) {
       }),
     });
   }
+
+
+  // Stars payment
+  if (payment) {
+    const payload = payment?.invoice_payload;
+
+    if (payload === 'daily_reward_with_stars') {
+      // Update user reward status in DB
+      await User.updateOne(
+        { userId },
+        {
+          $set: {
+            lastStarsPaymentAt: new Date(),
+          },
+          $inc: {
+            starsSpent: 5,
+          },
+        },
+        { upsert: true }
+      );
+
+      // Send confirmation message
+      await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: `🎉 You've successfully sent 5 stars, claim your daily rewards!`,
+          reply_markup: {
+            inline_keyboard: [
+              [
+              {
+                text: 'Claim rewards',
+                url: 'https://t.me/PuppizenBot/earn'
+              }
+            ],
+            ]
+          }
+        }),
+      });
+    }
+  }
+
 
   return new Response('OK', { status: 200 });
 }

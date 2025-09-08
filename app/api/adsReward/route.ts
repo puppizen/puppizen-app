@@ -2,7 +2,7 @@ import { User } from "@/models/user";
 import connectDb from "@/lib/mongodb";
 import { NextResponse, NextRequest } from 'next/server';
 
-const REQUIRED_ADS = 5;
+const REQUIRED_ADS = 10;
 
 export async function POST(request: NextRequest) {
   await connectDb();

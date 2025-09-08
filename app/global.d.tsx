@@ -13,6 +13,13 @@ declare global {
             };
           };
           ready: () => void;
+
+          openInvoice: (params: {
+            slug: string;
+            amount: number;
+            currency: 'XTR';
+            description: string;
+          }) => void;
         };
       };
       Adsgram: {
