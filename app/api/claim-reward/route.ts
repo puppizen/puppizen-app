@@ -38,7 +38,6 @@ export async function POST(request: NextRequest) {
   console.log(`✅ Reward claimed: User ${userId} at ${user.lastClaimedAt.toISOString()}`);
 
   return NextResponse.json({
-    success: "Daily Reward claimed",
-    balance: user.balance
+    success: "Daily Reward claimed"
   });
 }

@@ -16,29 +16,25 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
   
-  const now = new Date();
-  const lastAdWatchedAt = new Date(user.lastAdWatchedAt || 0);
-
-  const today = now.toISOString().split('T')[0];
-  const lastWatchedDate = lastAdWatchedAt.toISOString().split('T')[0];
+  const today = new Date().toISOString().slice(0, 10);
+  const lastAdWatchedAt = new Date(user.lastAdWatchedAt || 0).toISOString().slice(0, 10);
 
   // If it's been more than 24 hours, reset the counter
-  let resetAdswatchedToday = user.adsWatchedToday
-  if (lastWatchedDate !== today) {
-    resetAdswatchedToday = 0
+  if (lastAdWatchedAt === today) {
+    user.adswatchedToday = 0
   }
 
-  await User.updateOne(
-    { userId },
-    {
-      $set: {
-        adsWatchedToday: resetAdswatchedToday,
-        lastAdWatchedAt: now
-      }
-    }
-  );
+  await user.save()
 
-  return NextResponse.json({ 
-    adsWatchedToday: resetAdswatchedToday
-  });
+  // await User.updateOne(
+  //   { userId },
+  //   {
+  //     $set: {
+  //       adsWatchedToday: resetAdswatchedToday,
+  //       lastAdWatchedAt: now
+  //     }
+  //   }
+  // );
+
+  return NextResponse.json({ success: "Count reseted"});
 }

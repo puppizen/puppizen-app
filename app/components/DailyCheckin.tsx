@@ -4,16 +4,18 @@ import Image from 'next/image';
 export default function WatchAdsForReward() {
 
   const handleResetCount = async () => {
-    const tgUserId = window.Telegram?.WebApp?.initDataUnsafe?.user?.id
+    const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
     
-    const res = await fetch('/api/resetcount', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ tgUserId })
-    });
+    if (tgUser.id) {
+      const res = await fetch('/api/resetcount', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: tgUser.id })
+      });
 
-    if (res.ok) {
-      window.location.href = '/dailyReward';
+      if (res.ok) {
+        window.location.href = '/dailyReward';
+      }
     }
   };
 
