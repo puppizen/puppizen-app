@@ -17,7 +17,7 @@ declare global {
           openInvoice: (params: {
             slug: string;
             amount: number;
-            currency: 'XTR';
+            currency: 'stars';
             description: string;
           }) => void;
         };

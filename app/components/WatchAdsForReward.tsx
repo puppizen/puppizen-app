@@ -65,7 +65,7 @@ export default function WatchAdsForReward() {
     window.Telegram.WebApp.openInvoice({
       slug: "daily_reward_with_stars",
       amount: 5,
-      currency: "XTR",
+      currency: "stars",
       description: "Daily check-in with stars"
     })
   }
