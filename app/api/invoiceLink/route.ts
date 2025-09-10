@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
       payload: `daily reward for - ${userId}`,
       provider_token: "", // Leave empty for Telegram Stars
       currency: "XTR",
-      prices: [{ label: "Daily Reward", amount: 500 }],
+      prices: [{ label: "Daily Reward", amount: 5 }],
       start_parameter: "daily_reward_with_stars"
     })
   });
