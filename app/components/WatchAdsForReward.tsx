@@ -144,7 +144,7 @@ export default function WatchAdsForReward() {
 
       <div>
         <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with stars</h3>
-        <button onClick={handleClaimWithStars} className={`px-4 py-1 rounded-full my-text-white ${
+        <button onClick={handleClaimWithStars} className={`p-3 rounded-md w-full my-text-white mb-3 ${
           starsPaidToday >= 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
         }`}>
           Check-in with 5 stars 
