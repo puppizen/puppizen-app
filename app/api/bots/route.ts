@@ -92,7 +92,6 @@ export async function POST(req: NextRequest) {
     return new Response('PreCheckout answered', { status: 200 });
   }
 
-
   // Stars payment
   if (payment) {
     const payload = payment?.invoice_payload;

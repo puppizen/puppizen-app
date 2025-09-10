@@ -62,6 +62,22 @@ export default function WatchAdsForReward() {
   }
 
   const handleClaimWithStars = async () => {
+    const res = await fetch("/api/invoiceLink", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId }),
+    })
+
+    const data = await res.json();
+    if (data.invoiceLink) {
+      window.Telegram.WebApp.openInvoice(data.invoiceLink, (status) => {
+        if (status === "paid") {
+          setSuccessMessage("Stars Paid!")
+        } else if (status === "cancelled") {
+          setErrorMessage("Payment cancelled")
+        }
+      });
+    }
     const invoiceLink = "https://t.me/$1O4PyYVM-VEKAgAA9ULPHj_sVSU"
 
     window.Telegram.WebApp.openInvoice(invoiceLink)
@@ -132,3 +148,12 @@ export default function WatchAdsForReward() {
 }
 
 // {claiming ? 'Claiming...' : 'Claim Reward'}
+
+// await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+//   method: 'POST',
+//   headers: { 'Content-Type': 'application/json' },
+//   body: JSON.stringify({
+//     chat_id: userId,
+//     text: "👋 Welcome back! You can now claim your daily reward.",
+//   }),
+// });
