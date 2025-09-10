@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     const userId = preCheckoutQuery.from?.id;
 
     // Validate payload format
-    const expectedPayload = `daily_reward_for_${userId}`;
+    const expectedPayload = `Daily rewards for - ${userId}`;
     if (payload !== expectedPayload) {
       console.warn("Invalid payload:", payload);
 
