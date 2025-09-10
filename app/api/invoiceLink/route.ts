@@ -1,7 +1,9 @@
+import { NextRequest } from "next/server";
+
 const TELEGRAM_API = 'https://api.telegram.org';
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
-export async function POST() {
+export async function POST(req: NextRequest) {
   const { userId } = await req.json();
 
   const response = await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/createInvoiceLink`, {

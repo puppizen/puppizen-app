@@ -70,17 +70,8 @@ export default function WatchAdsForReward() {
 
     const data = await res.json();
     if (data.invoiceLink) {
-      window.Telegram.WebApp.openInvoice(data.invoiceLink, (status) => {
-        if (status === "paid") {
-          setSuccessMessage("Stars Paid!")
-        } else if (status === "cancelled") {
-          setErrorMessage("Payment cancelled")
-        }
-      });
+      window.Telegram.WebApp.openInvoice(data.invoiceLink);
     }
-    const invoiceLink = "https://t.me/$1O4PyYVM-VEKAgAA9ULPHj_sVSU"
-
-    window.Telegram.WebApp.openInvoice(invoiceLink)
   }
 
   return (
