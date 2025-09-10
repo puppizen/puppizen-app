@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     body: JSON.stringify({
       title: "Daily Reward",
       description: "Claim your daily reward for 5 Stars",
-      payload: `daily reward for - ${userId}`,
+      payload: `Daily rewards for - ${userId}`,
       provider_token: "", // Leave empty for Telegram Stars
       currency: "XTR",
       prices: [{ label: "Daily Reward", amount: 5 }],

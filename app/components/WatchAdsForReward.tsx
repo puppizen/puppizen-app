@@ -68,10 +68,8 @@ export default function WatchAdsForReward() {
       body: JSON.stringify({ userId }),
     })
 
-    const data = await res.json();
-    if (data.invoiceLink) {
-      window.Telegram.WebApp.openInvoice(data.invoiceLink);
-    }
+    const { invoiceLink } = await res.json();
+    window.Telegram.WebApp.openInvoice(invoiceLink,);
   }
 
   return (
