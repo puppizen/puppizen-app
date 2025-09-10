@@ -16,14 +16,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
 
-  if (user.adsWatchedToday !== REQUIRED_ADS) {
-    return NextResponse.json({ error: `You must watch ${REQUIRED_ADS} ads or ${REQUIRED_STARS} stars to claim reward` }, { status: 403 });
+  if (user.starsPaidToday !== REQUIRED_STARS) {
+    return NextResponse.json({ error: `You must watch ${REQUIRED_ADS} ads or spend ${REQUIRED_STARS} stars to claim reward` }, { status: 403 });
   }
 
   const today = new Date().toDateString();
-  const lastClaimedAt = new Date(user.lastClaimedAt).toDateString();
+  const lastClaimedAtStars = new Date(user.lastClaimedAtStars).toDateString();
 
-  if (today === lastClaimedAt) {
+  if (today === lastClaimedAtStars) {
     return NextResponse.json({ error: 'Reward already claimed today' }, { status: 403 });
   }
 
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     {
       $inc: { balance: REWARD_AMOUNT },
       $set: { 
-        lastClaimedAt: today,
+        lastClaimedAtStars: today
       }
     }
   );

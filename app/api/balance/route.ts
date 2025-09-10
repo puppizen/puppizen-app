@@ -12,7 +12,8 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({ 
     balance: user.balance,
-    adsWatchedToday: user.adsWatchedToday
+    adsWatchedToday: user.adsWatchedToday,
+    starsPaidToday: user.starsPaidToday,
     });
 }
 

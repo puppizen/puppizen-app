@@ -81,17 +81,16 @@ export async function POST(req: NextRequest) {
   if (payment) {
     const payload = payment?.invoice_payload;
 
-    if (payload === `daily reward for - ${userId}`) {
+    if (payload === `Daily reward for - ${userId}`) {
+      const today = new Date().toDateString();
       // Update user reward status in DB
       await User.updateOne(
         { userId },
         {
           $set: {
-            lastStarsPaymentAt: new Date(),
-          },
-          $inc: {
-            starsSpent: 5,
-          },
+            lastStarsPaidAt: today,
+            starsPaidToday: 5
+          }
         },
         { upsert: true }
       );
@@ -106,11 +105,11 @@ export async function POST(req: NextRequest) {
           reply_markup: {
             inline_keyboard: [
               [
-              {
-                text: 'Claim rewards',
-                url: 'https://t.me/PuppizenBot/earn'
-              }
-            ],
+                {
+                  text: 'Earn Puppizen',
+                  url: 'https://t.me/PuppizenBot/earn'
+                }
+              ],
             ]
           }
         }),

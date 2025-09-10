@@ -56,10 +56,31 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
-  adsWatchedToday: { type: Number, default: 0 },
+  adsWatchedToday: { 
+    type: Number, 
+    default: 0 
+  },
   // lastRewardAt: { type: Date, default: null },
-  lastAdWatchedAt: { type: Date, default: null },
-  lastClaimedAt: { type: Date, default: null }
+  lastAdWatchedAt: { 
+    type: Date, 
+    default: null 
+  },
+  lastClaimedAt: { 
+    type: Date, 
+    default: null 
+  },
+  starsPaidToday: {
+    type: Number,
+    default: 0
+  },
+  lastStarsPaidAt: {
+    type: Number,
+    default: null
+  },
+  lastClaimedAtStars: {
+    type: Date,
+    default: null
+  }
 });
 
 export const User = models.User || model('User', userSchema);

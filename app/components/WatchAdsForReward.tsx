@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 export default function WatchAdsForReward() {
   const [userId, setUserId] = useState<number | null>(null);
   const [adsWatched, setAdsWatched] = useState(0);
+  const [starsPaidToday, setStarsPaidToday] = useState(0);
   // const [loadingAd, setLoadingAd] = useState(false);
   // const [claiming, setClaiming] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -20,7 +21,8 @@ export default function WatchAdsForReward() {
       fetch(`/api/balance?userId=${tgUser.id}`)
       .then((res) => res.json())
       .then((data) => {
-        setAdsWatched(data.adsWatchedToday)
+        setAdsWatched(data.adsWatchedToday);
+        setStarsPaidToday(data.starsPaidToday);
       })
     }
   }, [])
@@ -70,6 +72,20 @@ export default function WatchAdsForReward() {
 
     const { invoiceLink } = await res.json();
     window.Telegram.WebApp.openInvoice(invoiceLink,);
+  }
+  const handleClaimRewardStars = async () => {
+    const res = await fetch("/api/claimRewardStars", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId }),
+    })
+
+    const data = await res.json();
+    if (res.ok) {
+      setSuccessMessage(data.success || "Rewards claimed with stars")
+    } else {
+      setErrorMessage(data.error)
+    }
   }
 
   return (
@@ -128,9 +144,15 @@ export default function WatchAdsForReward() {
 
       <div>
         <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with stars</h3>
-        <button onClick={handleClaimWithStars} className="my-bg-blue w-full p-3 rounded-md my-text-white">
+        <button onClick={handleClaimWithStars} className={`px-4 py-1 rounded-full my-text-white ${
+          starsPaidToday >= 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
+        }`}>
           Check-in with 5 stars 
         </button>
+        <button onClick={handleClaimRewardStars}
+        className={`w-full p-3 rounded-md my-text-white mb-3 ${
+          starsPaidToday < 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
+        }`}>Claim Reward</button>
       </div>
   </div>
   );
