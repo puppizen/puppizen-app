@@ -1,3 +1,5 @@
+// app/api/bots
+
 import type { NextRequest } from 'next/server';
 import { User } from '@/models/user';
 
@@ -96,7 +98,7 @@ export async function POST(req: NextRequest) {
   if (payment) {
     const payload = payment?.invoice_payload;
 
-    if (payload === 'daily_reward_with_stars') {
+    if (payload === `daily reward for - ${userId}`) {
       // Update user reward status in DB
       await User.updateOne(
         { userId },
