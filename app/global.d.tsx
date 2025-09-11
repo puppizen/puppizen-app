@@ -4,6 +4,8 @@ declare global {
     interface Window {
       Telegram: {
         WebApp: {
+          onEvent(arg0: string, listener: (status: string) => Promise<void>): unknown;
+          offEvent(arg0: string, listener: (status: string) => Promise<void>): unknown;
           initDataUnsafe: {
             user: {
               id: number;
@@ -15,7 +17,6 @@ declare global {
           ready: () => void;
 
           openInvoice: (invoiceLink: string) => void;
-          invoiceClosed(): unknown;
         };
       };
       Adsgram: {

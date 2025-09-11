@@ -72,9 +72,34 @@ export default function WatchAdsForReward() {
 
     const { invoiceLink } = await res.json();
     window.Telegram.WebApp.openInvoice(invoiceLink);
-  }
 
-  window.Telegram.WebApp.invoiceClosed() 
+    const listener = async (status: string) => {
+      if (status === "paid") {
+        // Step 4: Update starsPaidToday to 5
+        const res = await fetch("/api/paymentSuccessful", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId }),
+        });
+
+        const data = await res.json()
+        if (res.ok) {
+          setStarsPaidToday(data.starsPaidToday);
+          setSuccessMessage("Payment confirmed! You can now claim your reward.");
+        } else {
+          setErrorMessage("Payment confirmed, but update failed.");
+        }
+      } else {
+        setErrorMessage("Invoice was closed without payment.");
+      }
+
+      // Step 5: Remove listener after it's triggered
+      window.Telegram.WebApp.offEvent("invoiceClosed", listener);
+    };
+
+    window.Telegram.WebApp.onEvent("invoiceClosed", listener);
+
+  }
 
   const handleClaimRewardStars = async () => {
     const res = await fetch("/api/claimRewardStars", {

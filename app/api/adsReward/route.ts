@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
   const lastAdWatchedAt = new Date(user.lastAdWatchedAt).toDateString();
 
   if (user.adsWatchedToday === REQUIRED_ADS && lastAdWatchedAt === today) {
-    return NextResponse.json({ error: 'Daily ad limit reached' }, { status: 403 });
+    return NextResponse.json({ error: 'Daily ad limit reached!' }, { status: 403 });
   }
 
   const updateCount = user.adsWatchedToday + 1;
