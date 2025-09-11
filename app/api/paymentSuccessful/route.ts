@@ -4,8 +4,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/models/user';
 import connectDb from '@/lib/mongodb'; 
 
-const TELEGRAM_API = 'https://api.telegram.org';
-const BOT_TOKEN = process.env.BOT_TOKEN;
+// const TELEGRAM_API = 'https://api.telegram.org';
+// const BOT_TOKEN = process.env.BOT_TOKEN;
 const REQUIRED_STARS = 5
 
 export async function POST(req: NextRequest) {
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
 
-  const chatId = user.chatId;
+  // const chatId = user.chatId;
   const today = new Date().toDateString();
   const lastStarsPaidAt = new Date(user.lastStarsPaidAt).toDateString();
 
@@ -43,24 +43,24 @@ export async function POST(req: NextRequest) {
   );
 
   // Send confirmation message
-  await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/sendMessage`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text: `🎉 You've successfully sent ${REQUIRED_STARS} stars, claim your daily rewards!`,
-      reply_markup: {
-        inline_keyboard: [
-          [
-            {
-              text: 'Claim reward',
-              url: 'https://t.me/PuppizenBot/earn'
-            }
-          ],
-        ]
-      }
-    }),
-  });
+  // await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/sendMessage`, {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify({
+  //     chat_id: chatId,
+  //     text: `🎉 You've successfully sent ${REQUIRED_STARS} stars, claim your daily rewards!`,
+  //     reply_markup: {
+  //       inline_keyboard: [
+  //         [
+  //           {
+  //             text: 'Claim reward',
+  //             url: 'https://t.me/PuppizenBot/earn'
+  //           }
+  //         ],
+  //       ]
+  //     }
+  //   }),
+  // });
 
 
   return NextResponse.json({ starsPaidToday: REQUIRED_STARS });

@@ -3,6 +3,11 @@ import Image from 'next/image';
 
 import { useEffect, useState } from 'react';
 
+type InvoiceClosedEvent = {
+  status: 'paid' | 'cancelled';
+  slug: string;
+};
+
 export default function WatchAdsForReward() {
   const [userId, setUserId] = useState<number | null>(null);
   const [adsWatched, setAdsWatched] = useState(0);
@@ -73,32 +78,29 @@ export default function WatchAdsForReward() {
     const { invoiceLink } = await res.json();
     window.Telegram.WebApp.openInvoice(invoiceLink);
 
-    const listener = async (status: string) => {
-      if (status === "paid") {
-        // Step 4: Update starsPaidToday to 5
-        const res = await fetch("/api/paymentSuccessful", {
+    const listener = async (event: InvoiceClosedEvent) => {
+      if (event.status === "paid") {
+        const updateRes = await fetch("/api/paymentSuccessful", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userId }),
         });
 
-        const data = await res.json()
-        if (res.ok) {
+        const data = await updateRes.json();
+        if (updateRes.ok) {
           setStarsPaidToday(data.starsPaidToday);
-          setSuccessMessage("Payment confirmed! You can now claim your reward.");
+          setSuccessMessage("🎉 Payment confirmed! You can now claim your reward.");
         } else {
-          setErrorMessage("Payment confirmed, but update failed.");
+          setErrorMessage("⚠️ Payment confirmed, but update failed.");
         }
       } else {
-        setErrorMessage("Invoice was closed without payment.");
+        setErrorMessage("❌ Invoice was closed without payment.");
       }
 
-      // Step 5: Remove listener after it's triggered
       window.Telegram.WebApp.offEvent("invoiceClosed", listener);
     };
 
     window.Telegram.WebApp.onEvent("invoiceClosed", listener);
-
   }
 
   const handleClaimRewardStars = async () => {
@@ -172,7 +174,27 @@ export default function WatchAdsForReward() {
 
       <div>
         <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with stars</h3>
-        <button onClick={handleClaimWithStars} className={`p-3 rounded-md w-full my-text-white mb-3 ${
+
+        {successMessage && (
+          <div className="flex items-center gap-1 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
+            <Image src='/check-good.svg' width={20} height={20} alt='success'/>
+            <p className='text-xs'>
+              {successMessage}
+            </p>
+          </div>
+        )}
+
+        {errorMessage && (
+          <div className='flex items-center gap-1 bg-red-600 my-text-white px-3 py-1 mb-3 w-full rounded-md'>
+            <Image src='/error.svg' width={20} height={20} alt='error'/>
+            <p className='text-xs'>
+              {errorMessage}
+            </p>
+          </div>
+        )}
+
+        <button onClick={handleClaimWithStars} 
+        className={`p-3 rounded-md w-full my-text-white mb-3 ${
           starsPaidToday >= 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
         }`}>
           Check-in with 5 stars 
