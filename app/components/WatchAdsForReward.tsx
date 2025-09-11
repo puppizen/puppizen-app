@@ -55,7 +55,7 @@ export default function WatchAdsForReward() {
     const data = await res.json();
 
     if (res.ok) {
-      setSuccessMessage(data.success || "Daily reward claimed")
+      setSuccessMessage(data.success)
     } else {
       setErrorMessage(data.error)
     }

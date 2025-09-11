@@ -154,7 +154,7 @@ export default function ReferralLink() {
       </ul>
 
       {!loading && showModal && (
-        <div className="modal-backdrop my-bg-dark fixed inset-0 left-0 right-0 w-full px-3 pt-5"
+        <div className="modal-backdrop my-bg-dark backdrop-blur-md fixed inset-0 left-0 right-0 w-full px-3 pt-5"
 
         onClick={(e) => {
           const target = e.target as HTMLElement;

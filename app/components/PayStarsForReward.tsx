@@ -76,7 +76,7 @@ export default function PayStarsForReward() {
 
     const data = await res.json();
     if (res.ok) {
-      setSuccessMessage(data.success || "Rewards claimed with stars")
+      setSuccessMessage(data.success)
     } else {
       setErrorMessage(data.error)
     }
@@ -107,13 +107,13 @@ export default function PayStarsForReward() {
 
         <button onClick={handleClaimWithStars} 
         className={`p-3 rounded-md w-full my-text-white mb-3 ${
-          starsPaidToday >= 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
+          starsPaidToday >= 20 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
         }`}>
-          Check-in with 5 stars 
+          Check-in with 20 stars 
         </button>
         <button onClick={handleClaimRewardStars}
         className={`w-full p-3 rounded-md my-text-white mb-3 ${
-          starsPaidToday < 5 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
+          starsPaidToday < 20 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
         }`}>Claim Reward</button>
       </div>
   </div>

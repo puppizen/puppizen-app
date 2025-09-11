@@ -11,11 +11,11 @@ export async function POST(req: NextRequest) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       title: "Daily Reward",
-      description: "Claim your daily reward for 5 Stars",
+      description: "Claim your daily reward for 20 Stars",
       payload: `Daily rewards for - ${userId}`,
       provider_token: "", // Leave empty for Telegram Stars
       currency: "XTR",
-      prices: [{ label: "Daily Reward", amount: 5 }],
+      prices: [{ label: "Daily Reward", amount: 20 }],
       start_parameter: "daily_reward_with_stars"
     })
   });

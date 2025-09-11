@@ -6,7 +6,7 @@ import connectDb from '@/lib/mongodb';
 
 // const TELEGRAM_API = 'https://api.telegram.org';
 // const BOT_TOKEN = process.env.BOT_TOKEN;
-const REQUIRED_STARS = 5
+const REQUIRED_STARS = 20;
 
 export async function POST(req: NextRequest) {
   await connectDb();
