@@ -80,6 +80,8 @@ export default function WatchAdsForReward() {
 
     const listener = async (event: InvoiceClosedEvent) => {
       if (event.status === "paid") {
+
+        console.log("Calling api/paymentSuccessful")
         const updateRes = await fetch("/api/paymentSuccessful", {
           method: "POST",
           headers: { "Content-Type": "application/json" },

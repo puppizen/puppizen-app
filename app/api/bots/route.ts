@@ -15,7 +15,6 @@ export async function POST(req: NextRequest) {
   const messageText = update?.message?.text;
   const chatId = update?.message?.chat?.id;
   const preCheckoutQuery = update?.pre_checkout_query;
-  const payment = update?.message?.successful_payment;
 
   // Precheckoutquery
   if (preCheckoutQuery) {
@@ -111,56 +110,6 @@ export async function POST(req: NextRequest) {
         }
       }),
     });
-  }
-
-  // successfull payment
-  if (payment) {
-    console.log('Payment received:', {
-      userId,
-      amount: payment.total_amount,
-      payload: payment.invoice_payload,
-      chargeId: payment.telegram_payment_charge_id
-    });
-
-    const payload = payment?.invoice_payload;
-
-    if (payload === `Daily reward for - ${userId}`) {
-
-      const timeStamp = update.message.date;
-      const paymentDate = new Date(timeStamp * 1000).toDateString();
-      const total_amount = payment.total_amount / 100
-      // Update user reward status in DB
-      await User.updateOne(
-        { userId },
-        {
-          $set: {
-            lastStarsPaidAt: paymentDate,
-            starsPaidToday: total_amount,
-          }
-        },
-        { upsert: true }
-      );
-
-      // Send confirmation message
-      await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: `🎉 You've successfully sent ${total_amount} stars, claim your daily rewards!`,
-          reply_markup: {
-            inline_keyboard: [
-              [
-                {
-                  text: 'Claim reward',
-                  url: 'https://t.me/PuppizenBot/earn'
-                }
-              ],
-            ]
-          }
-        }),
-      });
-    }
   }
   
   return NextResponse.json('OK', { status: 200 });

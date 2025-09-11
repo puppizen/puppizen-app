@@ -1,4 +1,4 @@
-// app/api/bots
+// app/api/paymentSuccessful
 
 import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/models/user';
@@ -11,6 +11,8 @@ const REQUIRED_STARS = 5
 export async function POST(req: NextRequest) {
   await connectDb();
   const { userId } = await req.json();
+
+  console.log("Received payment request for user:", userId);
 
   if (!userId) {
     return new Response('Invalid Telegram user', { status: 400 });

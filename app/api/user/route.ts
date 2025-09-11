@@ -93,20 +93,7 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  return NextResponse.json({
-    userId: user.userId,
-    user: user.username,
-    balance: user.balance,
-    profile_url: user.profile_url,
-    referrals: user.referrals,
-    referredUsers: user.referredUsers,
-    taskCompleted: user.taskCompleted,
-    completedTasks: user.completedTasks,
-    verifiedTasks: user.verifiedTasks,
-    claimedTasks: user.claimedTasks,
-    startedTasks: user.startedTasks,
-    refCode: user.refCode,
-  });
+  return NextResponse.json({status: "OK"  });
 }
 
 
