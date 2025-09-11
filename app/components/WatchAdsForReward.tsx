@@ -82,14 +82,15 @@ export default function WatchAdsForReward() {
       if (event.status === "paid") {
 
         console.log("Calling api/paymentSuccessful")
-        const updateRes = await fetch("/api/paymentSuccessful", {
+        const res = await fetch("/api/paymentSuccessful", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userId }),
         });
 
-        if (updateRes.ok) {
-          setStarsPaidToday(starsPaidToday);
+        const data = await res.json();
+        if (res.ok) {
+          setStarsPaidToday(data.starsPaidToday);
           setSuccessMessage("🎉 Payment confirmed! You can now claim your reward.");
         } else {
           setErrorMessage("⚠️ Payment confirmed, but update failed.");
