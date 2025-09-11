@@ -80,7 +80,16 @@ const userSchema = new Schema({
   lastClaimedAtStars: {
     type: Date,
     default: null
-  }
+  },
+
+  // latestPayment: {
+  //   date: Date,
+  //   amount: Number,
+  //   currency: String,
+  //   payload: String,
+  //   telegramChargeId: String,
+  //   providerChargeId: String
+  // }
 });
 
 export const User = models.User || model('User', userSchema);

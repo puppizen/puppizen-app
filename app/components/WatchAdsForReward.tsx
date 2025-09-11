@@ -71,8 +71,10 @@ export default function WatchAdsForReward() {
     })
 
     const { invoiceLink } = await res.json();
-    window.Telegram.WebApp.openInvoice(invoiceLink,);
+    window.Telegram.WebApp.openInvoice(invoiceLink);
+
   }
+
   const handleClaimRewardStars = async () => {
     const res = await fetch("/api/claimRewardStars", {
       method: "POST",

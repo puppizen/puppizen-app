@@ -15,6 +15,7 @@ declare global {
           ready: () => void;
 
           openInvoice: (invoiceLink: string) => void;
+          invoiceClosed(): unknown;
         };
       };
       Adsgram: {
