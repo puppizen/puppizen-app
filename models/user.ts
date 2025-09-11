@@ -74,7 +74,7 @@ const userSchema = new Schema({
     default: 0
   },
   lastStarsPaidAt: {
-    type: Number,
+    type: Date,
     default: null
   },
   lastClaimedAtStars: {

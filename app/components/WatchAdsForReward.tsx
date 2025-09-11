@@ -88,9 +88,8 @@ export default function WatchAdsForReward() {
           body: JSON.stringify({ userId }),
         });
 
-        const data = await updateRes.json();
         if (updateRes.ok) {
-          setStarsPaidToday(data.starsPaidToday);
+          setStarsPaidToday(starsPaidToday);
           setSuccessMessage("🎉 Payment confirmed! You can now claim your reward.");
         } else {
           setErrorMessage("⚠️ Payment confirmed, but update failed.");
