@@ -17,6 +17,43 @@ export async function POST(req: NextRequest) {
   const preCheckoutQuery = update?.pre_checkout_query;
   const payment = update?.message?.successful_payment;
 
+  // Precheckoutquery
+  if (preCheckoutQuery) {
+    const queryId = preCheckoutQuery.id;
+    const payload = preCheckoutQuery.invoice_payload;
+    const userId = preCheckoutQuery.from?.id;
+
+    // Validate payload format
+    const expectedPayload = `Daily rewards for - ${userId}`;
+    if (payload !== expectedPayload) {
+      console.warn("Invalid payload:", payload);
+
+      await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/answerPreCheckoutQuery`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          pre_checkout_query_id: queryId,
+          ok: false,
+          error_message: "Invalid payment. Please try again from the app.",
+        }),
+      });
+
+      return new Response('Payload rejected', { status: 400 });
+    }
+
+    // Approve payment
+    await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/answerPreCheckoutQuery`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        pre_checkout_query_id: queryId,
+        ok: true,
+      }),
+    });
+
+    return new Response('PreCheckout answered', { status: 200 });
+  }
+
   if (!userId || !chatId) {
     return new Response('Invalid Telegram user', { status: 400 });
   }
@@ -74,43 +111,6 @@ export async function POST(req: NextRequest) {
         }
       }),
     });
-  }
-
-  // Precheckoutquery
-  if (preCheckoutQuery) {
-    const queryId = preCheckoutQuery.id;
-    const payload = preCheckoutQuery.invoice_payload;
-    const userId = preCheckoutQuery.from?.id;
-
-    // Validate payload format
-    const expectedPayload = `Daily rewards for - ${userId}`;
-    if (payload !== expectedPayload) {
-      console.warn("Invalid payload:", payload);
-
-      await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/answerPreCheckoutQuery`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          pre_checkout_query_id: queryId,
-          ok: false,
-          error_message: "Invalid payment. Please try again from the app.",
-        }),
-      });
-
-      return new Response('Payload rejected', { status: 400 });
-    }
-
-    // Approve payment
-    await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/answerPreCheckoutQuery`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        pre_checkout_query_id: queryId,
-        ok: true,
-      }),
-    });
-
-    return new Response('PreCheckout answered', { status: 200 });
   }
 
   // successfull payment
