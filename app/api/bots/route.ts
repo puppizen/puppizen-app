@@ -80,12 +80,13 @@ export async function POST(req: NextRequest) {
     `💎 Collect Rewards – Treat yourself like a good pup\n\n` +
     `Start wagging your way to the top! 🐾`;
 
-    await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/sendMessage`, {
+    await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/sendPhoto`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_id: chatId,
-        text: replyText,
+        photo: "https://puppizen.github.io/puppizen/banner.png",
+        caption: replyText,
         parse_mode: 'Markdown',
         reply_markup: {
           inline_keyboard: [
