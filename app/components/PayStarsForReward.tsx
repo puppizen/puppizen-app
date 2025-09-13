@@ -86,8 +86,14 @@ export default function PayStarsForReward() {
     const data = await res.json();
     if (res.ok) {
       setSuccessMessage(data.success)
+      setTimeout(() => {
+        setSuccessMessage(null)
+      }, 5000)
     } else {
       setErrorMessage(data.error)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
     }
   }
 
