@@ -10,11 +10,6 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 export async function POST(req: NextRequest) {
   const update = await req.json();
 
-  const userId = update?.message?.from?.id;
-  const username = update?.message?.from?.username ?? 'Anonymous';
-  const messageText = update?.message?.text;
-  const chatId = update?.message?.chat?.id;
-  const isBot = Boolean(update?.message.is_bot);
   const preCheckoutQuery = update?.pre_checkout_query;
   // const payment = update?.message?.successful_payment;
 
@@ -22,10 +17,9 @@ export async function POST(req: NextRequest) {
   if (preCheckoutQuery) {
     const queryId = preCheckoutQuery.id;
     const payload = preCheckoutQuery.invoice_payload;
-    const checkOutuserId = preCheckoutQuery.from?.id;
 
     // Validate payload format
-    const expectedPayload = `Daily rewards for - ${checkOutuserId}`;
+    const expectedPayload = "Daily rewards with stars";
     if (payload !== expectedPayload) {
       console.warn("Invalid payload:", payload);
 
@@ -53,7 +47,15 @@ export async function POST(req: NextRequest) {
     });
 
     return new Response('PreCheckout answered', { status: 200 });
-  } else if (messageText === '/start' && chatId) {
+  } 
+
+  const userId = update?.message?.from?.id;
+  const username = update?.message?.from?.username ?? 'Anonymous';
+  const messageText = update?.message?.text;
+  const chatId = update?.message?.chat?.id;
+  const isBot = Boolean(update?.message.is_bot);
+  
+  if (messageText === '/start' && chatId) {
     const replyText = 
     `🐶 Ready to earn like a good pup?\n\n` +
     `Play Puppizen and earn real rewards 💎\n\n` +
