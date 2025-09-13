@@ -67,7 +67,7 @@ export default function PayStarsForReward() {
         setErrorMessage("Invoice was closed without payment.");
         setTimeout(() => {
           setErrorMessage(null)
-        })
+        }, 5000)
       }
 
       window.Telegram.WebApp.offEvent("invoiceClosed", listener);
