@@ -2,6 +2,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/models/user';
+import connectDb from '@/lib/mongodb';
 
 const TELEGRAM_API = 'https://api.telegram.org';
 const BOT_TOKEN = process.env.BOT_TOKEN;
@@ -89,35 +90,6 @@ export async function POST(req: NextRequest) {
 
     return new Response('PreCheckout answered', { status: 200 });
   } else if (messageText === '/start' && chatId) {
-    let user = await User.findOne({ userId });
-    if (!user) {
-      let refCode = '';
-      let isUnique = false;
-
-      while (!isUnique) {
-        refCode = generateRefCode();
-        const existingUser = await User.findOne({ refCode });
-        if (!existingUser) isUnique = true
-      }
-
-      user = await User.create({
-        userId,
-        username,
-        isBot,
-        profile_url,
-        chatId: chatId,
-        balance: 10,
-        referrals: 0,
-        referredUsers: [],
-        taskCompleted: 0,
-        completedTasks: [],
-        verifiedTasks: [],
-        claimedTasks: [],
-        startedTasks: [],
-        refCode,
-      });
-    }
-
     const replyText = 
     `🐶 Ready to earn like a good pup?\n\n` +
     `Play Puppizen and earn real rewards 💎\n\n` +
@@ -158,6 +130,37 @@ export async function POST(req: NextRequest) {
         }
       }),
     });
+
+    await connectDb();
+
+    let user = await User.findOne({ userId });
+    if (!user) {
+      let refCode = '';
+      let isUnique = false;
+
+      while (!isUnique) {
+        refCode = generateRefCode();
+        const existingUser = await User.findOne({ refCode });
+        if (!existingUser) isUnique = true
+      }
+
+      user = await User.create({
+        userId,
+        username,
+        isBot,
+        profile_url,
+        chatId: chatId,
+        balance: 10,
+        referrals: 0,
+        referredUsers: [],
+        taskCompleted: 0,
+        completedTasks: [],
+        verifiedTasks: [],
+        claimedTasks: [],
+        startedTasks: [],
+        refCode,
+      });
+    }
   }
 
   // successfull payment
