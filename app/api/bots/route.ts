@@ -53,7 +53,6 @@ export async function POST(req: NextRequest) {
   const username = update?.message?.from?.username ?? 'Anonymous';
   const messageText = update?.message?.text;
   const chatId = update?.message?.chat?.id;
-  const isBot = Boolean(update?.message.is_bot);
   
   if (messageText === '/start' && chatId) {
     const replyText = 
@@ -151,7 +150,6 @@ export async function POST(req: NextRequest) {
       user = await User.create({
         userId,
         username,
-        isBot,
         profile_url,
         chatId: chatId,
         balance: 10,
