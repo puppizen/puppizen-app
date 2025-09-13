@@ -54,11 +54,20 @@ export default function PayStarsForReward() {
         if (res.ok) {
           setStarsPaidToday(data.starsPaidToday);
           setSuccessMessage("Payment confirmed! You can now claim your reward.");
+          setTimeout(() => {
+            setSuccessMessage(null)
+          }, 5000)
         } else {
           setErrorMessage("Payment confirmed, but update failed.");
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
         }
       } else {
         setErrorMessage("Invoice was closed without payment.");
+        setTimeout(() => {
+          setErrorMessage(null)
+        })
       }
 
       window.Telegram.WebApp.offEvent("invoiceClosed", listener);

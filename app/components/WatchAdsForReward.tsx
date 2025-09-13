@@ -40,6 +40,9 @@ export default function WatchAdsForReward() {
       setAdsWatched(data.adsWatchedToday)
     } else {
       setErrorMessage("Ads not watched to the end!")
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
     }
 
     console.log(result)
@@ -56,8 +59,14 @@ export default function WatchAdsForReward() {
 
     if (res.ok) {
       setSuccessMessage(data.success)
+      setTimeout(() => {
+        setSuccessMessage(null)
+      }, 5000);
     } else {
       setErrorMessage(data.error)
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000);
     }
   }
 
