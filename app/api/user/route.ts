@@ -91,6 +91,15 @@ export async function POST(request: NextRequest) {
       startedTasks: [],
       refCode,
     });
+  } else if (user) {
+    user = await User.updateOne(
+      {userId},
+      {
+        $set: {
+          profile_url
+        }
+      }
+    )
   }
 
   return NextResponse.json({status: "OK"  });
