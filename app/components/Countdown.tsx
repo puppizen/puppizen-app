@@ -6,7 +6,7 @@ export default function CountDownTimer() {
     const [timeLeft, setTimeLeft] = useState({days:0, hours:0, minutes:0, seconds:0});
 
     useEffect(() => {
-        const targetDate = new Date('2026-03-10T00:00:00');
+        const targetDate = new Date('2026-04-20T00:00:00');
         const updateCountdown = () => {
             const now = new Date();
             const difference = targetDate.getTime() - now.getTime();
