@@ -112,7 +112,7 @@ export default function PayStarsForReward() {
         )}
 
         {errorMessage && (
-          <div className='flex items-center gap-1 bg-red-600 my-text-white px-3 py-1 mb-3 w-full rounded-md transition duration-150 ease-out'>
+          <div className={`flex items-center gap-1 bg-red-600 my-text-white px-3 py-1 mb-3 w-full rounded-md transition-opacity duration-150 ease-out ${errorMessage ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
             <Image src='/error.svg' width={20} height={20} alt='error'/>
             <p className='text-xs'>
               {errorMessage}
