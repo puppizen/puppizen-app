@@ -13,15 +13,15 @@ const items: AccordionItem[] = [
     content: (
       <ul className="text-sm">
         <li className="my-2">To participate in the airdrop, a TON wallet is required. If you do not have on yet, please create a wallet to secure your eligibility and receive your allocated share.</li>
-        <li className="my-2">To qualify for eligibility, participants must actively engage by completing a minimum of 50 tasks or inviting at least 20 friends before the countdown expires.</li>
-        <li className="my-2">There will be no delays, recalculations, or deadline extensions. Once the countdown expires, rewards will be distributed strictly based on earned activity—no adjustments will be made post-deadline.</li>
+        <li className="my-2">To qualify for eligibility, participants must actively engage by completing a minimum of 100 tasks or invite at least 20 friends before the countdown expires.</li>
+        <li className="my-2">There will be no delays or deadline extensions. Once the countdown expires, rewards will be distributed to eligible participants.</li>
       </ul>
     ) 
   },
   { title: 'Airdrop Distribution', 
     content: (
       <div>
-        <p className="text-sm">50% of the total token supply will be allocated to the community and distributed in three waves. <br /> <br />To learn more about $Puppizen distribution read <br /><Link href='/' className="my-text-blue">| Puppizen Token Distribution</Link>
+        <p className="text-sm">50% of the total token supply will be allocated to the community and distributed in three waves. <br /> <br />To learn more about $Puppizen distribution read <Link href='/' className="my-text-blue">| Puppizen Token Distribution</Link>
         </p>
       </div>
     )

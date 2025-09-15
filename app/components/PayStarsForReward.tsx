@@ -103,7 +103,7 @@ export default function PayStarsForReward() {
         <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with stars</h3>
 
         {successMessage && (
-          <div className="flex items-center gap-1 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md transition duration-150 ease-in-out">
+          <div className="flex items-center gap-1 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
             <Image src='/check-good.svg' width={20} height={20} alt='success'/>
             <p className='text-xs'>
               {successMessage}
@@ -112,7 +112,7 @@ export default function PayStarsForReward() {
         )}
 
         {errorMessage && (
-          <div className={`flex items-center gap-1 bg-red-600 my-text-white px-3 py-1 mb-3 w-full rounded-md transition-opacity duration-750 ease-out ${errorMessage ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+          <div className='flex items-center gap-1 bg-red-600 my-text-white px-3 py-1 mb-3 w-full rounded-md'>
             <Image src='/error.svg' width={20} height={20} alt='error'/>
             <p className='text-xs'>
               {errorMessage}
