@@ -39,8 +39,9 @@ export default function ActivityBalance({ activity, userId }: {activity: string,
       fetch(`/api/activitytasks?userId=${userId}&activity=${activity}`)
       .then((res) => res.json())
       .then((data) => {
-        setTasks(data);
-        localStorage.setItem(`cachedTasks-${activity}`, JSON.stringify(data));
+        setTasks(data);localStorage.removeItem(`cachedTasks-${userId}&${activity}`);
+        localStorage.setItem(`cachedTasks-${userId}&${activity}`, JSON.stringify(data));
+        setLoading(false);
         setLoading(false);
       })
       .catch((err) => {

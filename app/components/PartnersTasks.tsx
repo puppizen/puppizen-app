@@ -42,7 +42,8 @@ export default function PartnersTasks({ category }: { category: string }) {
       .then((res) => res.json())
       .then((data) => {
         setTasks(data);
-        localStorage.setItem(`cachedTasks-${category}`, JSON.stringify(data));
+        localStorage.removeItem(`cachedTasks-${tgUser.id}&${category}`);
+        localStorage.setItem(`cachedTasks-${tgUser.id}&${category}`, JSON.stringify(data));
         setLoading(false);
       })
       .catch((err) => {

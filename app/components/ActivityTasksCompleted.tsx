@@ -40,7 +40,8 @@ export default function ActivityTasksCompleted({ activity, userId }: {activity: 
       .then((res) => res.json())
       .then((data) => {
         setTasks(data);
-        localStorage.setItem(`cachedTasks-${activity}`, JSON.stringify(data));
+        localStorage.removeItem(`cachedTasks-${userId}&${activity}`);
+        localStorage.setItem(`cachedTasks-${userId}&${activity}`, JSON.stringify(data));
         setLoading(false);
       })
       .catch((err) => {
