@@ -25,7 +25,9 @@ export default function ActivityTasksCompleted({ activity, userId }: {activity: 
     setLoading(true);
     setCachedTasks([]); // Clear previous cache
 
-    const cached = localStorage.getItem(`cachedTasks-${activity}`);
+    const cacheKey = `cachedTasks-${userId}-${activity}`
+
+    const cached = localStorage.getItem(cacheKey);
     if (cached) {
       try {
         const parsed = JSON.parse(cached);
@@ -39,9 +41,8 @@ export default function ActivityTasksCompleted({ activity, userId }: {activity: 
       fetch(`/api/activitytasks?userId=${userId}&activity=${activity}`)
       .then((res) => res.json())
       .then((data) => {
-        setTasks(data);localStorage.removeItem(`cachedTasks-${userId}&${activity}`);
-        localStorage.setItem(`cachedTasks-${userId}&${activity}`, JSON.stringify(data));
-        setLoading(false);
+        setTasks(data);
+        localStorage.setItem(cacheKey, JSON.stringify(data));
         setLoading(false);
       })
       .catch((err) => {

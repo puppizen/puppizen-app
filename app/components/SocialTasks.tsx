@@ -25,7 +25,9 @@ export default function PartnersTasks({ category }: { category: string }) {
   useEffect (() => {
     const tgUser = window.Telegram.WebApp.initDataUnsafe?.user;
 
-    const cached = localStorage.getItem('cachedTasks');
+    const cacheKey = `cachedTasks-${tgUser.id}-${category}`
+
+    const cached = localStorage.getItem(cacheKey);
     if (cached) {
       try {
         const parsed = JSON.parse(cached);
@@ -42,8 +44,8 @@ export default function PartnersTasks({ category }: { category: string }) {
       .then((res) => res.json())
       .then((data) => {
         setTasks(data);
-        localStorage.removeItem(`cachedTasks-${tgUser.id}&${category}`);
-        localStorage.setItem(`cachedTasks-${tgUser.id}&${category}`, JSON.stringify(data));
+        localStorage.removeItem(cacheKey);
+        localStorage.setItem(cacheKey, JSON.stringify(data));
         setLoading(false);
       })
       .catch((err) => {
