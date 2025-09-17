@@ -13,7 +13,7 @@ export default function Home() {
       <UserTGData />
 
       <div className='py-5'>
-        <Link href='/leaderboard'  className='flex flex-row justify-between p-3 rounded-md my-bg-gradient'>
+        <Link href='/leaderboard'  className='flex flex-row justify-between p-3 rounded-md my-bg-gradient btn-translate-active'>
           <div className='flex flex-row gap-3'>
             <Image src='/trophy.svg' width={20} height={20} alt=''></Image>
             <span className='font-medium'>Leaderboard</span>

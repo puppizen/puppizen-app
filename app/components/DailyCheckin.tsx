@@ -29,7 +29,7 @@ export default function DailyCheckIn() {
         <div>
           <button
           onClick={handleResetCount}
-          className="rounded-full my-bg-white my-text-black px-4 py-1 active:shadow-xl active:translate-y-[-3px] active:my-bg-gray active:my-text-white">
+          className="rounded-full my-bg-white my-text-black px-4 py-1 btn-blue4-active btn-translate-active ">
             Claim
           </button>
         </div>

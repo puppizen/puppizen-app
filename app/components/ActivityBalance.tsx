@@ -135,7 +135,7 @@ export default function ActivityBalance({ activity, userId }: {activity: string,
             {task.status === 'done' ? (
               <button className="my-border-gray my-text-gray rounded-full text-sm px-4 py-1" disabled>Done</button>
             ) : task.status === 'claim' ? (
-              <button className="my-bg-blue rounded-md text-sm px-4 py-1"
+              <button className="my-bg-blue rounded-md text-sm px-4 py-1 btn-blue4-active btn-translate-active"
                 onClick={() => handleClaim(task.id, task.reward, userId)}
               >Claim</button>
             ) : task.status === 'max' ? (

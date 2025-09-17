@@ -134,12 +134,12 @@ export default function PartnersTasks({ category }: { category: string }) {
                 Done
               </button>
             ) : task.status === 'claim' ? (
-              <button className="my-bg-blue rounded-full text-sm px-4 py-1" 
+              <button className="my-bg-blue rounded-full text-sm px-4 py-1 btn-blue4-active btn-translate-active" 
                 onClick={() => handleClaim(task.id, task.reward, userId)}
               >Claim
               </button>
             ) : task.status === 'start' ? (
-              <button className="relative my-border-white rounded-full text-sm px-4 py-1"
+              <button className="relative my-border-white rounded-full text-sm px-4 py-1 btn-blue4-active btn-translate-active"
               onClick={() => 
                   handleStart(task)
                 }>Start</button>

@@ -98,3 +98,12 @@ body {
   padding-top: 20px;
   font-weight: bold;
 }
+
+.btn-blue4-active:active {
+  background-color: var(--background-blue-4);
+  color: var(--background);
+}
+.btn-translate-active:active {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 25px -5px var(--background-blue);
+}

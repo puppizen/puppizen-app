@@ -121,13 +121,13 @@ export default function PayStarsForReward() {
         )}
 
         <button onClick={handleClaimWithStars} 
-        className={`p-3 rounded-md w-full my-text-white mb-3 ${
+        className={`p-3 rounded-md w-full my-text-white mb-3 btn-blue4-active btn-translate-active ${
           starsPaidToday >= 20 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
         }`}>
           Check-in with 20 stars 
         </button>
         <button onClick={handleClaimRewardStars}
-        className={`w-full p-3 rounded-md my-text-white mb-3 ${
+        className={`w-full p-3 rounded-md my-text-white mb-3 btn-blue4-active btn-translate-active ${
           starsPaidToday < 20 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
         }`}>Claim Reward</button>
       </div>

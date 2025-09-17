@@ -104,7 +104,7 @@ export default function WatchAdsForReward() {
         <button
           onClick={handleAdWatch}
           disabled={adsWatched >= 5}
-          className={`px-4 py-1 rounded-full my-text-white active:shadow-xl active:translate-y-[-3px] ${
+          className={`px-4 py-1 rounded-full my-text-white btn-blue4-active btn-translate-active ${
             adsWatched >= 10 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
           }`}
         >
@@ -115,7 +115,7 @@ export default function WatchAdsForReward() {
       <button
         onClick={handleClaimReward}
         disabled={adsWatched < 10}
-        className={`w-full p-3 rounded-md my-text-white mb-3 active:shadow-xl active:translate-y-[-3px] ${
+        className={`w-full p-3 rounded-md my-text-white mb-3 btn-blue4-active btn-translate-active ${
           adsWatched < 10 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient active:my-bg-white'
         }`}
       >
