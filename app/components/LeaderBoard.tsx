@@ -76,7 +76,7 @@ export default function Leaderboard() {
                 className="my-border-blue rounded-md"
                 src={user.profile_url || '/puppizen-image.png'}
                 width={24} height={24} alt='' loading='lazy'
-              />
+              ></Image>
               <p className="flex gap-1 items-center">
                 <span className="text-sm">{user.username || `User ${user.userId}`}</span> 
                 <span className="my-text-xs">{getReward(index)}</span></p>

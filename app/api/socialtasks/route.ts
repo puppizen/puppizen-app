@@ -55,10 +55,10 @@ export async function GET(request: NextRequest) {
     }; 
   });
 
-  type TaskStatus = 'start' | 'claim' | 'max' | 'done'
+  type TaskStatus = 'claim' | 'start' | 'max' | 'done'
   const statusPriority: Record<TaskStatus, number> = {
-    start: 1,
-    claim: 2,
+    claim: 1,
+    start: 2,
     max: 3,
     done: 4
   }
