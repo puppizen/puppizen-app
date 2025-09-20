@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
   const today = new Date().toDateString();
   const lastAdWatchedAt = new Date(user.lastAdWatchedAt).toDateString();
   const lastStarsPaidAt = new Date(user.lastClaimedAtStars).toDateString();
+  const lastDailyRewardAt = new Date(user.lastDailyRewardAt).toDateString();
 
   // If it's been more than 24 hours, reset the counter
   if (lastAdWatchedAt !== today) {
@@ -31,7 +32,7 @@ export async function POST(request: NextRequest) {
     user.lastStarsPaidAt = null;
   }
 
-  if (user.lastDailyRewardAt !== today) {
+  if (lastDailyRewardAt !== today) {
     user.lastDailyRewardAt = null;
   }
 
