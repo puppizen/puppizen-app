@@ -49,7 +49,7 @@ export default function FreeDailyRewards() {
 
   return (
     <div className="">
-      <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in free</h3>
+      <h3 className="text-xl font-bold mb-5 my-text-gray">Daily check-in free</h3>
 
       {successMessage && (
         <div className="flex items-center gap-1 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
@@ -70,7 +70,7 @@ export default function FreeDailyRewards() {
       )}
 
       <div>
-        <p>Claim 10 Puppizen for free</p>
+        <p className="text-sm mb-1">Claim 10 Puppizen for free</p>
         
         <button 
         disabled={lastClaimedAt === today}

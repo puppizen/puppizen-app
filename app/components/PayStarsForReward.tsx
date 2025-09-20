@@ -100,7 +100,7 @@ export default function PayStarsForReward() {
   return (
     <div className="">
       <div>
-        <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with stars</h3>
+        <h3 className="text-xl font-bold mb-5 my-text-gray">Daily check-in with stars</h3>
 
         {successMessage && (
           <div className="flex items-center gap-1 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
