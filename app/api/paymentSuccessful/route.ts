@@ -36,6 +36,7 @@ export async function POST(req: NextRequest) {
   // Stars payment
   user.lastStarsPaidAt = today;
   user.starsPaidToday = REQUIRED_STARS;
+  user.totalStarsPaid += REQUIRED_STARS;
 
   await user.save();
 

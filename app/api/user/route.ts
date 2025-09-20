@@ -83,6 +83,7 @@ export async function POST(request: NextRequest) {
       chatId: 0,
       balance: 10,
       starsBalance: 0,
+      totalStarsPaid: 0,
       referrals: 0,
       referredUsers: [],
       taskCompleted: 0,

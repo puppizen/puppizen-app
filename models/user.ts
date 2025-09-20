@@ -31,6 +31,10 @@ const userSchema = new Schema({
     type: Number,
     default: 0
   },
+  totalStarsPaid: {
+    type: Number,
+    default: 0
+  },
   referrals: { 
     type: Number, 
     default: 0 
