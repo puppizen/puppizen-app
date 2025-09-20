@@ -3,7 +3,7 @@ import connectDb from '@/lib/mongodb';
 import { User } from '@/models/user';
 
 const REWARD_AMOUNT = 50;
-const REQUIRED_STARS = 20;
+const REQUIRED_STARS = 10;
 
 export async function POST(request: NextRequest) {
   await connectDb();
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     await referrer.save()
   }
 
-  console.log(`✅ Reward claimed: User ${userId} at ${user.lastClaimedAt.toISOString()}`);
+  console.log(`✅ Reward claimed: User ${userId} at ${user.lastClaimedAt.toDateString()}`);
 
   return NextResponse.json({
     success: "Daily Reward claimed"

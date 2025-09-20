@@ -120,16 +120,16 @@ export default function PayStarsForReward() {
           </div>
         )}
 
-        <button onClick={starsPaidToday >= 20 ? undefined : handleClaimWithStars} 
+        <button onClick={starsPaidToday >= 10 ? undefined : handleClaimWithStars} 
         className={`p-3 rounded-md w-full my-text-white mb-3 btn-blue4-active btn-translate-active ${
-          starsPaidToday >= 20 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
+          starsPaidToday >= 10 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
         }`}>
-          Check-in with 20 stars 
+          Check-in with 10 stars 
         </button>
 
-        <button onClick={starsPaidToday < 20 ? undefined : handleClaimRewardStars}
+        <button onClick={starsPaidToday < 10 ? undefined : handleClaimRewardStars}
         className={`w-full p-3 rounded-md my-text-white mb-3 btn-blue4-active btn-translate-active ${
-          starsPaidToday < 20 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
+          starsPaidToday < 10 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
         }`}>Claim Reward</button>
       </div>
   </div>

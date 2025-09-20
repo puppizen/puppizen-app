@@ -97,15 +97,15 @@ export default function WatchAdsForReward() {
           <Image src="/television.svg" width={36} height={36} alt="ads" />
           <div className="flex gap-2 items-center my-text-white">
             <p className="">Today: </p>
-            <span className="text-xs">{adsWatched || 0} / 10</span>
+            <span className="text-xs">{adsWatched || 0} / 3</span>
           </div>
         </div>
         
         <button
-          onClick={adsWatched >= 10 ? undefined : handleAdWatch}
-          disabled={adsWatched >= 10}
+          onClick={adsWatched >= 3 ? undefined : handleAdWatch}
+          disabled={adsWatched >= 3}
           className={`px-4 py-1 rounded-full my-text-white btn-blue4-active btn-translate-active ${
-            adsWatched >= 10 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
+            adsWatched >= 3 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
           }`}
         >
           Watch Ad
@@ -113,10 +113,10 @@ export default function WatchAdsForReward() {
       </div>
       
       <button
-        onClick={adsWatched < 10 ? undefined : handleClaimReward}
-        disabled={adsWatched < 10}
+        onClick={adsWatched < 3 ? undefined : handleClaimReward}
+        disabled={adsWatched < 3}
         className={`w-full p-3 rounded-md my-text-white mb-3 btn-blue4-active btn-translate-active ${
-          adsWatched < 10 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
+          adsWatched < 3 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
         }`}
       >
         Claim Reward
