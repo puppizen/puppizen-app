@@ -71,7 +71,7 @@ export default function WatchAdsForReward() {
   }
 
   return (
-    <div className="mb-10">
+    <div className="">
       <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in with ads</h3>
 
       {successMessage && (

@@ -20,7 +20,7 @@ export default function FreeDailyRewards() {
        fetch(`/api/balance?userId=${tgUser.id}`)
        .then((res) => res.json())
        .then((data) => {
-        setLastClaimedAt(data.lastDailyRewardAt);
+        setLastClaimedAt(new Date(data.lastDailyRewardAt).toDateString());
       })
     }
   }, [])
@@ -48,7 +48,7 @@ export default function FreeDailyRewards() {
   }
 
   return (
-    <div className="mb-10">
+    <div className="">
       <h3 className="text-xl font-bold mb-8 my-text-gray">Daily check-in free</h3>
 
       {successMessage && (

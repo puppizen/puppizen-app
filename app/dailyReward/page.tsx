@@ -13,11 +13,17 @@ export default function DailyReward() {
         </Link>
       </div>
 
-      <FreeDailyRewards />
+      <div className="my-bg-lightgray my-border-gray p-3 mb-5">
+        <FreeDailyRewards />
+      </div>      
 
-      <WatchAdsForReward />
+      <div className="my-bg-lightgray my-border-gray p-3 mb-5">
+        <WatchAdsForReward />
+      </div>
 
-      <PayStarsForReward />
+      <div className="my-bg-lightgray my-border-gray p-3 mb-5">
+        <PayStarsForReward />
+      </div>
 
       <Footer />
     </div>
