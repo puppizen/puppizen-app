@@ -31,6 +31,10 @@ export async function POST(request: NextRequest) {
     user.lastStarsPaidAt = null;
   }
 
+  if (user.lastDailyRewardAt !== today) {
+    user.lastDailyRewardAt = null;
+  }
+
   await user.save();
 
   return NextResponse.json({ success: "Count reset"});

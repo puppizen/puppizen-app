@@ -2,6 +2,7 @@ import Link from "next/link";
 import Footer from "../components/Footer";
 import WatchAdsForReward from "../components/WatchAdsForReward";
 import PayStarsForReward from "../components/PayStarsForReward";
+import FreeDailyRewards from "../components/FreeDailyReward";
 
 export default function DailyReward() {
   return (
@@ -11,6 +12,8 @@ export default function DailyReward() {
             Back
         </Link>
       </div>
+
+      <FreeDailyRewards />
 
       <WatchAdsForReward />
 
