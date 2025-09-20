@@ -19,7 +19,7 @@ export default function UserBalance() {
     const cacheKeyStars = `cachedStarsBalance-${tgUser.id}`
     const cachedStars = localStorage.getItem(cacheKeyStars);
     if (cachedStars) {
-      setCachedStarsBalance(Number(cached));
+      setCachedStarsBalance(Number(cachedStars));
     }
 
     if (tgUser.id) {
