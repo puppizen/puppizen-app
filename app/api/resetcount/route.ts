@@ -23,15 +23,15 @@ export async function POST(request: NextRequest) {
   // If it's been more than 24 hours, reset the counter
   if (lastAdWatchedAt !== today) {
     user.adsWatchedToday = 0;
-    user.lastAdWatchedAt = today;
+    user.lastAdWatchedAt = null;
   }
 
   if (lastStarsPaidAt !== today) {
     user.starsPaidToday = 0;
-    user.lastStarsPaidAt = today;
+    user.lastStarsPaidAt = null;
   }
 
-  await user.save()
+  await user.save();
 
   return NextResponse.json({ success: "Count reset"});
 }

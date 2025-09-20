@@ -82,6 +82,7 @@ export async function POST(request: NextRequest) {
       isBot,
       chatId: 0,
       balance: 10,
+      starsBalance: 0,
       referrals: 0,
       referredUsers: [],
       taskCompleted: 0,
@@ -90,6 +91,13 @@ export async function POST(request: NextRequest) {
       claimedTasks: [],
       startedTasks: [],
       refCode,
+      lastDailyRewardAt: null,
+      adsWatchedToday: 0,
+      lastAdWatchedAt: null,
+      lastClaimedAt: null,
+      starsPaidToday: 0,
+      lastStarsPaidAt: null,
+      lastClaimedAtStars: null,
     });
   } else if (user) {
     user = await User.updateOne(

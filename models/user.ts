@@ -25,7 +25,11 @@ const userSchema = new Schema({
   },
   balance: { 
     type: Number, 
-    default: 0.5 
+    default: 10 
+  },
+  starsBalance: {
+    type: Number,
+    default: 0
   },
   referrals: { 
     type: Number, 
@@ -55,6 +59,10 @@ const userSchema = new Schema({
   refCode: {
     type: String,
     unique: true
+  },
+  lastDailyRewardAt: {
+    type: Date,
+    default: null
   },
   adsWatchedToday: { 
     type: Number, 

@@ -23,15 +23,10 @@ export async function POST(request: NextRequest) {
 
   const updateCount = user.adsWatchedToday + 1;
 
-  await User.updateOne(
-    { userId },
-    {
-      $set: {
-        adsWatchedToday: updateCount,
-        lastAdWatchedAt: today
-      }
-    }
-  );
+  user.adsWatchedToday = updateCount;
+  user.lastAdWatchedAt = today;
+
+  await user.save();
 
   return NextResponse.json({ adsWatchedToday: updateCount });
 }

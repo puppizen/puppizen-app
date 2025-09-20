@@ -4,20 +4,20 @@ import { User } from '@/models/user';
 
 const REWARD_AMOUNT = 50;
 const REQUIRED_ADS = 10;
-const REQUIRED_STARS = 5;
 
 export async function POST(request: NextRequest) {
   await connectDb();
   const { userId } = await request.json();
 
   const user = await User.findOne({ userId });
+  const referrer = user?.referredBy ? await User.findOne({ userId: user.referredBy }) : null;
 
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
 
   if (user.adsWatchedToday !== REQUIRED_ADS) {
-    return NextResponse.json({ error: `You must watch ${REQUIRED_ADS} ads or ${REQUIRED_STARS} stars to claim reward` }, { status: 403 });
+    return NextResponse.json({ error: `You must watch ${REQUIRED_ADS} ads to claim reward` }, { status: 403 });
   }
 
   const today = new Date().toDateString();
@@ -28,15 +28,17 @@ export async function POST(request: NextRequest) {
   }
 
   // Update user
-  await User.updateOne(
-    {userId},
-    {
-      $inc: { balance: REWARD_AMOUNT },
-      $set: { 
-        lastClaimedAt: today,
-      }
-    }
-  );
+  user.balance += REWARD_AMOUNT;
+  user.lastClaimedAt = today;
+
+  await user.save();
+
+  const REFERRAL_PERCENTAGE = 0.1;
+  const refReward = REWARD_AMOUNT * REFERRAL_PERCENTAGE;
+  if (referrer) {
+    referrer.balance += refReward;
+    await referrer.save()
+  }
 
   console.log(`✅ Reward claimed: User ${userId} at ${user.lastClaimedAt.toISOString()}`);
 

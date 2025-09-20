@@ -14,6 +14,7 @@ export async function GET(request: NextRequest) {
     balance: user.balance,
     adsWatchedToday: user.adsWatchedToday,
     starsPaidToday: user.starsPaidToday,
+    starsBalance: user.starsBalance
     });
 }
 
