@@ -27,7 +27,7 @@ export default function UserBalance() {
       .then((res) => res.json())
       .then((data) => {
         setBalance(data.balance);
-        setStarsBalance(data.setStarsBalance);
+        setStarsBalance(data.starsBalance);
         localStorage.setItem(cacheKey, data.balance.toString())
         localStorage.setItem(cacheKeyStars, data.starsBalance.toString())
       });
