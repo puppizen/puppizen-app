@@ -13,15 +13,15 @@ export default function DailyReward() {
         </Link>
       </div>
 
-      <div className="my-bg-gray my-border-gray p-3 mb-5 rounded-md backdrop-blur-2xl">
+      <div className="my-bg-lightgray my-border-gray p-3 mb-5 rounded-md">
         <FreeDailyRewards />
       </div>      
 
-      <div className="my-bg-gray my-border-gray p-3 mb-5 rounded-md backdrop-blur-xl">
+      <div className="my-bg-lightgray my-border-gray p-3 mb-5 rounded-md">
         <WatchAdsForReward />
       </div>
 
-      <div className="my-bg-gray my-border-gray p-3 mb-5 rounded-md backdrop-blur-3xl">
+      <div className="my-bg-lightgray my-border-gray p-3 mb-5 rounded-md">
         <PayStarsForReward />
       </div>
 
