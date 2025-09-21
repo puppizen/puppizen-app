@@ -49,7 +49,11 @@ export default function FreeDailyRewards() {
 
   return (
     <div className="">
-      <h3 className="text-xl font-bold mb-5 my-text-gray">Daily check-in free</h3>
+      <div className="flex items-center gap-5 mb-5">
+        <h3 className="text-xl font-bold my-text-gray">Daily check-in free</h3>
+
+        <p className="text-sm my-text-white my-bg-gradient px-3 rounded-full">+ 10</p>
+      </div>
 
       {successMessage && (
         <div className="flex items-center gap-1 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
@@ -69,9 +73,7 @@ export default function FreeDailyRewards() {
         </div>
       )}
 
-      <div>
-        <p className="text-sm mb-1">Claim 10 Puppizen for free</p>
-        
+      <div>        
         <button 
         disabled={lastClaimedAt === today}
         onClick={handleFreeClaim} className={`w-full p-3 rounded-md my-text-white btn-blue4-active btn-translate-active ${lastClaimedAt === today ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'}`}>

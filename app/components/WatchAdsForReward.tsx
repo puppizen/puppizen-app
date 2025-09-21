@@ -3,6 +3,8 @@ import Image from 'next/image';
 
 import { useEffect, useState } from 'react';
 
+const today = new Date().toDateString()
+
 export default function WatchAdsForReward() {
   const [userId, setUserId] = useState<number | null>(null);
   const [adsWatched, setAdsWatched] = useState(0);
@@ -10,6 +12,7 @@ export default function WatchAdsForReward() {
   // const [claiming, setClaiming] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [lastClaimedAt, setLastClaimedAt] = useState<string | null>(null);
 
   useEffect(() => {
     const tgUser = window.Telegram.WebApp.initDataUnsafe?.user;
@@ -21,6 +24,7 @@ export default function WatchAdsForReward() {
       .then((res) => res.json())
       .then((data) => {
         setAdsWatched(data.adsWatchedToday);
+        setLastClaimedAt(new Date(data.lastClaimedAt).toDateString());
       })
     }
   }, [])
@@ -72,7 +76,11 @@ export default function WatchAdsForReward() {
 
   return (
     <div className="">
-      <h3 className="text-xl font-bold mb-5 my-text-gray">Daily check-in with ads</h3>
+      <div className="flex items-center gap-5 mb-5">
+        <h3 className="text-xl font-bold my-text-gray">Daily check-in with ads</h3>
+
+        <p className="text-sm my-text-white my-bg-gradient px-3 rounded-full">+ 20</p>
+      </div>
 
       {successMessage && (
         <div className="flex items-center gap-1 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
@@ -104,8 +112,8 @@ export default function WatchAdsForReward() {
         <button
           onClick={adsWatched >= 3 ? undefined : handleAdWatch}
           disabled={adsWatched >= 3}
-          className={`px-4 py-1 rounded-full my-text-white btn-blue4-active btn-translate-active ${
-            adsWatched >= 3 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
+          className={`px-4 py-1 rounded-full my-text-white ${
+            adsWatched >= 3 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient btn-blue4-active btn-translate-active'
           }`}
         >
           Watch Ad
@@ -115,11 +123,11 @@ export default function WatchAdsForReward() {
       <button
         onClick={adsWatched < 3 ? undefined : handleClaimReward}
         disabled={adsWatched < 3}
-        className={`w-full p-3 rounded-md my-text-white mb-3 btn-blue4-active btn-translate-active ${
-          adsWatched < 3 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
+        className={`w-full p-3 rounded-md my-text-white mb-3 ${
+          adsWatched < 3 || today === lastClaimedAt ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient btn-blue4-active btn-translate-active'
         }`}
       >
-        Claim Reward
+        {today === lastClaimedAt ? "Done" : "Claim Reward"}
       </button>
     </div>
   );

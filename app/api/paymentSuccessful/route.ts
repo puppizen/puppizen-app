@@ -38,9 +38,13 @@ export async function POST(req: NextRequest) {
   user.starsPaidToday = REQUIRED_STARS;
   user.totalStarsPaid += REQUIRED_STARS;
 
+  const STARS_BACK_PERCENTAGE = 0.1;
+  const starsReward = REQUIRED_STARS * STARS_BACK_PERCENTAGE;
+  user.starsBalance += starsReward
+
   await user.save();
 
-  const REFERRAL_PERCENTAGE = 0.1
+  const REFERRAL_PERCENTAGE = 0.05
   const refReward = REQUIRED_STARS * REFERRAL_PERCENTAGE;
   if (referrer) {
     referrer.starsBalance += refReward;

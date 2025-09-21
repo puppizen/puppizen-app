@@ -16,7 +16,9 @@ export async function GET(request: NextRequest) {
     starsPaidToday: user.starsPaidToday,
     starsBalance: user.starsBalance,
     lastDailyRewardAt: user.lastDailyRewardAt,
-    });
+    lastClaimedAt: user.lastClaimedAt,
+    lastClaimedAtStars: user.lastClaimedAtStars,
+  });
 }
 
 export async function POST(request: NextRequest) {

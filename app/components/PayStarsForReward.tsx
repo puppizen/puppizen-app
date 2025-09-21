@@ -8,6 +8,8 @@ type InvoiceClosedEvent = {
   slug: string;
 };
 
+const today = new Date().toDateString();
+
 export default function PayStarsForReward() {
   const [userId, setUserId] = useState<number | null>(null);
   const [starsPaidToday, setStarsPaidToday] = useState(0);
@@ -15,6 +17,7 @@ export default function PayStarsForReward() {
   // const [claiming, setClaiming] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [lastClaimedAtStars, setLastClaimedAtStars] = useState<string | null>();
 
   useEffect(() => {
     const tgUser = window.Telegram.WebApp.initDataUnsafe?.user;
@@ -26,6 +29,7 @@ export default function PayStarsForReward() {
       .then((res) => res.json())
       .then((data) => {
         setStarsPaidToday(data.starsPaidToday);
+        setLastClaimedAtStars(new Date(data.lastClaimedAtStars).toDateString())
       })
     }
   }, [])
@@ -100,7 +104,11 @@ export default function PayStarsForReward() {
   return (
     <div className="">
       <div>
-        <h3 className="text-xl font-bold mb-5 my-text-gray">Daily check-in with stars</h3>
+        <div className="flex items-center gap-5 mb-5">
+          <h3 className="text-xl font-bold my-text-gray">Daily check-in with stars</h3>
+
+          <p className="text-sm my-text-white my-bg-gradient px-3 rounded-full">+ 50</p>
+        </div>
 
         {successMessage && (
           <div className="flex items-center gap-1 my-bg-blue my-text-white px-3 py-1 mb-3 w-full rounded-md">
@@ -121,16 +129,17 @@ export default function PayStarsForReward() {
         )}
 
         <button onClick={starsPaidToday >= 10 ? undefined : handleClaimWithStars} 
-        className={`p-3 rounded-md w-full my-text-white mb-3 btn-blue4-active btn-translate-active ${
-          starsPaidToday >= 10 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
+        className={`p-3 rounded-md w-full my-text-white mb-3 ${
+          starsPaidToday >= 10 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient btn-blue4-active btn-translate-active'
         }`}>
           Check-in with 10 stars 
         </button>
 
         <button onClick={starsPaidToday < 10 ? undefined : handleClaimRewardStars}
-        className={`w-full p-3 rounded-md my-text-white mb-3 btn-blue4-active btn-translate-active ${
-          starsPaidToday < 10 ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'
-        }`}>Claim Reward</button>
+        className={`w-full p-3 rounded-md my-text-white mb-3 ${
+          starsPaidToday < 10 || today === lastClaimedAtStars ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
+            {today === lastClaimedAtStars ? "Done" : "Claim Reward"}
+        </button>
       </div>
   </div>
   );
