@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
   } 
 
   const userId = update?.message?.from?.id;
-  const username = update?.message?.from?.username
+  const username = update?.message?.from?.username ?? 'Anonymous';
   const messageText = update?.message?.text;
   const chatId = update?.message?.chat?.id;
   
