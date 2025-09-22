@@ -123,7 +123,7 @@ export async function POST(req: NextRequest) {
       user = await User.create({
         userId,
         username,
-        chatId: 0,
+        chatId,
         balance: 10,
         starsBalance: 0,
         totalStarsPaid: 0,
