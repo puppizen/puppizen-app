@@ -46,60 +46,18 @@ export async function POST(request: NextRequest) {
 
   const body = await request.json();
   const userId = Number(body.userId);
-  const username = body.username ?? 'Anonymous';
   const profile_url = body.profile_url || await fetchTelegramProfilePic(userId);
-  const isBot = Boolean(body.is_bot);
 
   console.log('Incoming request...');
   console.log('userId:', userId);
-  console.log('username:', username);
 
   if (!userId) {
     return NextResponse.json({ error: 'Telegram user ID is required' }, { status: 400 });
   } 
 
-  if (isBot) {
-    return NextResponse.json({ error: 'Bots are not allowed' }, { status: 400 });
-  } 
-
   let user = await User.findOne({ userId });
 
-  if (!user) {
-    // Ensure referral code is unique
-    let refCode = '';
-    let isUnique = false;
-
-    while (!isUnique) {
-      refCode = generateRefCode();
-      const existingUser = await User.findOne({ refCode });
-      if (!existingUser) isUnique = true
-    }
-
-    user = await User.create({
-      userId,
-      username,
-      profile_url,
-      isBot,
-      balance: 10,
-      starsBalance: 0,
-      totalStarsPaid: 0,
-      referrals: 0,
-      referredUsers: [],
-      taskCompleted: 0,
-      completedTasks: [],
-      verifiedTasks: [],
-      claimedTasks: [],
-      startedTasks: [],
-      refCode,
-      lastDailyRewardAt: null,
-      adsWatchedToday: 0,
-      lastAdWatchedAt: null,
-      lastClaimedAt: null,
-      starsPaidToday: 0,
-      lastStarsPaidAt: null,
-      lastClaimedAtStars: null,
-    });
-  } else if (user) {
+   if (user) {
     user = await User.updateOne(
       {userId},
       {
@@ -108,7 +66,6 @@ export async function POST(request: NextRequest) {
         }
       }
     )
-  }
 
   return NextResponse.json({status: "OK"  });
 }
