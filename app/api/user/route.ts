@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
 
   const body = await request.json();
   const userId = Number(body.userId);
-  const username = body.username ?? 'Anonymous';
+  const username = body.username
   const profile_url = body.profile_url || await fetchTelegramProfilePic(userId);
   const isBot = Boolean(body.is_bot);
 

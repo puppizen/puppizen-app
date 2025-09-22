@@ -8,8 +8,7 @@ const userSchema = new Schema({
     unique: true
   },
   username: { 
-    type: String, 
-    unique: true 
+    type: String,
   },
   isBot: {
     type: Boolean,
