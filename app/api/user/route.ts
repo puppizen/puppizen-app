@@ -3,17 +3,6 @@ import { NextResponse, NextRequest } from 'next/server';
 import { User } from '@/models/user';
 import connectDb from '@/lib/mongodb';
 
-// Generate referral code
-const generateRefCode = (length: number = 6): string => {
-  const chars = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789'
-  let userRefCode = ''
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * chars.length)
-    userRefCode += chars [randomIndex]
-  }
-  return userRefCode
-};
-
 const TELEGRAM_API = 'https://api.telegram.org';
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
@@ -66,42 +55,7 @@ export async function POST(request: NextRequest) {
         }
       }
     )
+   }
 
   return NextResponse.json({status: "OK"  });
 }
-
-
-// // // app/api/daily-claim/route.ts
-// // import { NextRequest, NextResponse } from 'next/server';
-// // import connectDb from '@/lib/mongodb';
-// // import { DailyClaim } from '@/models/dailyClaim';
-// // import { User } from '@/models/user';
-
-// // export async function POST(request: NextRequest) {
-// //   await connectDb();
-
-// //   const { userId, reward } = await request.json();
-// //   const today = new Date();
-// //   today.setHours(0, 0, 0, 0); // Normalize to midnight
-
-// //   const existingClaim = await DailyClaim.findOne({ userId, date: today });
-// //   if (existingClaim) {
-// //     return NextResponse.json({ error: 'Already claimed today' }, { status: 400 });
-// //   }
-
-// //   const user = await User.findOne({ userId });
-// //   if (!user) {
-// //     return NextResponse.json({ error: 'User not found' }, { status: 404 });
-// //   }
-
-// //   user.balance += reward;
-// //   await user.save();
-
-// //   const claim = new DailyClaim({ userId, date: today, reward });
-// //   await claim.save();
-
-// //   return NextResponse.json({
-// //     success: true,
-// //     balance: Number(user.balance).toFixed(3),
-// //   });
-// // }
