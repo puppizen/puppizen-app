@@ -34,6 +34,10 @@ const userSchema = new Schema({
     type: Number,
     default: 0
   },
+  airdrop: {
+    type: Number,
+    default: 0
+  },
   referrals: { 
     type: Number, 
     default: 0 
@@ -70,6 +74,10 @@ const userSchema = new Schema({
   adsWatchedToday: { 
     type: Number, 
     default: 0 
+  },
+  totalAdsWayched: {
+    type: Number,
+    default: 0,
   },
   // lastRewardAt: { type: Date, default: null },
   lastAdWatchedAt: { 

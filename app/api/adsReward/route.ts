@@ -25,6 +25,7 @@ export async function POST(request: NextRequest) {
 
   user.adsWatchedToday = updateCount;
   user.lastAdWatchedAt = today;
+  user.totalAdsWatched += 1;
 
   await user.save();
 
