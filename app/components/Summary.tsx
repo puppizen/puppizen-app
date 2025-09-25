@@ -42,13 +42,13 @@ export default function Summary() {
 
   return (
     <div className="mb-3">
-      <h1 className="mb-2 font-bold text-2xl my-text-gray">Stats</h1>
-      <div className="flex justify-between my-bg-gray gap-2 rounded-md p-3 my-text-black">
-        <div className="py-1 my-bg-dark my-border-gray rounded-md w-full font-medium text-center">
+      <h1 className="mb-4 font-bold text-2xl my-text-gray">Stats</h1>
+      <div className="flex justify-between my-bg-gray gap-2 rounded-md my-text-black">
+        <div className="py-1 my-border-gray rounded-md w-full font-medium text-center my-text-gray">
           <p className="text-sm">Total Users</p>
           <p className='text-sm'>{summaryTotalUsers}</p>
         </div>
-        <div className="py-1 my-bg-dark my-border-gray rounded-md w-full font-medium text-center">
+        <div className="py-1 my-border-gray rounded-md w-full font-medium text-center my-text-gray">
           <p className="text-sm">Points Claimed</p> 
           <p className='text-sm'>{summaryTotalBalance}</p>
         </div>
