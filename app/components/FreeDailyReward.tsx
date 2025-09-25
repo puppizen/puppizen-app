@@ -49,7 +49,7 @@ export default function FreeDailyRewards() {
 
   return (
     <div className="">
-      <div className="flex items-center gap-5 mb-5">
+      <div className="flex items-center gap-1 mb-5">
         <h3 className="text-xl font-bold my-text-gray">Daily check-in free</h3>
 
         <p className="text-sm my-text-white my-bg-gradient px-3 rounded-full">+ 10</p>
