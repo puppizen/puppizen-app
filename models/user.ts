@@ -75,7 +75,7 @@ const userSchema = new Schema({
     type: Number, 
     default: 0 
   },
-  totalAdsWayched: {
+  totalAdsWatched: {
     type: Number,
     default: 0,
   },
