@@ -46,6 +46,10 @@ const userSchema = new Schema({
     type: [Number],
     default: []
   },
+  referralLink: {
+    type: String,
+    default: null
+  },
   referredBy: { 
     type: Number, 
     default: null 
