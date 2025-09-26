@@ -30,7 +30,9 @@ export async function GET(request: NextRequest) {
     const eligible =
     (task.activity === 'referrals' && user.referrals >= taskGoal) ||
     (task.activity === 'taskCompleted' && user.taskCompleted >= taskGoal) ||
-    (task.activity === 'earnings' && Math.floor(user.balance) >= taskGoal);
+    (task.activity === 'earnings' && Math.floor(user.balance) >= taskGoal) || 
+    (task.activity === 'stars' && Math.floor(user.totalStarsPaid) >= taskGoal) || 
+    (task.activity === 'ads' && Math.floor(user.totalAdsWatched) >= taskGoal);
 
     if (user?.completedTasks?.includes(taskId)) {
       status = 'done';
@@ -57,10 +59,10 @@ export async function GET(request: NextRequest) {
     }; 
   });
 
-  type TaskStatus = 'start' | 'claim' | 'max' | 'done';
+  type TaskStatus = 'claim' | 'start' | 'max' | 'done';
   const statusPriority: Record<TaskStatus, number> = {
-    start: 1,
-    claim: 2,
+    claim: 1,
+    start: 2,
     max: 3,
     done: 4,
   }

@@ -16,7 +16,7 @@ const taskSchema = new mongoose.Schema ({
   goal: Number,
   activity: {
     type: String,
-    enum: ['referrals', 'taskCompleted', 'earnings'],
+    enum: ['stars', 'referrals', 'taskCompleted', 'earnings', 'ads'],
   }
 });
 

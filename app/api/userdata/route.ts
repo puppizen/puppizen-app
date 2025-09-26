@@ -13,5 +13,9 @@ export async function GET(request: NextRequest) {
     referrals: user.referrals,
     taskCompleted: user.taskCompleted,
     balance: user.balance,
+    starsBalance: user.starsBalance,
+    totalStarsPaid: user.totalStarsPaid,
+    totalAdsWatched: user.totalAdsWatched,
+    airdrop: user.airdrop,
   })
 }

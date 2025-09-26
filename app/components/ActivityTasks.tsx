@@ -21,6 +21,10 @@ export default function ActivityTasks() {
   return (
     <div>
       <div>
+        <ActivityBalance activity="stars" userId={userId}/>
+      </div>
+
+      <div>
         <ActivityTasksCompleted activity="taskCompleted" userId={userId} />
       </div>
 
