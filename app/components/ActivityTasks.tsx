@@ -5,7 +5,7 @@ import ActivityBalance from "./ActivityBalance"
 import ActivityReferrals from "./ActivityReferrals"
 import ActivityTasksCompleted from "./ActivityTasksCompleted"
 import ActivityStars from "./ActivityStars";
-import AdsWatched from "./AdsWatched"
+import UserAdsWatched from "./UserAdsWatched";
 
 export default function ActivityTasks() {
   const [userId, setUserId] = useState<number | null>(null);
@@ -27,7 +27,7 @@ export default function ActivityTasks() {
       </div>
 
       <div>
-        <AdsWatched activity="ads" userId={userId}/>
+        <UserAdsWatched activity="ads" userId={userId}/>
       </div>
 
       <div>
