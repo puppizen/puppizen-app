@@ -39,7 +39,7 @@ export default function UserProfile() {
     }
 
     if(tgUser) {
-      fetch(`/api/userData?userId=${tgUser.id}`)
+      fetch(`/api/userdata?userId=${tgUser.id}`)
       .then((res) => res.json())
       .then((data) => {
         setUserData(data);
