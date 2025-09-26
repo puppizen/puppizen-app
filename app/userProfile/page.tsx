@@ -59,13 +59,13 @@ export default function UserProfile() {
             Back
         </Link>
       </div>
-      <h3 className="my-text-gray font-bold text-2xl text-center">My Profile</h3>
-      <div className="flex-1">
+      <h3 className="my-text-gray font-bold text-2xl text-center mb-8">My Profile</h3>
+      <div className="flex-1 my-border-gray">
         {displayData && (
           <div className="flex flex-col justify-around h-full">
             <div className="flex flex-col justify-center items-center">
               <Image src={displayData.profile_url || '/puppizen-image.png'} width={100} height={100} alt="user photo" className="my-border-gray rounded-full"/>
-              <p className="text-center mt-5">{displayData.username}</p>
+              <p className="text-center my-5">{displayData.username}</p>
             </div>
             <div className="flex flex-col justify-around gap-3">
               <div className="my-border-gray px-3 py-4 rounded-md">
@@ -86,6 +86,9 @@ export default function UserProfile() {
               <div className="my-border-gray px-3 py-4 rounded-md">
                 <p className="flex justify-between items-center"><span>Ads Watched</span> <span>{displayData.totalAdsWatched}</span></p>
               </div>
+              {/* <div className="my-border-gray px-3 py-4 rounded-md">
+                <p><span>Airdrop</span> <span>{displayData.totalAdsWatched}</span></p>
+              </div> */}
             </div>
           </div>
         )}
