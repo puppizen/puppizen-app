@@ -173,6 +173,8 @@ export async function POST(req: NextRequest) {
           }
         );
       }
+
+      console.log("Telegram update:", JSON.stringify(update, null, 2));
     }
   }
   
