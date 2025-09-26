@@ -12,6 +12,7 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({
     userId: user.userId,
     profile_url: user.profile_url,
+    username: user.username,
     referrals: user.referrals,
     taskCompleted: user.taskCompleted,
     balance: user.balance,
