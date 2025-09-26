@@ -81,22 +81,22 @@ export default function UserProfile() {
               <p className="text-sm text-center py-3">Your final airdrop is being calculated! We&apos;re currently analyzing your activity based on the key metrics below to determine your final reward. Keep accumalating more rewards!</p>
             </div>
               <div className="flex flex-col justify-around gap-3">
-                <div className="p-3 bg-gray-300 opacity-95 rounded-md">
+                <div className="p-3 my-bg-gray rounded-md">
                   <p className="flex justify-between items-center"><span>$PUPPIZEN</span> <span>{displayData.balance}</span></p>
                 </div>
-                <div className="p-3 bg-gray-300 opacity-95 rounded-md">
+                <div className="p-3 my-bg-gray rounded-md">
                   <p className="flex justify-between items-center"><span>$STARS</span> <span>{displayData.starsBalance}</span></p>
                 </div>
-                <div className="p-3 bg-gray-300 opacity-95 rounded-md">
+                <div className="p-3 my-bg-gray rounded-md">
                   <p className="flex justify-between items-center"><span>$STARS spent</span> <span>{displayData.totalStarsPaid}</span></p>
                 </div>
-                <div className="p-3 bg-gray-300 opacity-95 rounded-md">
+                <div className="p-3 my-bg-gray rounded-md">
                   <p className="flex justify-between items-center"><span>Referrals</span> <span>{displayData.referrals}</span></p>
                 </div>
-                <div className="p-3 bg-gray-300 opacity-95 rounded-md">
+                <div className="p-3 my-bg-gray rounded-md">
                   <p className="flex justify-between items-center"><span>Task Completed</span> <span>{displayData.taskCompleted}</span></p>
                 </div>
-                <div className="p-3 bg-gray-300 opacity-95 rounded-md">
+                <div className="p-3 my-bg-gray rounded-md">
                   <p className="flex justify-between items-center"><span>Ads Watched</span> <span>{displayData.totalAdsWatched}</span></p>
                 </div>
               </div>
