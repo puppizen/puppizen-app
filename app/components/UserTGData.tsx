@@ -2,6 +2,7 @@
 import { TonConnectButton } from '@tonconnect/ui-react';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function UserTGData() {
   const [user, setUser] = useState({ userId: 0, username: '', photoUrl: '' });
@@ -43,18 +44,20 @@ export default function UserTGData() {
 
   return (
     <div className="flex justify-between">
-      <div className="flex items-center gap-2">
-        {user.photoUrl && (
-          <Image
-            className="my-border-blue rounded-md"
-            width={36}
-            height={36}
-            src={user.photoUrl}
-            alt="User profile"
-          />
-        )}
-        <p className="font-semibold">{user.username}</p>
-      </div>
+      <Link href='/userProfile'>
+        <div className="flex items-center gap-2">
+          {user.photoUrl && (
+            <Image
+              className="my-border-blue rounded-md"
+              width={36}
+              height={36}
+              src={user.photoUrl}
+              alt="User profile"
+            />
+          )}
+          <p className="font-semibold">{user.username}</p>
+        </div>
+      </Link>
       <TonConnectButton />
     </div>
   );

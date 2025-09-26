@@ -10,7 +10,7 @@ import Image from 'next/image';
 export default function Home() {
   return (
     <div className="pb-15">
-      <UserTGData />
+      <UserTGData/>
 
       <div className='py-5'>
         <Link href='/leaderboard'  className='flex flex-row justify-between p-3 rounded-md my-bg-gradient btn-translate-active'>
