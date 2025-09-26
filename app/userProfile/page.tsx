@@ -60,7 +60,7 @@ export default function UserProfile() {
         </Link>
       </div>
       <h3 className="my-text-gray font-bold text-2xl text-center mb-8">My Profile</h3>
-      <div className="flex-1 my-border-gray">
+      <div className="flex-1">
         {displayData && (
           <div className="flex flex-col justify-around h-full">
             <div className="flex flex-col justify-center items-center gap-3 mb-3">
@@ -87,7 +87,7 @@ export default function UserProfile() {
                 <p className="flex justify-between items-center"><span>Ads Watched</span> <span>{displayData.totalAdsWatched}</span></p>
               </div>
               <div className="my-border-gray px-3 py-4 rounded-md">
-                <p><span>Airdrop</span> <span className="animate-spin w-10 h-10 rounded-full border-4 my-border-gray border-t-transparent"></span></p>
+                <div className="flex justify-between items-center"><span>Airdrop</span> <div className="animate-spin w-10 h-10 rounded-full border-4 my-border-gray border-t-transparent"></div></div>
               </div>
             </div>
           </div>
