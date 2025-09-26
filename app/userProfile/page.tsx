@@ -83,7 +83,7 @@ export default function UserProfile() {
             </div>
           </div>
         ) : (
-          <p className="text center">No data</p>
+          <p className="text-center">No data</p>
         )}
       </div>
     </div>
