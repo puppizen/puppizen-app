@@ -67,6 +67,15 @@ export default function UserProfile() {
               <Image src={displayData.profile_url || '/puppizen-image.png'} width={100} height={100} alt="user photo" className="my-border-gray rounded-full"/>
               <p className="text-center">{displayData.username}</p>
             </div>
+            <div className="my-border-gray px-3 py-4 rounded-md">
+              <div className="flex justify-between items-center">
+                <span>Airdrop</span>
+                <div className="flex gap-1 items-center">
+                  <p>calc x </p>
+                  <div className="animate-spin w-4 h-4 rounded-full border-4 border-gray-400 border-t-transparent"></div>
+                </div>
+              </div>
+            </div>
             <div className="flex flex-col justify-around gap-3">
               <div className="my-border-gray px-3 py-4 rounded-md">
                 <p className="flex justify-between items-center"><span>$PUPPIZEN</span> <span>{displayData.balance}</span></p>
@@ -85,9 +94,6 @@ export default function UserProfile() {
               </div>
               <div className="my-border-gray px-3 py-4 rounded-md">
                 <p className="flex justify-between items-center"><span>Ads Watched</span> <span>{displayData.totalAdsWatched}</span></p>
-              </div>
-              <div className="my-border-gray px-3 py-4 rounded-md">
-                <div className="flex justify-between items-center"><span>Airdrop</span> <div className="animate-spin w-10 h-10 rounded-full border-4 my-border-gray border-t-transparent"></div></div>
               </div>
             </div>
           </div>
