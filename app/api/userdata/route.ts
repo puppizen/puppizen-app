@@ -10,6 +10,8 @@ export async function GET(request: NextRequest) {
   const user = await User.findOne({ userId });
 
   return NextResponse.json({
+    userId: user.userId,
+    profile_url: user.profile_url,
     referrals: user.referrals,
     taskCompleted: user.taskCompleted,
     balance: user.balance,
