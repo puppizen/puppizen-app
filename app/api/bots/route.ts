@@ -133,14 +133,6 @@ export async function POST(req: NextRequest) {
 
         if (referrer) {
           referredBy = referrer.userId
-
-          await User.updateOne(
-            { userId: referrer.userId },
-            {
-              $inc: { referrals: 1 },
-              $push: { referredUsers: userId }
-            }
-          );
         }
       }
 
@@ -171,6 +163,16 @@ export async function POST(req: NextRequest) {
         lastStarsPaidAt: null,
         lastClaimedAtStars: null,
       });
+
+      if (referredBy) {
+        await User.updateOne(
+          { userId: referredBy },
+          {
+            $inc: { referrals: 1 },
+            $push: { referredUsers: userId }
+          }
+        );
+      }
     }
   }
   
