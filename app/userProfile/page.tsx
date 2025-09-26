@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 type UserData = {
   userId: number,
@@ -52,32 +53,37 @@ export default function UserProfile() {
   const displayData = loading ? cachedData : userData
   
   return (
-    <div className="flex flex-col justify-around min-h-screen">
+    <div className="flex flex-col min-h-screen">
+      <div className="flex justify-end">
+        <Link href="/" className="my-bg-gray rounded-full px-4 py-1 mb-3">
+            Back
+        </Link>
+      </div>
       <h3 className="my-text-gray font-bold text-2xl text-center">My Profile</h3>
-      <div>
+      <div className="flex-1">
         {displayData && (
-          <div className="flex flex-col justify-around h-full">
+          <div className="flex flex-col justify-around h">
             <div className="flex flex-col justify-center items-center">
               <Image src={displayData.profile_url || '/puppizen-image.png'} width={100} height={100} alt="user photo" className="my-border-gray rounded-full"/>
               <p className="text-center mt-5">{displayData.username}</p>
             </div>
-            <div className="flex flex-col justify-around h-full">
-              <div className="my-border-gray p-3 rounded-md">
+            <div className="flex flex-col justify-around gap-3">
+              <div className="my-border-gray px-3 py-4 rounded-md">
                 <p className="flex justify-between items-center"><span>$PUPPIZEN</span> <span>{displayData.balance}</span></p>
               </div>
-              <div className="my-border-gray p-3 rounded-md">
+              <div className="my-border-gray px-3 py-4 rounded-md">
                 <p className="flex justify-between items-center"><span>$STARS</span> <span>{displayData.starsBalance}</span></p>
               </div>
-              <div className="my-border-gray p-3 rounded-md">
+              <div className="my-border-gray px-3 py-4 rounded-md">
                 <p className="flex justify-between items-center"><span>$STARS spent</span> <span>{displayData.totalStarsPaid}</span></p>
               </div>
-              <div className="my-border-gray p-3 rounded-md">
+              <div className="my-border-gray px-3 py-4 rounded-md">
                 <p className="flex justify-between items-center"><span>Referrals</span> <span>{displayData.referrals}</span></p>
               </div>
-              <div className="my-border-gray p-3 rounded-md">
+              <div className="my-border-gray px-3 py-4 rounded-md">
                 <p className="flex justify-between items-center"><span>Task Completed</span> <span>{displayData.taskCompleted}</span></p>
               </div>
-              <div className="my-border-gray p-3 rounded-md">
+              <div className="my-border-gray px-3 py-4 rounded-md">
                 <p className="flex justify-between items-center"><span>Ads Watched</span> <span>{displayData.totalAdsWatched}</span></p>
               </div>
             </div>
