@@ -67,35 +67,39 @@ export default function UserProfile() {
               <Image src={displayData.profile_url || '/puppizen-image.png'} width={100} height={100} alt="user photo" className="my-border-gray rounded-full"/>
               <p className="text-center">{displayData.username}</p>
             </div>
-            <div className="my-border-gray px-3 py-4 rounded-md">
+            <div className="my-border-gray px-3 py-4 rounded-md mb-3">
               <div className="flex justify-between items-center">
                 <span>Airdrop</span>
-                <div className="flex gap-1 items-center">
-                  <p>calc x </p>
-                  <div className="animate-spin w-4 h-4 rounded-full border-4 border-gray-400 border-t-transparent"></div>
+                <div className="flex gap-2 items-center">
+                  <p>calculating</p>
+                  <div className="animate-spin w-6 h-6 rounded-full border-4 border-gray-400 border-t-transparent"></div>
                 </div>
               </div>
             </div>
-            <div className="flex flex-col justify-around gap-3">
-              <div className="my-border-gray px-3 py-4 rounded-md">
-                <p className="flex justify-between items-center"><span>$PUPPIZEN</span> <span>{displayData.balance}</span></p>
-              </div>
-              <div className="my-border-gray px-3 py-4 rounded-md">
-                <p className="flex justify-between items-center"><span>$STARS</span> <span>{displayData.starsBalance}</span></p>
-              </div>
-              <div className="my-border-gray px-3 py-4 rounded-md">
-                <p className="flex justify-between items-center"><span>$STARS spent</span> <span>{displayData.totalStarsPaid}</span></p>
-              </div>
-              <div className="my-border-gray px-3 py-4 rounded-md">
-                <p className="flex justify-between items-center"><span>Referrals</span> <span>{displayData.referrals}</span></p>
-              </div>
-              <div className="my-border-gray px-3 py-4 rounded-md">
-                <p className="flex justify-between items-center"><span>Task Completed</span> <span>{displayData.taskCompleted}</span></p>
-              </div>
-              <div className="my-border-gray px-3 py-4 rounded-md">
-                <p className="flex justify-between items-center"><span>Ads Watched</span> <span>{displayData.totalAdsWatched}</span></p>
-              </div>
+
+            <div>
+              <p className="text-sm text-center py-3">Your final airdrop is being calculated! We&apos;re currently analyzing your activity based on the key metrics below to determine your total reward.</p>
             </div>
+              <div className="flex flex-col justify-around gap-3 my-bg-gray">
+                <div className="px-3">
+                  <p className="flex justify-between items-center"><span>$PUPPIZEN</span> <span>{displayData.balance}</span></p>
+                </div>
+                <div className="px-3">
+                  <p className="flex justify-between items-center"><span>$STARS</span> <span>{displayData.starsBalance}</span></p>
+                </div>
+                <div className="px-3">
+                  <p className="flex justify-between items-center"><span>$STARS spent</span> <span>{displayData.totalStarsPaid}</span></p>
+                </div>
+                <div className="px-3">
+                  <p className="flex justify-between items-center"><span>Referrals</span> <span>{displayData.referrals}</span></p>
+                </div>
+                <div className="px-3">
+                  <p className="flex justify-between items-center"><span>Task Completed</span> <span>{displayData.taskCompleted}</span></p>
+                </div>
+                <div className="px-3">
+                  <p className="flex justify-between items-center"><span>Ads Watched</span> <span>{displayData.totalAdsWatched}</span></p>
+                </div>
+              </div>
           </div>
         )}
       </div>
