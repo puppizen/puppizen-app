@@ -15,7 +15,7 @@ type Task = {
   status: 'claim' | 'max' | 'done'
 }
 
-export default function ActivityBalance({ activity, userId }: {activity: string, userId: number}) {
+export default function ActivityStars({ activity, userId }: {activity: string, userId: number}) {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [taskProgress, setTaskProgress] = useState(0);
   const [cachedTasks, setCachedTasks] = useState<Task[]>([]);
