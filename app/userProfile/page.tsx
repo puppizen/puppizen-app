@@ -52,13 +52,13 @@ export default function UserProfile() {
   const displayData = loading ? cachedData : userData
   
   return (
-    <div className="flex flex-col justify-around">
+    <div className="flex flex-col justify-around min-h-screen">
       <h3 className="my-text-gray font-bold text-2xl text-center">My Profile</h3>
       <div>
         {displayData && (
           <div className="flex flex-col justify-around">
             <div>
-              <Image src={displayData.profile_url || '/puppizen-image.png'} width={50} height={50} alt="user photo" className="my-border-gray"/>
+              <Image src={displayData.profile_url || '/puppizen-image.png'} width={100} height={100} alt="user photo" className="my-border-gray rounded-full self-center"/>
               <p className="text-center mt-5">{displayData.username}</p>
             </div>
             <div className="flex flex-col justify-around">
