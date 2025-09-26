@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ActivityBalance from "./ActivityBalance"
 import ActivityReferrals from "./ActivityReferrals"
 import ActivityTasksCompleted from "./ActivityTasksCompleted"
+import ActivityStars from "./ActivityStars";
 
 export default function ActivityTasks() {
   const [userId, setUserId] = useState<number | null>(null);
@@ -21,7 +22,7 @@ export default function ActivityTasks() {
   return (
     <div>
       <div>
-        <ActivityBalance activity="stars" userId={userId}/>
+        <ActivityStars activity="stars" userId={userId}/>
       </div>
 
       <div>
