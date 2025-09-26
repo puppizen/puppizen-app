@@ -57,10 +57,10 @@ export default function UserTGData() {
           )}
           <p className="">{user.username}</p>
 
-          <div className="absolute right-0">
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex size-2 rounded-full bg-blue-500"></span>
+          <div className="absolute right-0 top-0">
+            <span className="relative flex size-3">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
+              <span className="relative inline-flex size-3 rounded-full bg-sky-500"></span>
             </span>
           </div>
         </div>
