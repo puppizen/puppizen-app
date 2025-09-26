@@ -71,8 +71,8 @@ export default function UserProfile() {
               <div className="flex justify-between items-center">
                 <span>Airdrop</span>
                 <div className="flex gap-2 items-center">
-                  <p>calculating</p>
-                  <div className="animate-spin w-6 h-6 rounded-full border-4 border-gray-400 border-t-transparent"></div>
+                  <p className="text-sm text-gray-500">calculating</p>
+                  <div className="animate-spin w-6 h-6 rounded-full border-2 border-gray-500 border-t-transparent"></div>
                 </div>
               </div>
             </div>
