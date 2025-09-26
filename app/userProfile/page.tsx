@@ -62,7 +62,7 @@ export default function UserProfile() {
       <h3 className="my-text-gray font-bold text-2xl text-center">My Profile</h3>
       <div className="flex-1">
         {displayData && (
-          <div className="flex flex-col justify-around h">
+          <div className="flex flex-col justify-around h-full">
             <div className="flex flex-col justify-center items-center">
               <Image src={displayData.profile_url || '/puppizen-image.png'} width={100} height={100} alt="user photo" className="my-border-gray rounded-full"/>
               <p className="text-center mt-5">{displayData.username}</p>
