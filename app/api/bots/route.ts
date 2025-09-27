@@ -149,8 +149,8 @@ export async function POST(req: NextRequest) {
         lastClaimedAtStars: null,
       });
 
-      const referrer = await User.findOne({ userId });
-      if (referrer.refCode === referralCode) {
+      const referrer = await User.findOne({ refCode: referralCode });
+      if (referrer) {
         referrer.referredUsers.push(userId);
         referrer.referrals += 1;
         referrer.balance += 50;
