@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
   const referredUsers = await User.find({ userId: { $in: user.referredUsers } })
 
   return NextResponse.json({
-    refCode: user.refCode,
+    referralLink: user.referralLink,
     referrals: user?.referrals ?? 0,
     referredUsers: referredUsers.map(u => ({
       username: u.username,

@@ -11,16 +11,16 @@ interface ReferredUser {
 }
 
 export default function ReferralLink() {
-  const [refCode, setRefCode] = useState('');
+  const [referralLink, setReferralLink] = useState('');
   const [referrals, setReferrals] = useState(0);
   const [referredList, setReferredList] = useState<ReferredUser[]>([]);
   const [copied, setCopied] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [inputRefCode, setInputRefCode] = useState('');
-  const [loading, setLoading] = useState(true);
+  // const [showModal, setShowModal] = useState(false);
+  // const [inputRefCode, setInputRefCode] = useState('');
+  // const [loading, setLoading] = useState(true);
   const [loadingReferrals, setLoadingReferrals] = useState(true)
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  // const [errorMessage, setErrorMessage] = useState('');
+  // const [successMessage, setSuccessMessage] = useState('');
   const [cachedReferredList, setCachedReferredList] = useState<ReferredUser[]>([]);
 
   useEffect(() => {
@@ -40,57 +40,57 @@ export default function ReferralLink() {
     }
 
     if (tgUser.id) {
-      fetch('/api/referral', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: tgUser.id })
-      })
+      // fetch('/api/referral', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ userId: tgUser.id })
+      // })
 
       fetch(`/api/referral?userId=${tgUser.id}`)
         .then((res) => res.json())
         .then((data) => {
-          setRefCode(data.refCode);
+          setReferralLink(data.referralLink);
           setReferrals(data.referrals);
           setReferredList(data.referredUsers || []);
           localStorage.setItem('cachedReferredList', JSON.stringify(data));
           setLoadingReferrals(false);
 
           // Show modal only if user hasn't submitted a referral
-          if (!data.referredBy) {
-            setShowModal(true);
-          }
-          setLoading(false);
+          // if (!data.referredBy) {
+          //   setShowModal(true);
+          // }
+          // setLoading(false);
         });
     }
   }, []);
 
   const displayReferredList = loadingReferrals ? cachedReferredList : referredList;
   
-  const handleSubmitRefCode = async () => {
-    const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
+  // const handleSubmitRefCode = async () => {
+  //   const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
 
-    const trimmedCode = inputRefCode.trim();
+  //   const trimmedCode = inputRefCode.trim();
 
-    if (!tgUser?.id || !trimmedCode) return;
+  //   if (!tgUser?.id || !trimmedCode) return;
 
-    const res = await fetch('/api/referral', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ userId: tgUser.id, refCode: trimmedCode })
-    });
+  //   const res = await fetch('/api/referral', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ userId: tgUser.id, refCode: trimmedCode })
+  //   });
 
-    const data = await res.json();
+  //   const data = await res.json();
 
-    if (res.ok) {
-      setSuccessMessage(data.success || 'Congratulations! Welcome bonus earned.')
+  //   if (res.ok) {
+  //     setSuccessMessage(data.success || 'Congratulations! Welcome bonus earned.')
 
-      setTimeout(() => {
-        setShowModal(false)
-      }, 5000)
-    } else {
-      setErrorMessage(data.error || 'Oops! Invalid referral code.');
-    }
-  };
+  //     setTimeout(() => {
+  //       setShowModal(false)
+  //     }, 5000)
+  //   } else {
+  //     setErrorMessage(data.error || 'Oops! Invalid referral code.');
+  //   }
+  // };
 
   const handleShare = () => {
     navigator.share ({
@@ -100,7 +100,7 @@ export default function ReferralLink() {
   }
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(refCode);
+    navigator.clipboard.writeText(referralLink);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000)
   };
@@ -108,7 +108,7 @@ export default function ReferralLink() {
   return (
     <div className='pb-15'>
       <div className='w-full mb-1 p-1'>
-        <p className='text-xs'>Your referral code is: {refCode}</p>
+        <p className='text-xs'>Your referral code is: {referralLink}</p>
       </div>
       <div className='flex flex-row gap-2 justify-between mb-8'>
         <button className='flex-1 p-3 my-bg-gradient rounded-md font-medium' onClick={handleShare}>Send an Invitation</button>
@@ -153,7 +153,7 @@ export default function ReferralLink() {
         )}
       </ul>
 
-      {!loading && showModal && (
+      {/* {!loading && showModal && (
         <div className="modal-backdrop backdrop-blur-md fixed inset-0 left-0 right-0 w-full px-3 pt-5"
 
         onClick={(e) => {
@@ -210,7 +210,7 @@ export default function ReferralLink() {
             > Submit </button>
           </div>
         </div>
-      )}
+      )} */}
 
       <Footer />
     </div>
