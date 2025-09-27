@@ -108,7 +108,7 @@ export default function ReferralLink() {
   return (
     <div className='pb-15'>
       <div className='w-full mb-1 p-1'>
-        <p className='text-xs'>Your referral code is: {referralLink}</p>
+        <p className='text-xs my-text-gray'>Referral link: {referralLink}</p>
       </div>
       <div className='flex flex-row gap-2 justify-between mb-8'>
         <button className='flex-1 p-3 my-bg-gradient rounded-md font-medium' onClick={handleShare}>Send an Invitation</button>
