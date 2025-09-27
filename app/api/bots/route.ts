@@ -151,7 +151,7 @@ export async function POST(req: NextRequest) {
       });
 
       const referrer = await User.findOne({ refCode: referralCode });
-      if (referrer && referrer.userId !== userId && !referrer.referredUsers.includes(userId)) {
+      if (referrer && !referrer.referredUsers.includes(userId)) {
         referrer.referredUsers.push(userId);
         referrer.referrals += 1;
         referrer.balance += 50;
