@@ -44,13 +44,18 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Telegram user ID is required' }, { status: 400 });
   } 
 
-  let user = await User.findOne({ userId });
+  const user = await User.findOne({ userId });
 
    if (user) {
-    user = await User.updateOne(
+    const refCode = user.refCode;
+    const BOT_LINK = "https://t.me/PuppizenBot";
+    const referralLink = `${BOT_LINK}?start=${refCode}`;
+    
+    await User.updateOne(
       {userId},
       {
         $set: {
+          referralLink,
           profile_url
         }
       }
