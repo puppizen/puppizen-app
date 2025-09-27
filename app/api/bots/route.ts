@@ -139,6 +139,7 @@ export async function POST(req: NextRequest) {
         claimedTasks: [],
         startedTasks: [],
         refCode,
+        referredBy: null,
         lastDailyRewardAt: null,
         adsWatchedToday: 0,
         totalAdsWatched: 0,
@@ -150,12 +151,16 @@ export async function POST(req: NextRequest) {
       });
 
       const referrer = await User.findOne({ refCode: referralCode });
-      if (referrer) {
+      if (referrer && referrer.userId !== userId && !referrer.referredUsers.includes(userId)) {
         referrer.referredUsers.push(userId);
         referrer.referrals += 1;
         referrer.balance += 50;
 
         await referrer.save();
+
+        user.referredBy = referrer.userId;
+        user.balance += 10;
+        await user.save();
       }
     }
   }
