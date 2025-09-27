@@ -54,7 +54,10 @@ export async function POST(req: NextRequest) {
   const messageText = update?.message?.text;
   const chatId = update?.message?.chat?.id;
   
-  if (messageText === '/start' && chatId) {
+  if (messageText?.startsWith("/start") && chatId) {
+    const parts = messageText.split(' ');
+    const referralCode = parts.length > 1 ? parts[1] : null;
+
     const replyText = 
     `🐶 Ready to earn like a good pup?\n\n` +
     `Play Puppizen and earn real rewards 💎\n\n` +
@@ -98,7 +101,7 @@ export async function POST(req: NextRequest) {
 
     // Generate referral code
     const generateRefCode = (length: number = 6): string => {
-      const chars = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789'
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
       let userRefCode = ''
       for (let i = 0; i < length; i++) {
         const randomIndex = Math.floor(Math.random() * chars.length)
@@ -145,13 +148,20 @@ export async function POST(req: NextRequest) {
         lastStarsPaidAt: null,
         lastClaimedAtStars: null,
       });
+
+      const referrer = await User.findOne({ userId });
+      if (referrer.refCode === referralCode) {
+        referrer.referredUsers.push(userId);
+        referrer.referrals += 1;
+        referrer.balance += 50;
+
+        await referrer.save();
+      }
     }
   }
   
   return NextResponse.json('OK', { status: 200 });
 }
-
-
 
 
 // app/api/bots
