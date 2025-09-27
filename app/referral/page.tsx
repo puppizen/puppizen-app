@@ -93,10 +93,17 @@ export default function ReferralLink() {
   // };
 
   const handleShare = () => {
-    navigator.share ({
-      title: 'Join Puppizen',
-      text: 'Hey, earn rewards with me on Puppizen',
-    })
+    const shareText = 
+    `🐶 Ready to earn like a good pup?%0A%0A` +
+    `Play Puppizen and earn real rewards 💎%0A%0A` +
+    `💎 Complete Tasks – Quick, simple, and rewarding%0A` +
+    `💎 Invite Friends – Grow your crew and earn more%0A` +
+    `💎 Collect Rewards – Treat yourself like a good pup%0A%0A` +
+    `Start wagging your way to the top! 🐾`;
+
+    const shareUrl = `https://t.me/share/url?url=${referralLink}&text=${shareText}`;
+
+    window.open(shareUrl, "_blank");
   }
 
   const handleCopy = () => {

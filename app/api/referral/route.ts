@@ -32,44 +32,44 @@ export async function GET(request: NextRequest) {
   });
 }
 
-export async function POST(req: NextRequest) {
-  await connectDb();
+// export async function POST(req: NextRequest) {
+//   await connectDb();
 
-  const { userId, refCode } = await req.json();
+//   const { userId, refCode } = await req.json();
 
-  if (!userId || !refCode) {
-    return NextResponse.json({ error: 'userId and refCode are required' }, { status: 400 });
-  }
+//   if (!userId || !refCode) {
+//     return NextResponse.json({ error: 'userId and refCode are required' }, { status: 400 });
+//   }
 
-  const user = await User.findOne({ userId });
-  const referrer = await User.findOne({ refCode });
+//   const user = await User.findOne({ userId });
+//   const referrer = await User.findOne({ refCode });
 
-  if (!user || !referrer || referrer.userId === userId) {
-    return NextResponse.json({ error: 'Invalid referral code' }, { status: 400 });
-  }
+//   if (!user || !referrer || referrer.userId === userId) {
+//     return NextResponse.json({ error: 'Invalid referral code' }, { status: 400 });
+//   }
 
-  // Check if already referred
-  if (user.referredBy) {
-    return NextResponse.json({ error: 'User already referred by someone' }, { status: 400 });
-  }
+//   // Check if already referred
+//   if (user.referredBy) {
+//     return NextResponse.json({ error: 'User already referred by someone' }, { status: 400 });
+//   }
 
-  if (referrer.referredUsers.includes(userId)) {
-    return NextResponse.json({ error: 'Referral already processed' }, { status: 409 });
-  }
+//   if (referrer.referredUsers.includes(userId)) {
+//     return NextResponse.json({ error: 'Referral already processed' }, { status: 409 });
+//   }
 
-  if (user.referredUsers.includes(referrer.userId)) {
-    return NextResponse.json({ error: 'Cannot use referral code of someone you referred' }, { status: 400 })
-  }
+//   if (user.referredUsers.includes(referrer.userId)) {
+//     return NextResponse.json({ error: 'Cannot use referral code of someone you referred' }, { status: 400 })
+//   }
 
-  // Apply referral
-  user.referredBy = referrer.userId;
-  user.balance += 10;
-  await user.save();
+//   // Apply referral
+//   user.referredBy = referrer.userId;
+//   user.balance += 10;
+//   await user.save();
 
-  referrer.referredUsers.push(userId);
-  referrer.referrals += 1;
-  referrer.balance += 50; // Reward amount
-  await referrer.save();
+//   referrer.referredUsers.push(userId);
+//   referrer.referrals += 1;
+//   referrer.balance += 50; // Reward amount
+//   await referrer.save();
 
-  return NextResponse.json({ success: 'Congratulations! Welcome bonus earned' });
-}
+//   return NextResponse.json({ success: 'Congratulations! Welcome bonus earned' });
+// }
