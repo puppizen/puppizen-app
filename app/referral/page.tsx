@@ -123,8 +123,8 @@ export default function ReferralLink() {
           <Image src='/arrow.svg' width={24} height={24} alt=''></Image>
           <Image src='/puppizen-coin.png' width={36} height={36} alt='puppizen' className='rotate-45'></Image>
         </div>
-        <p className='text-center'>Earn 50 $Puppizen for each invited friend and 10% of your friends reward. 
-          <br /> Your friends earn 10 $Puppizen for using your referral code</p>
+        <p className='text-center text-sm '>Earn 50 $Puppizen for each invited friend and 10% of your friends reward. 
+          <br /> Your friends earn 10 $Puppizen for using your referral link</p>
       </div>
 
       <ul className='mt-8'>

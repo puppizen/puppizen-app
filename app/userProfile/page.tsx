@@ -72,7 +72,7 @@ export default function UserProfile() {
                 <span>Airdrop</span>
                 <div className="flex gap-2 items-center">
                   <p className="text-sm text-gray-500">calculating</p>
-                  <div className="animate-spin w-6 h-6 rounded-full border-2 border-gray-500 border-t-transparent"></div>
+                  <div className="animate-spin w-5 h-5 rounded-full border-2 border-gray-500 border-t-transparent"></div>
                 </div>
               </div>
             </div>
