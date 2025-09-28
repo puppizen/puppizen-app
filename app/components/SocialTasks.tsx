@@ -117,7 +117,7 @@ export default function PartnersTasks({ category }: { category: string }) {
           key={task.id}
           className="task-container mb-3.5 rounded-md"
         >
-          <div className="relative flex justify-between items-center my-bg-dark px-2 py-5 rounded-md">
+          <div className="relative flex justify-between items-center my-bg-dark px-3 py-4 rounded-md">
             <div className="flex justify-center gap-3">
                 <Image src={task.iconUrl} width={26} height={26} alt="" />
               <div>

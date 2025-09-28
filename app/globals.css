@@ -124,7 +124,7 @@ body {
   bottom: -2px;
   z-index: -1;
   border-radius: inherit;
-  background: linear-gradient(270deg, #3b82f6, #9333ea, #f43f5e, #3b82f6);
+  background:  linear-gradient(270deg, #2D83EC, #1AC9FF, #F7F9FB);
   background-size: 600% 600%;
   animation: borderSpin 4s linear infinite;
 }
