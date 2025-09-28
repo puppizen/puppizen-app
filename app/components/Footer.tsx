@@ -17,7 +17,7 @@ export default function Footer() {
 
   return (
     <div className="fixed bottom-0 right-0 left-0 px-2">
-      <div className="flex justify-around p-3 my-bg-dark">
+      <div className="flex justify-around p-3 my-bg-dark gap-2">
         {navItems.map(({ href, label, icon }) => {
           const isActive = pathname === href
           const isTaskLink = href === '/tasks'
@@ -25,7 +25,7 @@ export default function Footer() {
             <Link
               key={label}
               href={href}
-              className={`relative basis-1/5 flex flex-col gap-2 items-center justify-center text-center py-1.5 ${
+              className={`relative basis-1/5 flex flex-col items-center justify-center text-center py-1 ${
                 isActive ? 'my-bg-blue scale-105 rounded-md' : 'bg-transparent'
               } transition-all duration-200 ease-in-out`}
             >
