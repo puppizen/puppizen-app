@@ -15,7 +15,7 @@ export default function DailyReward() {
 
       <div className="my-bg-lightgray my-border-gray p-3 mb-5 rounded-md">
         <FreeDailyRewards />
-      </div>      
+      </div>
 
       <div className="my-bg-lightgray my-border-gray p-3 mb-5 rounded-md">
         <WatchAdsForReward />

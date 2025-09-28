@@ -100,7 +100,7 @@ export async function POST(req: NextRequest) {
     });
 
     // Generate referral code
-    const generateRefCode = (length: number = 6): string => {
+    const generateRefCode = (length: number = 8): string => {
       const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
       let userRefCode = ''
       for (let i = 0; i < length; i++) {
