@@ -33,7 +33,7 @@ export default function Footer() {
               <span className="my-text-white text-xs font-light tracking-wider">{label}</span>
 
               {isTaskLink && (
-                <div className="absolute left-0 top-1">
+                <div className="absolute left-1 -top-0.5">
                   <span className="relative flex items-center justify-center size-3">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
                     <span className="relative inline-flex size-2.5 rounded-full bg-red-500"></span>
