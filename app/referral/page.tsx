@@ -117,7 +117,7 @@ export default function ReferralLink() {
       <div className='flex flex-row gap-2 justify-between mb-8'>
         <button className='flex-1 p-3 my-bg-gradient rounded-md font-medium' onClick={handleShare}>Send an Invitation</button>
         <div className='task-container rounded-md'>
-          <button className='relative p-3 my-border-gray rounded-md' onClick={handleCopy}>
+          <button className='relative p-3 rounded-md my-bg-dark' onClick={handleCopy}>
             <Image src={copied ? '/check.svg' : '/copy.svg'} width={24} height={24} alt='copy'></Image>
           </button>
         </div>
