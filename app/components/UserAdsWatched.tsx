@@ -56,7 +56,7 @@ export default function UserAdsWatched({ activity, userId }: {activity: string, 
       fetch(`api/userdata?userId=${userId}`)
       .then((res) => res.json())
       .then((data) => {
-        setTaskProgress(data.adsWatched)
+        setTaskProgress(data.totalAdsWatched)
       })
       .catch((err) => {
         console.error('failed to', err)

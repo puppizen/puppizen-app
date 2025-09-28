@@ -94,7 +94,6 @@ export default function ReferralLink() {
 
   const handleShare = () => {
     const shareText = 
-    `%0A%0A` +
     `🐶 Ready to earn like a good pup?%0A%0A` +
     `Play Puppizen and earn real rewards 💎%0A%0A` +
     `💎 Complete Tasks – Quick, simple, and rewarding%0A` +
@@ -128,8 +127,7 @@ export default function ReferralLink() {
           <Image src='/arrow.svg' width={24} height={24} alt=''></Image>
           <Image src='/puppizen-coin.png' width={36} height={36} alt='puppizen' className='rotate-45'></Image>
         </div>
-        <p className='text-center text-sm '>Earn 50 $Puppizen for each invited friend and 10% of your friends reward. 
-          <br /> Your friends earn 10 $Puppizen for using your referral link</p>
+        <p className='text-center text-sm '>Earn 50 $Puppizen for each invited friend and 10% of your friends reward. Your friends earn 10 $Puppizen for using your referral link</p>
       </div>
 
       <ul className='mt-8'>

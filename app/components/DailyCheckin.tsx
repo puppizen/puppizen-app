@@ -20,7 +20,7 @@ export default function DailyCheckIn() {
   };
 
   return (
-    <div className='mt-10'>
+    <div className='mt-5'>
       <div className="flex flex-row justify-between items-center p-3 rounded-md my-bg-gradient">
         <div className='flex flex-row gap-3'>
           <Image src='/calender.svg' width={20} height={20} alt='' />
