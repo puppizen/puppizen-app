@@ -25,7 +25,7 @@ export default function Footer() {
             <Link
               key={label}
               href={href}
-              className={`relative basis-1/5 flex flex-col items-center justify-center text-center py-1.5 ${
+              className={`relative basis-1/5 flex flex-col gap-2 items-center justify-center text-center py-1.5 ${
                 isActive ? 'my-bg-blue scale-105 rounded-md' : 'bg-transparent'
               } transition-all duration-200 ease-in-out`}
             >
@@ -33,7 +33,7 @@ export default function Footer() {
               <span className="my-text-white text-xs font-light tracking-wider">{label}</span>
 
               {isTaskLink && (
-                <div className="absolute right-1 -top-0.5">
+                <div className="absolute -right-0.5 -top-0.5">
                   <span className="relative flex items-center justify-center size-3">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
                     <span className="relative inline-flex size-2.5 rounded-full bg-red-500"></span>
