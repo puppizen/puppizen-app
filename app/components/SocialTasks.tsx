@@ -111,8 +111,7 @@ export default function PartnersTasks({ category }: { category: string }) {
   const displayTasks = loading ? cachedTasks : tasks;
 
   return (
-    <div className="relative">
-      <div className="absolute inset-0 rounded-md border-2 border-transparent border-t-blue-500 animate-spin"></div>
+    <div className="relative task-container rounded-md">
       {displayTasks.map((task) => (
         <div
           key={task.id}
