@@ -111,11 +111,12 @@ export default function PartnersTasks({ category }: { category: string }) {
   const displayTasks = loading ? cachedTasks : tasks;
 
   return (
-    <div>
+    <div className="relative">
+      <div className="absolute inset-0 rounded-md border-2 border-transparent border-t-blue-500 animate-spin"></div>
       {displayTasks.map((task) => (
         <div
           key={task.id}
-          className="flex justify-between items-center mb-3.5 my-bg-lightgray px-2 py-5 rounded-md"
+          className="relative z-10 flex justify-between items-center mb-3.5 my-bg-lightgray px-2 py-5 rounded-md"
         >
           
           <div className="flex justify-center gap-3">
