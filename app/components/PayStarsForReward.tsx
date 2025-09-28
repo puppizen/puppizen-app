@@ -105,7 +105,7 @@ export default function PayStarsForReward() {
     <div className="">
       <div>
         <div className="flex items-center gap-1 mb-5">
-          <h3 className="text-xl font-bold my-text-gray">Daily check-in with stars</h3>
+          <h3 className="text-lg font-bold my-text-gray">Daily check-in with stars</h3>
 
           <p className="text-sm my-text-white my-bg-gradient px-3 rounded-full">+ 50</p>
         </div>

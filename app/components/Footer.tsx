@@ -20,16 +20,26 @@ export default function Footer() {
       <div className="flex justify-around p-3 my-bg-dark">
         {navItems.map(({ href, label, icon }) => {
           const isActive = pathname === href
+          const isTaskLink = href === '/tasks'
           return (
             <Link
               key={label}
               href={href}
-              className={`basis-1/5 flex flex-col items-center justify-center text-center py-1.5 ${
+              className={`relative basis-1/5 flex flex-col items-center justify-center text-center py-1.5 ${
                 isActive ? 'my-bg-blue scale-105 rounded-md' : 'bg-transparent'
               } transition-all duration-200 ease-in-out`}
             >
               <Image src={icon} width={20} height={20} alt={label} />
               <span className="my-text-white text-xs font-light tracking-wider">{label}</span>
+
+              {isTaskLink && (
+                <div className="absolute left-0 -top-0.5">
+                  <span className="relative flex size-3">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
+                    <span className="relative inline-flex size-2.5 rounded-full bg-red-500"></span>
+                  </span>
+                </div>
+              )}
             </Link>
           )
         })}

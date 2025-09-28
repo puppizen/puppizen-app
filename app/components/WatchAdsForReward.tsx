@@ -77,7 +77,7 @@ export default function WatchAdsForReward() {
   return (
     <div className="">
       <div className="flex items-center gap-1 mb-5">
-        <h3 className="text-xl font-bold my-text-gray">Daily check-in with ads</h3>
+        <h3 className="text-lg font-bold my-text-gray">Daily check-in with ads</h3>
 
         <p className="text-sm my-text-white my-bg-gradient px-3 rounded-full">+ 20</p>
       </div>
