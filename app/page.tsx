@@ -25,7 +25,7 @@ export default function Home() {
       </div>
 
       <div className='pt-20 flex items-center justify-center'>
-        <Image src='/PuppizenAi.svg' width={160} height={80} alt='' className='align-center motion-safe:animate-ping'></Image>
+        <Image src='/PuppizenAi.png' width={160} height={80} alt='' className='align-center motion-safe:animate-ping'></Image>
       </div>
 
       <div className='pt-5'>
