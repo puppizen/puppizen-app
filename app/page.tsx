@@ -24,13 +24,13 @@ export default function Home() {
         </Link>
       </div>
 
-      <div className='pt-20 flex items-center justify-center relative'>
+      <div className='pt-20 -z-10 flex items-center justify-center relative'>
         <Image src='/PuppizenAi.png' width={200} height={80} alt='' className='absolute align-center inline-flex motion-safe:animate-ping opacity-75'></Image>
 
         <Image src='/PuppizenAi.png' width={160} height={80} alt='' className='align-center relative inline-flex'></Image>
       </div>
 
-      <div className='pt-5'>
+      <div className='pt-8'>
         <UserBalance />
 
         <div className='pt-10'>
