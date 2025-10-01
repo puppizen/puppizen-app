@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_id: chatId,
-        photo: "https://puppizen.github.io/puppizen/banner.png",
+        photo: "https://puppizen.github.io/puppizen/bannerObsolete.png",
         caption: replyText,
         parse_mode: 'Markdown',
         reply_markup: {
