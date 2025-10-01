@@ -12,7 +12,7 @@ export default function PreSaleLink() {
         <Image src='/pupp-stacked.png' width={80} height={45} alt="" className="blur-xs"></Image>
       </div>
       <div className="absolute right-6">
-        <Image src='/puppizen-coin.png' width={100} height={120} alt='' className="rotate-45"></Image>
+        <Image src='/puppizen-coin.png' width={100} height={120} alt='' className=""></Image>
       </div>
     </div>
   )
