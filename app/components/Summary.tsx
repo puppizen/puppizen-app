@@ -41,14 +41,14 @@ export default function Summary() {
   const summaryTotalBalance = displaySummary?.totalBalance.toLocaleString();
 
   return (
-    <div className="mb-3 flex gap-5 items-center">
-      <h1 className="mb-4 font-bold text-lg">Stats</h1>
+    <div className="mb-3">
+      <h1 className="mb-3 font-bold text-lg">Leaderboard</h1>
       <div className="flex justify-between gap-2">
-        <div className="flex gap-2">
+        <div className="flex w-full">
           <p className="text-xs">Total Users:</p>
           <p className='text-xs my-text-gray'>{summaryTotalUsers}</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex w-full">
           <p className="text-xs">Points Claimed:</p> 
           <p className='text-xs my-text-gray'>{summaryTotalBalance}</p>
         </div>
