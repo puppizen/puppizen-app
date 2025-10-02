@@ -27,8 +27,8 @@ export default function Leaderboard() {
     fetch('/api/leaderboard')
       .then(res => res.json())
       .then(data => {
-        setUsers(data);
-        localStorage.setItem('cachedUsers', JSON.stringify(data))
+        setUsers(data.topUsers);
+        localStorage.setItem('cachedUsers', JSON.stringify(data.topUsers))
       })
       .catch(err => {
         console.error('Failed to load leaderboard:', err);
