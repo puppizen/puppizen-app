@@ -43,7 +43,7 @@ export default function Summary() {
   return (
     <div className="mb-3">
       <h1 className="mb-3 font-bold text-lg">Leaderboard</h1>
-      <div className="flex gap-10">
+      <div className="flex gap-10 mb-3">
         <div className="flex gap-3">
           <p className="text-xs">Total Users:</p>
           <p className='text-xs my-text-gray'>{summaryTotalUsers}</p>
@@ -54,7 +54,7 @@ export default function Summary() {
         </div>
       </div>
 
-      <hr className="my-border-white"/>
+      <hr className="my-border-gray"/>
     </div>
   );
 }

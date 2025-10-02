@@ -66,7 +66,7 @@ export default function Leaderboard() {
               <p className="text-sm font-light">#{index + 1}</p>
               <span>{getBadge(index)}</span>
               <Image 
-                className="my-border-blue rounded-md"
+                className="my-border-blue rounded-full"
                 src={user.profile_url || '/puppizen-image.png'}
                 width={24} height={24} alt='' loading='lazy'
               ></Image>

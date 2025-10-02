@@ -127,7 +127,7 @@ export default function ReferralLink() {
         <div className='flex justify-center gap-5 mb-2'>
           <Image src='/friends.svg' width={36} height={36} alt=''></Image>
           <Image src='/arrow.svg' width={24} height={24} alt=''></Image>
-          <Image src='/puppizen-coin.png' width={36} height={36} alt='puppizen' className='rotate-45'></Image>
+          <Image src='/puppizen-coin.png' width={36} height={36} alt='puppizen' className=''></Image>
         </div>
         <p className='text-center text-sm '>Earn 50 $Puppizen for each invited friend and 10% of your friends reward. Your friends earn 10 $Puppizen for using your referral link</p>
       </div>
@@ -144,7 +144,7 @@ export default function ReferralLink() {
               <div className="flex items-center gap-2">
                 <p className="text-sm font-light">#{index + 1}</p>
                 <Image 
-                  className="my-border-blue rounded-md"
+                  className="my-border-blue rounded-full"
                   src={user.profile_url || '/puppizen-image.png'}
                   width={24} height={24} alt='' loading='lazy'
                 />
