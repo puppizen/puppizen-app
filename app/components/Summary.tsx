@@ -44,12 +44,12 @@ export default function Summary() {
     <div className="mb-3 flex gap-5 items-center">
       <h1 className="mb-4 font-bold text-lg">Stats</h1>
       <div className="flex justify-between gap-2">
-        <div className="w-full flex gap-2">
+        <div className="flex gap-2">
           <p className="text-xs">Total Users:</p>
           <p className='text-xs my-text-gray'>{summaryTotalUsers}</p>
         </div>
-        <div className="w-full flex gap-2 my-text-gray">
-          <p className="text-xs ">Points Claimed:</p> 
+        <div className="flex gap-2">
+          <p className="text-xs">Points Claimed:</p> 
           <p className='text-xs my-text-gray'>{summaryTotalBalance}</p>
         </div>
       </div>
