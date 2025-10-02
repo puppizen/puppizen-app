@@ -60,13 +60,6 @@ export default function Leaderboard() {
   return (
     <div>
       <ul className="space-y-2">
-        <div className='flex justify-between items-center my-bg-blue p-3 mb-2 rounded-md'>
-          <div className='flex flex-row gap-3'>
-            <Image src='/trophy.svg' width={20} height={20} alt=''></Image>
-            <span className='font-medium'>Leaderboard</span>
-          </div>
-          <span className='text-xs font-light'>🏆 Top 100</span>
-        </div>
         {displayTopUsers.map((user, index) => (
           <li key={user.userId} className="flex justify-between items-center p-3">
             <div className="flex items-center gap-2">
