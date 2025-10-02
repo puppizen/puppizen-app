@@ -42,7 +42,7 @@ export default function Home() {
         </div>
 
         <div className='pt-5'>
-
+          
         </div>
       </div>
 
