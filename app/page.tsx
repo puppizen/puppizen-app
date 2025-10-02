@@ -38,11 +38,11 @@ export default function Home() {
           <CountDownTimer />
         </div>
 
-        <div className='pt-5'>
+        <div className='pt-6'>
           <Games />
         </div>
-        
-        <div className='pt-13'>
+
+        <div className='pt-11'>
           <PreSaleLink />
         </div>
       </div>
