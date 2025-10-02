@@ -48,7 +48,7 @@ export default function UserTGData() {
         <div className="flex items-center gap-2 relative">
           {user.photoUrl && (
             <Image
-              className="my-border-blue rounded-full ml-1.5"
+              className="my-border-blue rounded-full ml-1"
               width={36}
               height={36}
               src={user.photoUrl}
