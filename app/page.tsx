@@ -5,6 +5,7 @@ import PreSaleLink from './components/PreSale';
 import UserBalance from './components/Balance';
 import Link from 'next/link';
 import Image from 'next/image';
+import Games from './components/Games';
 
 
 export default function Home() {
@@ -37,12 +38,12 @@ export default function Home() {
           <CountDownTimer />
         </div>
 
+        <div className='pt-5'>
+          <Games />
+        </div>
+        
         <div className='pt-13'>
           <PreSaleLink />
-        </div>
-
-        <div className='pt-5'>
-          
         </div>
       </div>
 
