@@ -53,6 +53,8 @@ export default function Summary() {
           <p className='text-xs my-text-gray'>{summaryTotalBalance}</p>
         </div>
       </div>
+
+      <hr className="my-border-white"/>
     </div>
   );
 }
