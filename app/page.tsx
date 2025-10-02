@@ -40,6 +40,10 @@ export default function Home() {
         <div className='pt-13'>
           <PreSaleLink />
         </div>
+
+        <div className='pt-5'>
+
+        </div>
       </div>
 
       <Footer />
