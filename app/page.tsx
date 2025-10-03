@@ -36,7 +36,7 @@ export default function Home() {
           <Link href='/presale' className='flex flex-row justify-between p-3 rounded-md my-bg-gradient btn-translate-active w-full items-center'>
             <div className='flex items-center gap-2'>
               <Image src='/puppizen-coin.png' width={20} height={20} alt=''></Image>
-              <span className='font-medium'>Presale</span>
+              <span className='font-medium'>Join Presale</span>
             </div>
           </Link>
         </div>

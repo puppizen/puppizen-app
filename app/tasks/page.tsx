@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 
 import Footer from '../components/Footer'
-import PreSaleLink from '../components/PreSale'
 import SocialTasks from '../components/SocialTasks'
 import ActivityTasks from '../components/ActivityTasks'
 import PartnersTasks from '../components/PartnersTasks'
@@ -19,7 +18,7 @@ export default function TaskPage() {
   };
   return (
     <div className='pb-15'>
-      <PreSaleLink />
+      <h1 className="mb-3 font-bold text-lg">Earn PUPPIZEN</h1>
 
       <DailyCheckIn />
 

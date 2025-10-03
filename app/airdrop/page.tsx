@@ -1,15 +1,12 @@
 import Accordion from "../components/Accordion";
 import CountDownTimer from "../components/Countdown";
 import Footer from "../components/Footer";
-import PreSaleLink from "../components/PreSale";
 import Image from "next/image";
 
 export default function AirdropPage() {
   return (
     <div className="mb-15">
       <div>
-        <PreSaleLink />
-
         <div className="my-10">
           <CountDownTimer />
         </div>
