@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Madimi_One } from "next/font/google";
+import { Righteous } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 
 import { TonProvider } from "./components/TonProvider";
 
-const madimiOne = Madimi_One({
+const righteous = Righteous({
   subsets: ["latin"],
   weight: "400",
-  variable: "--font-madimi-one",
+  variable: "--font-righteous",
 });
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export default function RootLayout({
         <Script src="https://sad.adsgram.ai/js/sad.min.js"></Script>
       </head>
       <body
-        className={`${madimiOne.variable} antialiased`}
+        className={`${righteous.className} antialiased`}
       >
         <TonProvider>{children}</TonProvider>
       </body>
