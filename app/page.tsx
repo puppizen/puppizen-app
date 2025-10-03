@@ -1,7 +1,6 @@
 import Footer from './components/Footer'
 import CountDownTimer from './components/Countdown';
 import UserTGData from './components/UserTGData';
-import PreSaleLink from './components/PreSale';
 import UserBalance from './components/Balance';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -13,16 +12,8 @@ export default function Home() {
     <div className="pb-15">
       <UserTGData/>
 
-      <div className='py-5'>
-        <Link href='/leaderboard'  className='flex flex-row justify-between p-3 rounded-md my-bg-gradient btn-translate-active'>
-          <div className='flex flex-row gap-3'>
-            <Image src='/trophy.svg' width={20} height={20} alt=''></Image>
-            <span className='font-medium'>Leaderboard</span>
-          </div>
-          <div>
-            <Image src='/arrow-right.svg' width={20} height={20} alt=''></Image>
-          </div>
-        </Link>
+      <div className='pt-5'>
+        <CountDownTimer />
       </div>
 
       <div className='pt-20 -z-10 flex items-center justify-center relative'>
@@ -34,16 +25,30 @@ export default function Home() {
       <div className='pt-8'>
         <UserBalance />
 
-        <div className='pt-10'>
-          <CountDownTimer />
+        <div className='py-5 flex gap-5'>
+          <Link href='/leaderboard'  className='flex flex-row justify-between p-3 rounded-md my-bg-gradient btn-translate-active'>
+            <div className='flex flex-row gap-3'>
+              <Image src='/trophy.svg' width={20} height={20} alt=''></Image>
+              <span className='font-medium'>Leaderboard</span>
+            </div>
+            <div>
+              <Image src='/arrow-right.svg' width={20} height={20} alt=''></Image>
+            </div>
+          </Link>
+          
+          <Link href='/presale'  className='flex flex-row justify-between p-3 rounded-md my-bg-gradient btn-translate-active'>
+            <div className='flex flex-row gap-3'>
+              <Image src='/puppizen-coin.png' width={20} height={20} alt=''></Image>
+              <span className='font-medium'>Presale</span>
+            </div>
+            <div>
+              <Image src='/arrow-right.svg' width={20} height={20} alt=''></Image>
+            </div>
+          </Link>
         </div>
 
         <div className='pt-6'>
           <Games />
-        </div>
-
-        <div className='pt-11'>
-          <PreSaleLink />
         </div>
       </div>
 
