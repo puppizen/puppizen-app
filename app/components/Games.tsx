@@ -1,4 +1,5 @@
 import DropGame from "./DropGame";
+import Predict from "./Predict";
 import Spinning from "./Spinning";
 
 export default function Games() {
@@ -10,6 +11,8 @@ export default function Games() {
         <Spinning />
 
         <DropGame />
+
+        <Predict />
       </div>
     </div>
   )

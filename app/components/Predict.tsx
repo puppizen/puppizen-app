@@ -1,6 +1,6 @@
 'use client'
 
-export default function Spinning() {
+export default function Predict() {
   return (
     <div className="flex flex-col gap-3 p-3 text-center bg-red-600 rounded-md">
       <span className="my-bg-dark text-xs rounded-full p-3">Coming soon</span>
