@@ -116,13 +116,12 @@ export default function ReferralLink() {
     <div className='pb-15'>
       <h1 className="mb-3 font-bold text-lg text-center">Invite friends</h1>
       <div className='flex flex-row gap-2 justify-between mb-8'>
-        <div className='w-full p-3 my-bg-gradient rounded-full'>
-          <button className='font-medium text-center' onClick={handleShare}>Send Invitation</button>
+        <div onClick={handleShare} className='w-full p-3 my-bg-gradient rounded-full flex justify-center items-center gap-2'>
+          <Image src={'/share.svg'} width={24} height={24} alt='copy'></Image>
+          <span className=''>Send Invitation</span>
         </div>
-        <div className='p-3 rounded-full flex justify-center items-center gap-2 w-full my-bg-white'>
-          <button onClick={handleCopy}>
-            <Image src={copied ? '/check.svg' : '/copy.svg'} width={24} height={24} alt='copy'></Image>
-          </button>
+        <div onClick={handleCopy} className='p-3 rounded-full flex justify-center items-center gap-2 w-full my-bg-white'>
+          <Image src={copied ? '/check.svg' : '/copy.svg'} width={24} height={24} alt='copy'></Image>
           <span className='my-text-black'>Copy link</span>
         </div>
       </div>
