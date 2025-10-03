@@ -7,7 +7,7 @@ import { TonProvider } from "./components/TonProvider";
 
 const madimiOne = Madimi_One({
   subsets: ["latin"],
-  weight: "400", // This font only has 400
+  weight: "400",
   variable: "--font-madimi-one",
 });
 
