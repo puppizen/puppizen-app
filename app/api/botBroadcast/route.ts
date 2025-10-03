@@ -29,7 +29,7 @@ export async function GET() {
       body: JSON.stringify({
         chat_id: user.chatId,
         photo: "https://puppizen.github.io/puppizen/NewGame.png",
-        text: replyText,
+        caption: replyText,
         parse_mode: 'Markdown',
         reply_markup: {
           inline_keyboard: [
