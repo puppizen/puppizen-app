@@ -76,7 +76,7 @@ export default function FreeDailyRewards() {
       <div>        
         <button 
         disabled={lastClaimedAt === today}
-        onClick={handleFreeClaim} className={`w-full p-3 rounded-md my-text-white btn-blue4-active btn-translate-active ${lastClaimedAt === today ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'}`}>
+        onClick={lastClaimedAt === today ? undefined : handleFreeClaim} className={`w-full p-3 rounded-md my-text-white btn-blue4-active btn-translate-active ${lastClaimedAt === today ? 'my-bg-gray cursor-not-allowed' : 'my-bg-gradient'}`}>
           {lastClaimedAt === today ? "Done" : "Claim Rewards"}
         </button>
       </div>
