@@ -25,24 +25,18 @@ export default function Home() {
       <div className='pt-8'>
         <UserBalance />
 
-        <div className='py-5 flex gap-5'>
-          <Link href='/leaderboard'  className='flex flex-row justify-between p-3 rounded-md my-bg-gradient btn-translate-active'>
-            <div className='flex flex-row gap-3'>
+        <div className='pt-5 flex gap-5'>
+          <Link href='/leaderboard'  className='flex flex-row justify-between p-3 rounded-md my-bg-gradient btn-translate-active w-full items-center'>
+            <div className='flex items-center gap-2'>
               <Image src='/trophy.svg' width={20} height={20} alt=''></Image>
               <span className='font-medium'>Leaderboard</span>
             </div>
-            <div>
-              <Image src='/arrow-right.svg' width={20} height={20} alt=''></Image>
-            </div>
           </Link>
           
-          <Link href='/presale'  className='flex flex-row justify-between p-3 rounded-md my-bg-gradient btn-translate-active'>
-            <div className='flex flex-row gap-3'>
+          <Link href='/presale' className='flex flex-row justify-between p-3 rounded-md my-bg-gradient btn-translate-active w-full items-center'>
+            <div className='flex items-center gap-2'>
               <Image src='/puppizen-coin.png' width={20} height={20} alt=''></Image>
               <span className='font-medium'>Presale</span>
-            </div>
-            <div>
-              <Image src='/arrow-right.svg' width={20} height={20} alt=''></Image>
             </div>
           </Link>
         </div>
