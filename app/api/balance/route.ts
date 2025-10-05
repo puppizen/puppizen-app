@@ -19,6 +19,7 @@ export async function GET(request: NextRequest) {
     lastClaimedAt: user.lastClaimedAt,
     lastClaimedAtStars: user.lastClaimedAtStars,
     taskBooster: user.taskBooster,
+    checkInBooster: user.checkInBooster,
   });
 }
 
