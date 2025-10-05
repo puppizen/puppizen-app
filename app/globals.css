@@ -59,7 +59,6 @@ body {
 }
 .my-bg-image {
   background-image: var(--bg-image);
-  opacity: 50%;
 }
 
 .my-text-white {
