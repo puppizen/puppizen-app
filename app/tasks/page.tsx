@@ -6,6 +6,7 @@ import SocialTasks from '../components/SocialTasks'
 import ActivityTasks from '../components/ActivityTasks'
 import PartnersTasks from '../components/PartnersTasks'
 import DailyCheckIn from '../components/DailyCheckin'
+import RewardBooster from '../components/RewardBooster'
 
 type TaskCategory = 'social' | 'activity' | 'partners'
 
@@ -19,6 +20,8 @@ export default function TaskPage() {
   return (
     <div className='pb-15'>
       <h1 className="mb-3 font-bold text-lg">Earn PUPPIZEN</h1>
+
+      <RewardBooster />
 
       <DailyCheckIn />
 

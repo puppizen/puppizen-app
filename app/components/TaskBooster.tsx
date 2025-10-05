@@ -1,0 +1,110 @@
+'use client'
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+
+type InvoiceClosedEvent = {
+  status: 'paid' | 'cancelled';
+  slug: string;
+}
+
+export default function TaskBooster() {
+  const [userId, setUserId] = useState<number | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [taskBooster, setTaskBooster] = useState<number | null>();
+
+  useEffect(() => {
+    const tgUser = window.Telegram.WebApp.initDataUnsafe?.user;
+
+    if (tgUser.id) {
+      setUserId(tgUser.id)
+
+      fetch(`/api/balance?userId=${tgUser.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTaskBooster(data.taskBooster);
+      })
+    }
+  }, [])
+
+  const handleClaimWithStars = async () => {
+    const res = await fetch("/api/invoiceLinkBoaster", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId }),
+    })
+
+    const { invoiceLink } = await res.json();
+    window.Telegram.WebApp.openInvoice(invoiceLink);
+
+    const listener = async (event: InvoiceClosedEvent) => {
+      if (event.status === "paid") {
+
+        console.log("Calling api/paymentSuccessful2")
+        const res = await fetch("/api/paymentSuccessful", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ userId }),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          setTaskBooster(data.taskBooster);
+          setSuccessMessage("Payment confirmed! You recieved x2 booster.");
+          setTimeout(() => {
+            setSuccessMessage(null)
+          }, 5000)
+        } else {
+          setErrorMessage("Payment confirmed, but update failed.");
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
+        }
+      } else {
+        setErrorMessage("Invoice was closed without payment.");
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
+      }
+
+      window.Telegram.WebApp.offEvent("invoiceClosed", listener);
+    };
+
+    window.Telegram.WebApp.onEvent("invoiceClosed", listener);
+  }
+  return (
+    <div>
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-3">
+          <Image src={"/boostImage.png"} width={24} height={24} alt='boost'></Image>
+          <div className="flex flex-col gap-0.5">
+            <p className="text-sm">Boost Task Reward x2</p>
+            <span className="text-xs my-text-white my-bg-gradient px-3 rounded-full">1000</span>
+          </div>
+        </div>
+        <div>
+          <button onClick={handleClaimWithStars}
+          className={`p-3 rounded-md my-text-white flex items-center gap-2 ${taskBooster === 3 ? 'bg-green-600 opacity-85' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
+            <Image src={taskBooster === 2 ? '/check.svg' : '/arrow.svg'} width={24} height={24} alt='go'></Image>
+            <span>{taskBooster === 2 ? " " : "Buy"}</span>
+          </button>
+        </div>
+      </div>
+      {successMessage && (
+        <div className="mt-1">
+          <p className='text-xs text-green-500'>
+            {successMessage}
+          </p>
+        </div>
+      )}
+
+      {errorMessage && (
+        <div className="mt-1">
+          <p className='text-xs text-red-500'>
+            {errorMessage}
+          </p>
+        </div>
+      )}
+    </div>
+  )
+}
