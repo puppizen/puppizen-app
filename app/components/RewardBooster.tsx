@@ -12,9 +12,9 @@ export default function RewardBooster() {
         </div>
         
         
-        <Image className="absolute right-3 -top-3 object-contain scale-x-[-1]" src={"/rewardBooster.png"} width={250} height={150} alt="boost"/>
+        <Image className="absolute right-2 object-center" src={"/rewardBooster.png"} width={200} height={150} alt="boost"/>
 
-        <Image className="absolute -left-5 top-5 object-contain scale-x-[-1] blur-sm" src={"/rewardBooster.png"} width={250} height={150} alt="boost"/>
+        <Image className="absolute -left-5 object-contain scale-x-[-1] blur-sm" src={"/rewardBooster.png"} width={250} height={150} alt="boost"/>
       </div>
     </div>
   )
