@@ -19,8 +19,11 @@ export async function POST(req: NextRequest) {
     const payload = preCheckoutQuery.invoice_payload;
 
     // Validate payload format
-    const expectedPayload = "Daily rewards with stars";
-    if (payload !== expectedPayload) {
+    const expectedPayloads = [
+      "Daily rewards with stars",
+      "Reward boaster x2"
+    ];
+    if (!expectedPayloads.includes(payload)) {
       console.warn("Invalid payload:", payload);
 
       await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/answerPreCheckoutQuery`, {

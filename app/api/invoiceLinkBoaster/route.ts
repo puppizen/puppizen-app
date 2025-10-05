@@ -13,7 +13,7 @@ export async function POST() {
       payload: "Reward boaster x2",
       provider_token: "", // Leave empty for Telegram Stars
       currency: "XTR",
-      prices: [{ label: "Reward Boaster x2", amount: 200 }],
+      prices: [{ label: "Reward Boaster x2", amount: 500 }],
       start_parameter: "reward_boasterx2"
     })
   });
