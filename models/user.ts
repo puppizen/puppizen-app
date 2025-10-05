@@ -30,6 +30,18 @@ const userSchema = new Schema({
     type: Number,
     default: 0
   },
+  taskBooster: {
+    type: Number,
+    default: 1,
+  },
+  checkInBooster: {
+    type: Number,
+    default: 1,
+  },
+  gameBooster: {
+    type: Number,
+    default: 1,
+  },
   totalStarsPaid: {
     type: Number,
     default: 0
