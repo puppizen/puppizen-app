@@ -74,38 +74,40 @@ export default function TaskBooster() {
   }
   return (
     <div>
-      <div className="flex justify-between items-center my-bg-lightgray px-2 py-5 rounded-md">
-        <div className="flex items-center gap-3">
-          <Image src={"/boostImage.png"} width={24} height={24} alt='boost'></Image>
-          <div className="flex flex-col gap-0.5">
-            <p className="text-sm">Boost Task Reward x2</p>
-            <span className="text-xs my-text-white my-bg-gradient px-3 rounded-full">1000</span>
+      <div className="my-bg-lightgray rounded-md px-2 py-5">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <Image src={"/boostImage.png"} width={36} height={36} alt='boost'></Image>
+            <div className="flex flex-col gap-0.5">
+              <p className="text-sm">Boost Task Reward x2</p>
+              <p className="text-xs my-text-white my-bg-gradient px-3 rounded-full">+1000</p>
+            </div>
+          </div>
+          <div>
+            <button onClick={handleClaimWithStars}
+            className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-2 ${taskBooster === 3 ? 'bg-green-600 opacity-85' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
+              <span>{taskBooster === 2 ? " " : "Buy"}</span>
+              <Image src={taskBooster === 2 ? '/check.svg' : '/arrow.svg'} width={24} height={24} alt='go'></Image>
+            </button>
           </div>
         </div>
-        <div>
-          <button onClick={handleClaimWithStars}
-          className={`p-3 rounded-md my-text-white flex items-center gap-2 ${taskBooster === 3 ? 'bg-green-600 opacity-85' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
-            <Image src={taskBooster === 2 ? '/check.svg' : '/arrow.svg'} width={24} height={24} alt='go'></Image>
-            <span>{taskBooster === 2 ? " " : "Buy"}</span>
-          </button>
-        </div>
-      </div>
-      <p className="my-text-gray mt-2 text-xs px-3"><span className="my-text-white">**</span>Buy this booster and earn twice your rewards when you complete tasks</p>
-      {successMessage && (
-        <div className="mt-1">
-          <p className='text-xs text-green-500'>
-            {successMessage}
-          </p>
-        </div>
-      )}
+        <p className="my-text-gray mt-2 text-xs px-3"><span className="my-text-white">** </span>Buy this booster and earn twice your rewards when you complete tasks</p>
+        {successMessage && (
+          <div className="mt-1">
+            <p className='text-xs text-green-500'>
+              {successMessage}
+            </p>
+          </div>
+        )}
 
-      {errorMessage && (
-        <div className="mt-1">
-          <p className='text-xs text-red-500'>
-            {errorMessage}
-          </p>
-        </div>
-      )}
+        {errorMessage && (
+          <div className="mt-1">
+            <p className='text-xs text-red-500'>
+              {errorMessage}
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
