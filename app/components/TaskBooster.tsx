@@ -74,7 +74,7 @@ export default function TaskBooster() {
   }
   return (
     <div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center my-bg-lightgray px-2 py-5 rounded-md">
         <div className="flex items-center gap-3">
           <Image src={"/boostImage.png"} width={24} height={24} alt='boost'></Image>
           <div className="flex flex-col gap-0.5">
@@ -90,6 +90,7 @@ export default function TaskBooster() {
           </button>
         </div>
       </div>
+      <p className="my-text-gray mt-2 text-xs px-3"><span className="my-text-white">**</span>Buy this booster and earn twice your rewards when you complete tasks</p>
       {successMessage && (
         <div className="mt-1">
           <p className='text-xs text-green-500'>
