@@ -14,7 +14,7 @@ export default function RewardBooster() {
         
         <Image className="absolute right-2 object-center" src={"/rewardBooster.png"} width={200} height={150} alt="boost"/>
 
-        <Image className="absolute -left-5 object-top scale-x-[-1] blur-sm" src={"/rewardBooster.png"} width={250} height={150} alt="boost"/>
+        <Image className="absolute -left-5 object-top scale-x-[-1] blur-sm" src={"/rewardBooster.png"} width={150} height={150} alt="boost"/>
       </div>
     </div>
   )
