@@ -91,7 +91,7 @@ export default function TaskBooster() {
             </button>
           </div>
         </div>
-        <p className="my-text-gray mt-2 text-xs px-3"><span className="my-text-white">** </span>Buy this booster and earn twice your rewards when you complete tasks</p>
+        <p className="my-text-gray mt-2 text-xs px-3 font-light"><span className="my-text-white">** </span>Buy this booster and earn twice your rewards when you complete tasks. Also apply to your referral rewards</p>
         {successMessage && (
           <div className="mt-1">
             <p className='text-xs text-green-500'>

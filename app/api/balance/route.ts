@@ -47,11 +47,16 @@ export async function POST(request: NextRequest) {
     
     await task.save();
 
-    user.balance += reward;
+    const BOOSTER = user.taskBooster;
+    const REWARD = reward * BOOSTER
+
+    user.balance += REWARD;
     user.taskCompleted += 1;
 
     if (referrer) {
-      referrer.balance += refReward;
+      const REFBOOSTER = referrer.taskBooster
+      const REFREWARD = refReward * REFBOOSTER
+      referrer.balance += REFREWARD;
       await referrer.save();
     }
   } 
