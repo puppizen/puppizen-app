@@ -87,13 +87,13 @@ export default function TaskBooster() {
           </div>
           <div>
             <button onClick={handleClaimWithStars}
-            className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-0.5 ${taskBooster === 2 ? 'bg-green-600 opacity-85' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
+            className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-0.5 ${taskBooster === 2 ? 'bg-green-600 opacity-20' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
               <span>{taskBooster === 2 ? "" : "Buy"}</span>
               <Image src={taskBooster === 2 ? '/check.svg' : '/arrow.svg'} width={18} height={18} alt='go'></Image>
             </button>
           </div>
         </div>
-        <p className="my-text-gray mt-2 text-xs px-3 font-extralight"><span className="my-text-white">** </span>Buy this booster and earn twice your rewards when you complete tasks. Also apply to your referral rewards</p>
+        <p className="my-text-gray mt-2 text-xs px-3 font-extralight"><span className="my-text-white">** </span>Buy this booster and earn twice your rewards when you complete tasks. Also applies to your referral rewards</p>
         {successMessage && (
           <div className="mt-1">
             <p className='text-xs text-green-500'>

@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
   }
 
   const user = await User.findOne({ userId });
-  const referrer = user?.referredBy ? await User.findOne({ userId: user.referredBy }) : null;
+  // const referrer = user?.referredBy ? await User.findOne({ userId: user.referredBy }) : null;
 
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
@@ -38,14 +38,14 @@ export async function POST(req: NextRequest) {
 
   await user.save();
 
-  const REFERRAL_PERCENTAGE = 0.05
-  const refReward = REQUIRED_STARS * REFERRAL_PERCENTAGE;
-  const REFBOOSTER = referrer.taskBOOSTER
-  const REFREWARD = refReward * REFBOOSTER
-  if (referrer) {
-    referrer.starsBalance += REFREWARD;
-    await referrer.save()
-  }
+  // const REFERRAL_PERCENTAGE = 0.05
+  // const refReward = REQUIRED_STARS * REFERRAL_PERCENTAGE;
+  // const REFBOOSTER = referrer.taskBOOSTER
+  // const REFREWARD = refReward * REFBOOSTER
+  // if (referrer) {
+  //   referrer.starsBalance += REFREWARD;
+  //   await referrer.save()
+  // }
 
   // Send confirmation message
   // await fetch(`${TELEGRAM_API}/bot${BOT_TOKEN}/sendMessage`, {

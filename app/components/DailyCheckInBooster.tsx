@@ -78,20 +78,22 @@ export default function DailyCheckInBooster() {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Image src={"/boostImage.png"} width={36} height={36} alt='boost'></Image>
-            <div className="flex flex-col gap-0.5">
+            <div className="">
               <p className="text-sm">Boost Daily CheckIn Reward x2</p>
-              <p className="text-xs my-text-white my-bg-gradient px-3 rounded-full">+1000</p>
+              <p className="mt-0.5">
+                <span className="text-xs my-text-white my-bg-gradient px-3 rounded-full">+1000</span>
+              </p>
             </div>
           </div>
           <div>
             <button onClick={handleClaimWithStars}
-            className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-2 ${checkInBooster === 3 ? 'bg-green-600 opacity-85' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
+            className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-2 ${checkInBooster === 2 ? 'bg-green-600 opacity-25' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
               <span>{checkInBooster === 2 ? " " : "Buy"}</span>
               <Image src={checkInBooster === 2 ? '/check.svg' : '/arrow.svg'} width={24} height={24} alt='go'></Image>
             </button>
           </div>
         </div>
-        <p className="my-text-gray mt-2 text-xs px-3 font-light"><span className="my-text-white">** </span>Buy this booster and earn twice on your daily check-in rewards. Also apply to your referral rewards</p>
+        <p className="my-text-gray mt-2 text-xs px-3 font-light"><span className="my-text-white">** </span>Buy this booster and earn twice on your daily check-in rewards. Also applies to your referral rewards</p>
         {successMessage && (
           <div className="mt-1">
             <p className='text-xs text-green-500'>
