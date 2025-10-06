@@ -41,7 +41,7 @@ export default function TaskBooster() {
       if (event.status === "paid") {
 
         console.log("Calling api/paymentSuccessful2")
-        const res = await fetch("/api/paymentSuccessful", {
+        const res = await fetch("/api/paymentSuccessful2", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userId }),
@@ -80,13 +80,13 @@ export default function TaskBooster() {
             <Image src={"/boostImage.png"} width={36} height={36} alt='boost'></Image>
             <div className="">
               <p className="text-sm">Boost Task Reward x2</p>
-              <p className="mt-0.5">
+              <p className="">
                 <span className="text-xs my-text-white my-bg-gradient px-3 rounded-full">+1000</span>
               </p>
             </div>
           </div>
           <div>
-            <button onClick={handleClaimWithStars}
+            <button onClick={taskBooster === 2 ? undefined : handleClaimWithStars}
             className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-0.5 ${taskBooster === 2 ? 'my-bg-lightgreen' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
               <span>{taskBooster === 2 ? "" : "Buy"}</span>
               <Image src={taskBooster === 2 ? '/checkWhite.svg' : '/arrow.svg'} width={18} height={18} alt='go'></Image>

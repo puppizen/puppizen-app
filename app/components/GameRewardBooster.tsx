@@ -7,11 +7,11 @@ type InvoiceClosedEvent = {
   slug: string;
 }
 
-export default function DailyCheckInBooster() {
+export default function GameRewardBooster() {
   const [userId, setUserId] = useState<number | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [checkInBooster, setCheckInBooster] = useState<number | null>();
+  const [gameBooster, setGameBooster] = useState<number | null>();
 
   useEffect(() => {
     const tgUser = window.Telegram.WebApp.initDataUnsafe?.user;
@@ -22,13 +22,13 @@ export default function DailyCheckInBooster() {
       fetch(`/api/balance?userId=${tgUser.id}`)
       .then((res) => res.json())
       .then((data) => {
-        setCheckInBooster(data.checkInBooster);
+        setGameBooster(data.gameBooster);
       })
     }
   }, [])
 
   const handleClaimWithStars = async () => {
-    const res = await fetch("/api/invoiceLinkBoaster3", {
+    const res = await fetch("/api/invoiceLinkBoasterX", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId }),
@@ -40,8 +40,8 @@ export default function DailyCheckInBooster() {
     const listener = async (event: InvoiceClosedEvent) => {
       if (event.status === "paid") {
 
-        console.log("Calling api/paymentSuccessful3")
-        const res = await fetch("/api/paymentSuccessful3", {
+        console.log("Calling api/paymentSuccessful2")
+        const res = await fetch("/api/paymentSuccessful", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userId }),
@@ -49,7 +49,7 @@ export default function DailyCheckInBooster() {
 
         const data = await res.json();
         if (res.ok) {
-          setCheckInBooster(data.taskBooster);
+          setGameBooster(data.gameBooster);
           setSuccessMessage("Payment confirmed! You recieved x2 booster.");
           setTimeout(() => {
             setSuccessMessage(null)
@@ -79,21 +79,21 @@ export default function DailyCheckInBooster() {
           <div className="flex items-center gap-3">
             <Image src={"/boostImage.png"} width={36} height={36} alt='boost'></Image>
             <div className="">
-              <p className="text-sm">Boost Daily Check-in Reward x2</p>
+              <p className="text-sm">Boost Game Reward x2</p>
               <p className="">
-                <span className="text-xs my-text-white my-bg-gradient px-3 rounded-full">+1000</span>
+                <span className="text-xs my-text-white my-bg-gradient px-3 rounded-full">+1500</span>
               </p>
             </div>
           </div>
           <div>
-            <button onClick={checkInBooster === 2 ? undefined : handleClaimWithStars}
-            className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-0.5 ${checkInBooster === 2 ? 'my-bg-lightgreen' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
-              <span>{checkInBooster === 2 ? " " : "Buy"}</span>
-              <Image src={checkInBooster === 2 ? '/checkWhite.svg' : '/arrow.svg'} width={18} height={18} alt='go'></Image>
+            <button onClick={gameBooster === 2 ? undefined : handleClaimWithStars}
+            className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-0.5 ${gameBooster === 2 ? 'my-bg-lightgreen' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
+              <span>{gameBooster === 2 ? " " : "Buy"}</span>
+              <Image src={gameBooster === 2 ? '/checkWhite.svg' : '/arrow.svg'} width={18} height={18} alt='go'></Image>
             </button>
           </div>
         </div>
-        <p className="my-text-gray mt-2 text-xs px-1 font-light"><span className="text-amber-400">** </span>Buy this booster and earn twice on your daily check-in rewards. Also applies to your referral rewards</p>
+        <p className="my-text-gray mt-2 text-xs px-1 font-light"><span className="text-amber-400">** </span>Buy this booster and earn twice on your game rewards. Also applies to your referral rewards</p>
         {successMessage && (
           <div className="mt-1">
             <p className='text-xs text-green-500'>

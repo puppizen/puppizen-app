@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Stars payment
-  user.taskBooster *= BOOSTER
+  user.checkInBooster *= BOOSTER
   user.totalStarsPaid += REQUIRED_STARS;
   user.balance += REWARD;
 
