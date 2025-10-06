@@ -8,7 +8,7 @@ import connectDb from '@/lib/mongodb';
 // const BOT_TOKEN = process.env.BOT_TOKEN;
 const REQUIRED_STARS = 200;
 const BOOSTER = 2;
-const REWARD = 1000;
+const REWARD = 500;
 
 export async function POST(req: NextRequest) {
   await connectDb();
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Stars payment
-  user.taskBooster += BOOSTER
+  user.taskBooster *= BOOSTER
   user.totalStarsPaid += REQUIRED_STARS;
   user.balance += REWARD;
 
@@ -40,8 +40,10 @@ export async function POST(req: NextRequest) {
 
   const REFERRAL_PERCENTAGE = 0.05
   const refReward = REQUIRED_STARS * REFERRAL_PERCENTAGE;
+  const REFBOOSTER = referrer.taskBOOSTER
+  const REFREWARD = refReward * REFBOOSTER
   if (referrer) {
-    referrer.starsBalance += refReward;
+    referrer.starsBalance += REFREWARD;
     await referrer.save()
   }
 

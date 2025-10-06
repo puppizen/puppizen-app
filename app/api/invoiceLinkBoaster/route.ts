@@ -8,13 +8,13 @@ export async function POST() {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      title: "Reward Boaster x2",
-      description: "reward boaster x2",
-      payload: "Reward boaster x2",
+      title: "Task Reward Boaster x2",
+      description: "Task Reward Boaster x2",
+      payload: "Task Reward Boaster x2",
       provider_token: "", // Leave empty for Telegram Stars
       currency: "XTR",
-      prices: [{ label: "Reward Boaster x2", amount: 500 }],
-      start_parameter: "reward_boasterx2"
+      prices: [{ label: "Task Reward Boaster x2", amount: 200 }],
+      start_parameter: "task_reward_boasterx2"
     })
   });
 

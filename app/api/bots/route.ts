@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     // Validate payload format
     const expectedPayloads = [
       "Daily rewards with stars",
-      "Reward boaster x2"
+      "Task Reward Boaster x2"
     ];
     if (!expectedPayloads.includes(payload)) {
       console.warn("Invalid payload:", payload);

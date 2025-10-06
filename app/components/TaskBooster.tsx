@@ -78,16 +78,16 @@ export default function TaskBooster() {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
             <Image src={"/boostImage.png"} width={36} height={36} alt='boost'></Image>
-            <div className="flex flex-col gap-0.5">
+            <div className="">
               <p className="text-sm">Boost Task Reward x2</p>
-              <p className="text-xs my-text-white my-bg-gradient px-3 rounded-full">+1000</p>
+              <p className="text-xs my-text-white my-bg-gradient px-3 rounded-full mt-0.5">+1000</p>
             </div>
           </div>
           <div>
             <button onClick={handleClaimWithStars}
-            className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-2 ${taskBooster === 3 ? 'bg-green-600 opacity-85' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
-              <span>{taskBooster === 2 ? " " : "Buy"}</span>
-              <Image src={taskBooster === 2 ? '/check.svg' : '/arrow.svg'} width={24} height={24} alt='go'></Image>
+            className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-0.5 ${taskBooster === 2 ? 'bg-green-600 opacity-85' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
+              <span>{taskBooster === 2 ? "" : "Buy"}</span>
+              <Image src={taskBooster === 2 ? '/check.svg' : '/arrow.svg'} width={18} height={18} alt='go'></Image>
             </button>
           </div>
         </div>
