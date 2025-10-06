@@ -6,7 +6,7 @@ export default function CountDownTimer() {
     const [timeLeft, setTimeLeft] = useState({days:0, hours:0, minutes:0, seconds:0});
 
     useEffect(() => {
-        const targetDate = new Date('2026-05-04T00:00:00');
+        const targetDate = new Date('2026-05-25T00:00:00');
         const updateCountdown = () => {
             const now = new Date();
             const difference = targetDate.getTime() - now.getTime();
@@ -33,7 +33,7 @@ export default function CountDownTimer() {
 
     return (
         <div className="flex flex-row justify-center items-center gap-2 font-medium">
-            <p className="font-semibold">When TGE?</p>
+            <p className="font-bold">When TGE?</p>
             <span className="relative py-2 w-12 text-center my-bg-blue rounded-md">{String(timeLeft.days)}
                 <span className="absolute right-1 top-1 my-text-xs font-light my-text-gray">D</span>
             </span>
