@@ -87,9 +87,9 @@ export default function TaskBooster() {
           </div>
           <div>
             <button onClick={handleClaimWithStars}
-            className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-0.5 ${taskBooster === 2 ? 'bg-green-600 opacity-20' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
+            className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-0.5 ${taskBooster === 2 ? 'my-bg-lightgreen' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
               <span>{taskBooster === 2 ? "" : "Buy"}</span>
-              <Image src={taskBooster === 2 ? '/check.svg' : '/arrow.svg'} width={18} height={18} alt='go'></Image>
+              <Image src={taskBooster === 2 ? '/checkWhite.svg' : '/arrow.svg'} width={18} height={18} alt='go'></Image>
             </button>
           </div>
         </div>

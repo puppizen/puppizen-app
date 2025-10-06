@@ -87,9 +87,9 @@ export default function DailyCheckInBooster() {
           </div>
           <div>
             <button onClick={handleClaimWithStars}
-            className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-2 ${checkInBooster === 2 ? 'bg-green-600 opacity-25' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
+            className={`px-4 py-1 text-sm rounded-full my-text-white flex items-center gap-2 ${checkInBooster === 2 ? 'my-bg-lightgreen' : 'my-bg-gradient btn-blue4-active btn-translate-active'}`}>
               <span>{checkInBooster === 2 ? " " : "Buy"}</span>
-              <Image src={checkInBooster === 2 ? '/check.svg' : '/arrow.svg'} width={24} height={24} alt='go'></Image>
+              <Image src={checkInBooster === 2 ? '/checkWhite.svg' : '/arrow.svg'} width={18} height={18} alt='go'></Image>
             </button>
           </div>
         </div>
