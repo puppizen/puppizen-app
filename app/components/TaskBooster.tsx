@@ -95,7 +95,7 @@ export default function TaskBooster() {
         </div>
         <p className="my-text-gray mt-2 text-xs px-1 font-extralight"><span className="text-amber-400">** </span>Buy this booster and earn twice your rewards when you complete tasks. Also applies to your referral rewards</p>
         {successMessage && (
-          <div className="mt-1">
+          <div className="mt-1 px-1">
             <p className='text-xs text-green-500'>
               {successMessage}
             </p>
@@ -103,7 +103,7 @@ export default function TaskBooster() {
         )}
 
         {errorMessage && (
-          <div className="mt-1">
+          <div className="mt-1 px-1">
             <p className='text-xs text-red-500'>
               {errorMessage}
             </p>

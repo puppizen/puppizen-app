@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDb from "@/lib/mongodb";
 import { User } from "@/models/user";
 
-const REWARD_AMOUNT = 10;
+const REWARD = 10;
 
 export async function POST(request: NextRequest) {
   await connectDb();
@@ -22,15 +22,19 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Reward already claimed today' }, { status: 403 });
   }
 
+  const BOOSTER = user.checkInBooster;
+  const REWARD_AMOUNT = BOOSTER * REWARD
   user.balance += REWARD_AMOUNT;
   user.lastDailyRewardAt = today;
 
   await user.save();
 
   const REFERRAL_PERCENTAGE = 0.1;
-  const refReward = REWARD_AMOUNT * REFERRAL_PERCENTAGE;
+  const refReward = REWARD * REFERRAL_PERCENTAGE;
   if (referrer) {
-    user.balance += refReward;
+    const REF_BOOSTER = referrer.checkInBooster
+    const REF_REWARD = refReward * REF_BOOSTER
+    referrer.balance += REF_REWARD;
     await referrer.save();
   }
 

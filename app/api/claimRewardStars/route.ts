@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDb from '@/lib/mongodb';
 import { User } from '@/models/user';
 
-const REWARD_AMOUNT = 50;
+const REWARD = 50;
 const REQUIRED_STARS = 10;
 
 export async function POST(request: NextRequest) {
@@ -28,6 +28,8 @@ export async function POST(request: NextRequest) {
   }
 
   // Update user
+  const BOOSTER = user.checkInBooster
+  const REWARD_AMOUNT = REWARD * BOOSTER;
   user.balance += REWARD_AMOUNT;
   user.lastClaimedAtStars = today;
 
@@ -36,7 +38,9 @@ export async function POST(request: NextRequest) {
   const REFERRAL_PERCENTAGE = 0.1;
   const refReward = REWARD_AMOUNT * REFERRAL_PERCENTAGE;
   if (referrer) {
-    referrer.balance += refReward;
+    const REF_BOOSTER = referrer.checkInBooster;
+    const REF_REWARD = refReward * REF_BOOSTER;
+    referrer.balance += REF_REWARD;
     await referrer.save()
   }
 
