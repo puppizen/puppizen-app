@@ -148,12 +148,12 @@ export default function DropGameCanvas() {
 
   return (
     <div className="w-screen h-screen overflow-hidden">
-      <div className="relative -mt-20">
+      <div className="relative">
 
         <svg className="absolute inset-0 w-full h-full z-0 pointer-events-none bg-gradient-to-b from-transparent via-lime-500 to-black opacity-20">
           <defs>
             <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="lime" strokeWidth="1" />
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="lime" strokeWidth="1" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#grid)" />
@@ -166,21 +166,23 @@ export default function DropGameCanvas() {
           <span>Score: {score}</span>
         </div>
 
-        {drops.map((drop) => (
-          <Image
-            key={drop.id}
-            src={`/${drop.type}.png`}
-            className={`absolute transition-transform duration-300  ${drop.clicked ? 'scale-125 opacity-0' : ''}`}
-            alt="drop"
-            style={{
-              left: drop.x,
-              top: drop.y,
-              width: drop.size + 10,
-              height: drop.size + 10,
-            }}
-            onClick={() => handleClick(drop.id, drop.type)}
-          />
-        ))}
+        <div className="relative -mt-10 h-full w-full">
+          {drops.map((drop) => (
+            <Image
+              key={drop.id}
+              src={`/${drop.type}.png`}
+              className={`absolute transition-transform duration-300  ${drop.clicked ? 'scale-125 opacity-0' : ''}`}
+              alt="drop"
+              style={{
+                left: drop.x,
+                top: drop.y,
+                width: drop.size + 10,
+                height: drop.size + 10,
+              }}
+              onClick={() => handleClick(drop.id, drop.type)}
+            />
+          ))}
+        </div>
 
         {gameOver && (
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold">
