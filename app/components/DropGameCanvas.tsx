@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-type DropType = "quantum" | "freeze" | "bomb";
+type DropType = "reward" | "reward2" | "reward3" | "freeze" | "bomb";
 
 interface Drop {
   id: string;
@@ -21,6 +21,9 @@ export default function DropGameCanvas() {
   const [isFrozen, setIsFrozen] = useState(false);
 
   useEffect(() => {
+    let bombCount = 0;
+    let freezeCount = 0;
+
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 1) {
@@ -33,34 +36,52 @@ export default function DropGameCanvas() {
     }, 1000);
 
     const bombInterval = setInterval(() => {
-      if (!gameOver) {
-        for (let i = 0; i < 15; i++) createDrop("bomb");
+      if (!gameOver && bombCount < 15) {
+        createDrop("bomb");
+        bombCount++;
       }
     }, 3000);
 
     const freezeInterval = setInterval(() => {
-      if (!gameOver) {
-        for (let i = 0; i < 5; i++) createDrop("freeze");
+      if (!gameOver && freezeCount < 5) {
+        createDrop("freeze");
+        freezeCount++;
       }
     }, 5000);
 
     const rewardInterval = setInterval(() => {
       if (!gameOver) {
-        createDrop("quantum");
+        createDrop("reward");
       }
     }, 500);
+
+    const reward2Interval = setInterval(() => {
+      if (!gameOver) {
+        createDrop("reward2");
+      }
+    }, 300);
+
+    const reward3Interval = setInterval(() => {
+      if (!gameOver) {
+        createDrop("reward3");
+      }
+    }, 100);
 
     return () => {
       clearInterval(timer);
       clearInterval(bombInterval);
       clearInterval(freezeInterval);
       clearInterval(rewardInterval);
+      clearInterval(reward2Interval);
+      clearInterval(reward3Interval);
     };
   }, [gameOver]);
 
   function createDrop(type: DropType) {
     const sizeOptions = {
-      quantum: [40, 45, 55],
+      reward: [40, 45, 55],
+      reward2: [45, 55, 60],
+      reward3: [40, 55, 60],
       freeze: [30, 35, 50],
       bomb: [45, 50, 55],
     };
@@ -96,7 +117,9 @@ export default function DropGameCanvas() {
   function handleClick(id: string, type: DropType) {
     if (gameOver) return;
 
-    if (type === "quantum") setScore((s) => s + 1);
+    if (type === "reward") setScore((s) => s + 1);
+    if (type === "reward2") setScore((s) => s + 1);
+    if (type === "reward3") setScore((s) => s + 1)
     if (type === "bomb") setScore((s) => Math.max(0, s - 2));
     if (type === "freeze") {
       setIsFrozen(true);
