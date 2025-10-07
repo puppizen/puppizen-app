@@ -54,7 +54,7 @@ export default function DropGameCanvas() {
       bomb: [45, 50, 55],
     };
     const size = sizeOptions[type][Math.floor(Math.random() * 3)];
-    const speed = type === "bomb" ? 1 : 2 + Math.random() * 3;
+    const speed = type === "bomb" ? 2 : 3 + Math.random() * 5;
 
     const newDrop: Drop = {
       id: crypto.randomUUID(),
