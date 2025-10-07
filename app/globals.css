@@ -145,3 +145,21 @@ body {
     background-position: 100% 50%;
   }
 }
+
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+  linear-gradient(to bottom, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: gridPulse 4s infinite alternate;
+}
+
+@keyframes gridPulse {
+  0% {
+    background-size: 40px 40px;
+    opacity: 0.3;
+  }
+  100% {
+    background-size: 42px 42px;
+    opacity: 0.6;
+  }
+}
