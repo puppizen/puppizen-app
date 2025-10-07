@@ -147,7 +147,44 @@ export default function DropGameCanvas() {
   }
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-screen h-screen overflow-hidden">
+
+    <svg
+      className="absolute top-0 left-0 w-full h-full pointer-events-none z-50"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+    >
+      <polyline
+        points="0,0 5,3 10,0 15,5 20,0 25,4 30,0 35,6 40,0 45,5 50,0 55,3 60,0 65,5 70,0 75,4 80,0 85,6 90,0 95,5 100,0"
+        stroke="#00f0ff"
+        strokeWidth="0.5"
+        fill="none"
+        className="animate-lightning"
+      />
+      <polyline
+        points="0,100 5,97 10,100 15,95 20,100 25,96 30,100 35,94 40,100 45,95 50,100 55,97 60,100 65,95 70,100 75,96 80,100 85,94 90,100 95,95 100,100"
+        stroke="#00f0ff"
+        strokeWidth="0.5"
+        fill="none"
+        className="animate-lightning"
+      />
+      <polyline
+        points="0,0 3,5 0,10 4,15 0,20 5,25 0,30 6,35 0,40 5,45 0,50 3,55 0,60 5,65 0,70 4,75 0,80 6,85 0,90 5,95 0,100"
+        stroke="#00f0ff"
+        strokeWidth="0.5"
+        fill="none"
+        className="animate-lightning"
+      />
+      <polyline
+        points="100,0 97,5 100,10 96,15 100,20 95,25 100,30 94,35 100,40 95,45 100,50 97,55 100,60 95,65 100,70 96,75 100,80 94,85 100,90 95,95 100,100"
+        stroke="#00f0ff"
+        strokeWidth="0.5"
+        fill="none"
+        className="animate-lightning"
+      />
+    </svg>
+
       <p>This game is still under development. All points earned will not be calculated</p>
       <div className="absolute top-10 z-10 flex justify-between items-center">
         <span>Time: {timeLeft}s</span>
@@ -158,7 +195,7 @@ export default function DropGameCanvas() {
         <Image
           key={drop.id}
           src={`/${drop.type}.png`}
-          className={`absolute animate-ping transition-transform duration-300 ${drop.clicked ? 'scale-125 opacity-0' : ''}`}
+          className={`absolute transition-transform duration-300 ${drop.clicked ? 'scale-125 opacity-0' : ''}`}
           alt="drop"
           style={{
             left: drop.x,
