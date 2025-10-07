@@ -11,6 +11,7 @@ interface Drop {
   y: number;
   size: number;
   speed: number;
+  clicked?: boolean;
 }
 
 export default function DropGameCanvas() {
@@ -134,7 +135,15 @@ export default function DropGameCanvas() {
       setTimeout(() => setIsFrozen(false), 3000);
     }
 
-    setDrops((prev) => prev.filter((drop) => drop.id !== id));
+    setDrops((prev) =>
+      prev.map((drop) =>
+        drop.id === id ? { ...drop, clicked: true } : drop
+      )
+    );
+
+    setTimeout(() => {
+      setDrops((prev) => prev.filter((drop) => drop.id !== id));
+    }, 300);
   }
 
   return (
@@ -149,7 +158,7 @@ export default function DropGameCanvas() {
         <Image
           key={drop.id}
           src={`/${drop.type}.png`}
-          className="absolute animate-spin"
+          className={`absolute animate-ping transition-transform duration-300 ${drop.clicked ? 'scale-125 opacity-0' : ''}`}
           alt="drop"
           style={{
             left: drop.x,
