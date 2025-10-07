@@ -140,16 +140,16 @@ export default function DropGameCanvas() {
   return (
     <div className="relative w-full h-screen overflow-hidden">
       <p>This game is still under development. All points earned will not be calculated</p>
-      <div className="absolute top-10 left-10 z-10 space-x-4">
-        <span>Score: {score}</span>
+      <div className="absolute top-10 z-10 flex justify-between items-center">
         <span>Time: {timeLeft}s</span>
+        <span>Score: {score}</span>
       </div>
 
       {drops.map((drop) => (
         <Image
           key={drop.id}
           src={`/${drop.type}.png`}
-          className="absolute"
+          className="absolute animate-spin"
           alt="drop"
           style={{
             left: drop.x,
