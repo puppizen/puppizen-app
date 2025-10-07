@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-type DropType = "reward" | "ticket" | "freeze" | "bomb";
+type DropType = "quantum" | "freeze" | "bomb";
 
 interface Drop {
   id: string;
@@ -16,9 +16,9 @@ interface Drop {
 export default function DropGameCanvas() {
   const [drops, setDrops] = useState<Drop[]>([]);
   const [score, setScore] = useState(0);
-  const [tickets, setTickets] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
   const [gameOver, setGameOver] = useState(false);
+  const [isFrozen, setIsFrozen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -32,29 +32,40 @@ export default function DropGameCanvas() {
       });
     }, 1000);
 
-    const dropInterval = setInterval(() => {
+    const bombInterval = setInterval(() => {
       if (!gameOver) {
-        createDrop();
+        for (let i = 0; i < 15; i++) createDrop("bomb");
+      }
+    }, 3000);
+
+    const freezeInterval = setInterval(() => {
+      if (!gameOver) {
+        for (let i = 0; i < 5; i++) createDrop("freeze");
+      }
+    }, 5000);
+
+    const rewardInterval = setInterval(() => {
+      if (!gameOver) {
+        createDrop("quantum");
       }
     }, 500);
 
     return () => {
       clearInterval(timer);
-      clearInterval(dropInterval);
+      clearInterval(bombInterval);
+      clearInterval(freezeInterval);
+      clearInterval(rewardInterval);
     };
   }, [gameOver]);
 
-  function createDrop() {
-    const types: DropType[] = ["reward", "ticket", "freeze", "bomb"];
-    const type = types[Math.floor(Math.random() * types.length)];
+  function createDrop(type: DropType) {
     const sizeOptions = {
-      reward: [40, 45, 55],
-      ticket: [30, 35, 40],
+      quantum: [40, 45, 55],
       freeze: [30, 35, 50],
       bomb: [45, 50, 55],
     };
     const size = sizeOptions[type][Math.floor(Math.random() * 3)];
-    const speed = type === "bomb" ? 2 : 3 + Math.random() * 5;
+    const speed = type === "bomb" ? 3 : 4 + Math.random() * 4;
 
     const newDrop: Drop = {
       id: crypto.randomUUID(),
@@ -70,24 +81,26 @@ export default function DropGameCanvas() {
 
   useEffect(() => {
     const animation = setInterval(() => {
-      setDrops((prev) =>
-        prev
-          .map((drop) => ({ ...drop, y: drop.y + drop.speed }))
-          .filter((drop) => drop.y < 600)
-      );
-    }, 50);
+      if (!isFrozen) {
+        setDrops((prev) =>
+          prev
+            .map((drop) => ({ ...drop, y: drop.y + drop.speed }))
+            .filter((drop) => drop.y < 600)
+        );
+      }
+    }, 30); // faster movement
 
     return () => clearInterval(animation);
-  }, []);
+  }, [isFrozen]);
 
   function handleClick(id: string, type: DropType) {
     if (gameOver) return;
 
-    if (type === "reward") setScore((s) => s + 1);
-    if (type === "ticket") setTickets((t) => t + 1);
+    if (type === "quantum") setScore((s) => s + 1);
     if (type === "bomb") setScore((s) => Math.max(0, s - 2));
     if (type === "freeze") {
-      // Optional: freeze logic
+      setIsFrozen(true);
+      setTimeout(() => setIsFrozen(false), 3000);
     }
 
     setDrops((prev) => prev.filter((drop) => drop.id !== id));
@@ -96,9 +109,8 @@ export default function DropGameCanvas() {
   return (
     <div className="relative w-full h-screen overflow-hidden">
       <p>This game is still under development. All points earned will not be calculated</p>
-      <div className="absolute top-10 left-10 z-10">
+      <div className="absolute top-10 left-10 z-10 space-x-4">
         <span>Score: {score}</span>
-        <span>Tickets: {tickets}</span>
         <span>Time: {timeLeft}s</span>
       </div>
 
@@ -118,7 +130,11 @@ export default function DropGameCanvas() {
         />
       ))}
 
-      {gameOver && <div className="absolute top-50 left-50">Game Over</div>}
+      {gameOver && (
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold">
+          Game Over
+        </div>
+      )}
     </div>
   );
 }
