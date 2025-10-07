@@ -23,6 +23,9 @@ export default function DropGameCanvas() {
   useEffect(() => {
     let bombCount = 0;
     let freezeCount = 0;
+    let rewardCount = 0;
+    let reward2Count = 0;
+    let reward3Count = 0;
 
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
@@ -50,20 +53,23 @@ export default function DropGameCanvas() {
     }, 5000);
 
     const rewardInterval = setInterval(() => {
-      if (!gameOver) {
+      if (!gameOver && rewardCount < 50) {
         createDrop("reward");
+        rewardCount++
       }
-    }, 500);
+    }, 100);
 
     const reward2Interval = setInterval(() => {
-      if (!gameOver) {
-        createDrop("reward2");
+      if (!gameOver && reward2Count < 50) {
+        createDrop("reward");
+        reward2Count++
       }
-    }, 300);
+    }, 100);
 
     const reward3Interval = setInterval(() => {
-      if (!gameOver) {
-        createDrop("reward3");
+      if (!gameOver && reward3Count < 50) {
+        createDrop("reward");
+        reward3Count++
       }
     }, 100);
 
@@ -88,10 +94,12 @@ export default function DropGameCanvas() {
     const size = sizeOptions[type][Math.floor(Math.random() * 3)];
     const speed = type === "bomb" ? 3 : 4 + Math.random() * 4;
 
+    const screenWidth = window.innerWidth
+
     const newDrop: Drop = {
       id: crypto.randomUUID(),
       type,
-      x: Math.random() * 300,
+      x: Math.random() * (screenWidth - size),
       y: 0,
       size,
       speed,
@@ -146,8 +154,8 @@ export default function DropGameCanvas() {
           style={{
             left: drop.x,
             top: drop.y,
-            width: drop.size,
-            height: drop.size,
+            width: drop.size + 10,
+            height: drop.size + 10,
           }}
           onClick={() => handleClick(drop.id, drop.type)}
         />
