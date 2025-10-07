@@ -147,18 +147,19 @@ export default function DropGameCanvas() {
   }
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden">
 
-    <svg className="absolute inset-0 w-full h-full z-0 pointer-events-none">
-      <defs>
-        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="cyan" strokeWidth="0.5" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid)" />
-    </svg>
+      <svg className="absolute inset-0 w-full h-full z-0 pointer-events-none bg-gradient-to-b from-transparent via-lime-500 to-black opacity-20">
+        <defs>
+          <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="lime" strokeWidth="0.3" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+      </svg>
 
       <p>This game is still under development. All points earned will not be calculated</p>
+      
       <div className="absolute top-10 z-10 flex justify-between items-center">
         <span>Time: {timeLeft}s</span>
         <span>Score: {score}</span>
@@ -168,7 +169,7 @@ export default function DropGameCanvas() {
         <Image
           key={drop.id}
           src={`/${drop.type}.png`}
-          className={`absolute transition-transform duration-300 ${drop.clicked ? 'scale-125 opacity-0' : ''}`}
+          className={`absolute transition-transform duration-300  ${drop.clicked ? 'scale-125 opacity-0' : ''}`}
           alt="drop"
           style={{
             left: drop.x,
