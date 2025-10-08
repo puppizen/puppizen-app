@@ -46,7 +46,7 @@ export default function DropAnimate() {
       setDrops((prev) =>
         prev
           .map((drop) => ({ ...drop, y: drop.y + drop.speed }))
-          .filter((drop) => drop.y < 100)
+          .filter((drop) => drop.y < 300)
       );
     }, 30);
 
