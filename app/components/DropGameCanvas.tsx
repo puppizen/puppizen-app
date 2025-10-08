@@ -167,7 +167,7 @@ export default function DropGameCanvas() {
           </div>
         </div>
 
-        <div className="flex justify-between items-center bg-black/50 backdrop-blur-md rounded-md p-3 w-full">
+        <div className="flex justify-between items-center bg-black/40 backdrop-blur-md rounded-md p-3 w-full">
           <span>00:{String(timeLeft).padStart(2, '0')}s</span>
           <span>Score: {score}</span>
         </div>
@@ -177,7 +177,7 @@ export default function DropGameCanvas() {
         {drops.map((drop) => (
         <Image
           key={drop.id}
-          src={`/${drop.type}.png`}
+          src={`/${drop.type}.svg`}
           className={`absolute transition-transform duration-300  ${drop.clicked ? 'scale-125 opacity-0' : ''}`}
           alt="drop"
           style={{
@@ -193,7 +193,7 @@ export default function DropGameCanvas() {
       
 
       {gameOver && (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 bg-black/50 backdrop-blur-md rounded-md">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 bg-black/40 backdrop-blur-md rounded-md">
           <div className="text-center">
             <p className="font-light">Your Score</p>
             <p className="text-6xl font-bold mt-2">{score}</p>
