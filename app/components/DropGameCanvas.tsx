@@ -147,6 +147,13 @@ export default function DropGameCanvas() {
     }, 300);
   }
 
+  function getEndMessage(score: number): {head: string, text: string} {
+    if (score < 20) return {head: "Keep going!", text: "Practice makes perfect."};
+    if (score >= 20 && score <= 35) return {head: "Nice catch streak!", text: "You are building mommentum."};
+    if (score > 35 && score <= 60) return {head: "You’re on fire!", text: "Great reflexes shown."};
+    return {head: "You nailed it!", text: "Master of the drops."};
+  }
+
   return (
     <div className="relative h-screen w-screen overflow-hidden">
         
@@ -160,8 +167,8 @@ export default function DropGameCanvas() {
           </div>
         </div>
 
-        <div className="flex justify-between items-center my-bg-dark opacity-40 backdrop-blur-sm rounded-md p-3 w-full">
-          <span>Time: {timeLeft}s</span>
+        <div className="flex justify-between items-center my-bg-dark backdrop-blur-sm rounded-md p-3 w-full">
+          <span>00:{String(timeLeft).padStart(2, '0')}s</span>
           <span>Score: {score}</span>
         </div>
       </div>
@@ -186,8 +193,11 @@ export default function DropGameCanvas() {
       
 
       {gameOver && (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold">
-          Game Over
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 my-bg-dark backdrop-blur-sm rounded-md flex flex-col gap-2">
+          <p className="font-light">Your Score</p>
+          <p className="text-3xl font-bold">{score}</p>
+          <p className="text-lg font-bold">{getEndMessage(score).head}</p>
+          <p className="font-light my-text-gray">{getEndMessage(score).text}</p>
         </div>
       )}
       <p className="absolute bottom-0 left-0 z-10 px-4">This game is still under development. All points earned will not be calculated</p>
