@@ -166,7 +166,7 @@ export default function DropGameCanvas() {
         </div>
       </div>
 
-      <div className="absolute -top-10 left-0 w-full h-full">
+      <div className="absolute -top-10 left-0 inset-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vh] h-[200vw]">
         {drops.map((drop) => (
         <Image
           key={drop.id}
