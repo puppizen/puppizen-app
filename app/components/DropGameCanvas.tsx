@@ -148,44 +148,41 @@ export default function DropGameCanvas() {
   }
 
   return (
-    <div className="overflow-hidden">
-      <div className="relative">
-
-        <p>This game is still under development. All points earned will not be calculated</p>
+    <div className="relative h-screen w-screen overflow-hidden">
         
-        <div className="fixed top-0 right-0 px-2 z-10">
-          <Link href="/" className="my-bg-gray rounded-full px-4 py-1 mb-3 btn-blue4-active btn-translate-active">
-            Back
-          </Link>
+      <div className="absolute top-0 right-0 px-2 z-10">
+        <Link href="/" className="my-bg-gray rounded-full px-4 py-1 mb-3 btn-blue4-active btn-translate-active">
+          Back
+        </Link>
 
-          <div className="flex justify-between items-center my-bg-dark opacity-40 backdrop-blur-sm rounded-md p-3">
-            <span>Time: {timeLeft}s</span>
-            <span>Score: {score}</span>
-          </div>
+        <div className="flex justify-between items-center my-bg-dark opacity-40 backdrop-blur-sm rounded-md p-3">
+          <span>Time: {timeLeft}s</span>
+          <span>Score: {score}</span>
         </div>
-
-        {drops.map((drop) => (
-          <Image
-            key={drop.id}
-            src={`/${drop.type}.png`}
-            className={`absolute transition-transform duration-300  ${drop.clicked ? 'scale-125 opacity-0' : ''}`}
-            alt="drop"
-            style={{
-              left: drop.x,
-              top: drop.y,
-              width: drop.size + 10,
-              height: drop.size + 10,
-            }}
-            onClick={() => handleClick(drop.id, drop.type)}
-          />
-        ))}
-
-        {gameOver && (
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold">
-            Game Over
-          </div>
-        )}
       </div>
+
+      {drops.map((drop) => (
+        <Image
+          key={drop.id}
+          src={`/${drop.type}.png`}
+          className={`absolute transition-transform duration-300  ${drop.clicked ? 'scale-125 opacity-0' : ''}`}
+          alt="drop"
+          style={{
+            left: drop.x,
+            top: drop.y,
+            width: drop.size + 10,
+            height: drop.size + 10,
+          }}
+          onClick={() => handleClick(drop.id, drop.type)}
+        />
+      ))}
+
+      {gameOver && (
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold">
+          Game Over
+        </div>
+      )}
+      <p>This game is still under development. All points earned will not be calculated</p>
     </div>
   );
 }
