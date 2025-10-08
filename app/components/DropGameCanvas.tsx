@@ -151,7 +151,7 @@ export default function DropGameCanvas() {
     <div className="relative h-screen w-screen overflow-hidden">
         
       <div className="absolute top-0 left-0 flex flex-col gap-3 p-4 z-10">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center w-full">
           <h1>Catch the drops</h1>
           <div>
             <Link href="/" className="my-bg-gray rounded-full px-4 py-1 mb-3 btn-blue4-active btn-translate-active">
@@ -160,7 +160,7 @@ export default function DropGameCanvas() {
           </div>
         </div>
 
-        <div className="flex justify-between items-center my-bg-dark opacity-40 backdrop-blur-sm rounded-md p-3">
+        <div className="flex justify-between items-center my-bg-dark opacity-40 backdrop-blur-sm rounded-md p-3 w-full">
           <span>Time: {timeLeft}s</span>
           <span>Score: {score}</span>
         </div>
