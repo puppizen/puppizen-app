@@ -177,7 +177,7 @@ export default function DropGameCanvas() {
         {drops.map((drop) => (
         <Image
           key={drop.id}
-          src={`/${drop.type}.svg`}
+          src={`/${drop.type}.png`}
           className={`absolute transition-transform duration-300  ${drop.clicked ? 'scale-125 opacity-0' : ''}`}
           alt="drop"
           style={{
