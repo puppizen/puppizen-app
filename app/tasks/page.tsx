@@ -18,7 +18,7 @@ export default function TaskPage() {
       partners: 'For You'
   };
   return (
-    <div className='p-1 mb-15'>
+    <div className='p-4 mb-15'>
       <h1 className="mb-3 font-bold text-lg">Earn PUPPIZEN</h1>
 
       <RewardBooster />

@@ -16,8 +16,8 @@ export default function Footer() {
   ]
 
   return (
-    <div className="fixed bottom-0 right-0 left-0 px-2">
-      <div className="flex justify-around p-3 my-bg-dark gap-2">
+    <div className="my-bg-dark fixed bottom-0 right-0 left-0 px-2">
+      <div className="flex justify-around p-3 gap-2">
         {navItems.map(({ href, label, icon }) => {
           const isActive = pathname === href
           const isTaskLink = href === '/tasks'

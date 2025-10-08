@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function AirdropPage() {
   return (
-    <div className="p-1 mb-15">
+    <div className="p-4 mb-15">
       <div>
         <div className="my-10">
           <CountDownTimer />
