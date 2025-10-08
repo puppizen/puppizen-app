@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link';
 // components/LeaderboardSummary.tsx
 import { useEffect, useState } from 'react';
 
@@ -42,7 +43,13 @@ export default function Summary() {
 
   return (
     <div className="mb-3">
-      <h1 className="mb-3 font-bold text-lg">Leaderboard</h1>
+      
+      <div className="flex justify-between items-center">
+        <h1 className="mb-3 font-bold text-lg">Leaderboard</h1>
+        <Link href="/" className="my-bg-gray rounded-full px-4 py-1 mb-3 btn-blue4-active:active btn-translate-active:active">
+          Back
+        </Link>
+      </div>
       <div className="flex gap-10 mb-3">
         <div className="flex gap-3">
           <p className="text-xs">Total Users:</p>

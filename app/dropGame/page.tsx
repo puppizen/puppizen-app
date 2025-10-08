@@ -1,5 +1,6 @@
 'use client'
 
+import Link from "next/link"
 import DropGameCanvas from "../components/DropGameCanvas"
 
 export default function DropGame() {
@@ -13,6 +14,12 @@ export default function DropGame() {
         </defs>
         <rect width="100%" height="100%" fill="url(#grid)" />
       </svg>
+
+      <div className="flex justify-end">
+        <Link href="/" className="my-bg-gray rounded-full px-4 py-1 mb-3 btn-blue4-active:active btn-translate-active:active">
+            Back
+        </Link>
+      </div>
 
       <DropGameCanvas />
     </div>
