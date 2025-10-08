@@ -9,7 +9,7 @@ import Games from './components/Games';
 
 export default function Home() {
   return (
-    <div className="pb-15">
+    <div className="p-1 mb-15">
       <UserTGData/>
 
       <div className='pt-5'>

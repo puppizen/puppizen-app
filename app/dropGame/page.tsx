@@ -4,7 +4,7 @@ import DropGameCanvas from "../components/DropGameCanvas"
 
 export default function DropGame() {
   return (
-    <div className="p-0 relative w-full h-full overflow-hidden">
+    <div className="relative w-full h-full overflow-hidden">
       <svg className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vh] h-[200vw] z-0 pointer-events-none bg-gradient-to-b from-transparent via-lime-900 to-black opacity-20">
         <defs>
           <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">

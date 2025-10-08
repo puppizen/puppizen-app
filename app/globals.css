@@ -18,7 +18,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Righteous', sans-serif;
-  padding: 1rem;
+  padding: 0;
 }
 
 .my-border-blue {

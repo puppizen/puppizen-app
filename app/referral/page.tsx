@@ -113,7 +113,7 @@ export default function ReferralLink() {
   };
 
   return (
-    <div className='pb-15'>
+    <div className='p-1 mb-15'>
       <h1 className="mb-3 font-bold text-lg text-center">Invite friends</h1>
       <div className='flex flex-row gap-2 justify-between mb-8'>
         <div onClick={handleShare} className='w-full p-3 my-bg-gradient rounded-full flex justify-center items-center gap-2'>

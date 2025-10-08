@@ -53,7 +53,7 @@ export default function UserProfile() {
   const displayData = loading ? cachedData : userData
   
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="p-1 flex flex-col min-h-screen">
       <div className="flex justify-end">
         <Link href="/" className="my-bg-gray rounded-full px-4 py-1 mb-3">
             Back
