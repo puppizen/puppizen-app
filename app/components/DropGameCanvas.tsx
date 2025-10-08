@@ -167,7 +167,7 @@ export default function DropGameCanvas() {
           </div>
         </div>
 
-        <div className="flex justify-between items-center my-bg-dark backdrop-blur-sm rounded-md p-3 w-full">
+        <div className="flex justify-between items-center my-bg-dark backdrop-blur-sm rounded-md p-3 w-full backdrop-opacity-50">
           <span>00:{String(timeLeft).padStart(2, '0')}s</span>
           <span>Score: {score}</span>
         </div>
@@ -193,11 +193,14 @@ export default function DropGameCanvas() {
       
 
       {gameOver && (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 my-bg-dark backdrop-blur-sm rounded-md flex flex-col gap-2">
-          <p className="font-light">Your Score</p>
-          <p className="text-3xl font-bold">{score}</p>
-          <p className="text-lg font-bold">{getEndMessage(score).head}</p>
-          <p className="font-light my-text-gray">{getEndMessage(score).text}</p>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 my-bg-dark backdrop-blur-sm backdrop-opacity-50 rounded-md">
+          <div className="">
+            <p className="font-light">Your Score</p>
+            <p className="text-3xl font-bold mt-2">{score}</p>
+            <p className="text-lg font-bold mt-5">{getEndMessage(score).head}</p>
+            <p className="font-[200] text-sm my-text-gray mt-1">{getEndMessage(score).text}</p>
+          </div>
+          
         </div>
       )}
       <p className="absolute bottom-0 left-0 z-10 px-4">This game is still under development. All points earned will not be calculated</p>
