@@ -167,7 +167,7 @@ export default function DropGameCanvas() {
           </div>
         </div>
 
-        <div className="flex justify-between items-center bg-black backdrop-blur-sm rounded-md p-3 w-full backdrop-opacity-30">
+        <div className="flex justify-between items-center bg-black backdrop-blur-sm rounded-md p-3 w-full">
           <span>00:{String(timeLeft).padStart(2, '0')}s</span>
           <span>Score: {score}</span>
         </div>
@@ -193,7 +193,7 @@ export default function DropGameCanvas() {
       
 
       {gameOver && (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 bg-black backdrop-blur-sm backdrop-opacity-30 rounded-md">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-3 bg-black backdrop-blur-sm rounded-md">
           <div className="text-center">
             <p className="font-light">Your Score</p>
             <p className="text-6xl font-bold mt-2">{score}</p>
