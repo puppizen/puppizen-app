@@ -166,7 +166,8 @@ export default function DropGameCanvas() {
         </div>
       </div>
 
-      {drops.map((drop) => (
+      <div className="absolute -top-10 left-0 w-full h-full">
+        {drops.map((drop) => (
         <Image
           key={drop.id}
           src={`/${drop.type}.png`}
@@ -181,6 +182,8 @@ export default function DropGameCanvas() {
           onClick={() => handleClick(drop.id, drop.type)}
         />
       ))}
+      </div>
+      
 
       {gameOver && (
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-3xl font-bold">
