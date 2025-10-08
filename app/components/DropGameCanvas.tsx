@@ -116,7 +116,7 @@ export default function DropGameCanvas() {
         setDrops((prev) =>
           prev
             .map((drop) => ({ ...drop, y: drop.y + drop.speed }))
-            .filter((drop) => drop.y < 600)
+            .filter((drop) => drop.y < window.innerHeight)
         );
       }
     }, 30); // faster movement
@@ -166,7 +166,7 @@ export default function DropGameCanvas() {
         </div>
       </div>
 
-      <div className="absolute -top-10 left-0 inset-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vh] h-[200vw]">
+      <div className="absolute -top-15 left-0 w-full h-full">
         {drops.map((drop) => (
         <Image
           key={drop.id}
