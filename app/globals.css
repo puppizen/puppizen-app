@@ -108,12 +108,10 @@ body {
   font-weight: bold;
 }
 
-.btn-blue4-active:active {
-  opacity: 40%;
-}
 .btn-translate-active:active {
   transform: translateY(-3px);
-  box-shadow: 0 4px 6px -1px var(--background-blue);
+  box-shadow: 0 4px 6px -1px var(--background-blue-4);
+  opacity: 70%;
 }
 
 .task-container {

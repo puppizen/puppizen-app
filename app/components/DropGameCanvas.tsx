@@ -150,12 +150,14 @@ export default function DropGameCanvas() {
   return (
     <div className="relative h-screen w-screen overflow-hidden">
         
-      <div className="absolute top-0 left-0 flex gap-3 p-4 z-10">
+      <div className="absolute top-0 left-0 flex flex-col gap-3 p-4 z-10">
         <div className="flex justify-between items-center">
           <h1>Catch the drops</h1>
-          <Link href="/" className="my-bg-gray rounded-full px-4 py-1 mb-3 btn-blue4-active btn-translate-active">
+          <div>
+            <Link href="/" className="my-bg-gray rounded-full px-4 py-1 mb-3 btn-blue4-active btn-translate-active">
             Back
-          </Link>
+            </Link>
+          </div>
         </div>
 
         <div className="flex justify-between items-center my-bg-dark opacity-40 backdrop-blur-sm rounded-md p-3">
