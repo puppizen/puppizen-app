@@ -150,10 +150,13 @@ export default function DropGameCanvas() {
   return (
     <div className="relative h-screen w-screen overflow-hidden">
         
-      <div className="absolute top-0 right-0 px-2 z-10">
-        <Link href="/" className="my-bg-gray rounded-full px-4 py-1 mb-3 btn-blue4-active btn-translate-active">
-          Back
-        </Link>
+      <div className="absolute top-0 left-0 flex gap-3 p-4 z-10">
+        <div className="flex justify-between items-center">
+          <h1>Catch the drops</h1>
+          <Link href="/" className="my-bg-gray rounded-full px-4 py-1 mb-3 btn-blue4-active btn-translate-active">
+            Back
+          </Link>
+        </div>
 
         <div className="flex justify-between items-center my-bg-dark opacity-40 backdrop-blur-sm rounded-md p-3">
           <span>Time: {timeLeft}s</span>
@@ -182,7 +185,7 @@ export default function DropGameCanvas() {
           Game Over
         </div>
       )}
-      <p>This game is still under development. All points earned will not be calculated</p>
+      <p className="absolute bottom-0 left-0 z-10 px-4">This game is still under development. All points earned will not be calculated</p>
     </div>
   );
 }
