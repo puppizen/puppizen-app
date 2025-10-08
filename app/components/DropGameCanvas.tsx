@@ -150,7 +150,7 @@ export default function DropGameCanvas() {
   return (
     <div className="relative h-screen w-screen overflow-hidden">
         
-      <div className="absolute top-0 left-0 flex flex-col gap-3 p-4 z-10">
+      <div className="absolute w-full top-0 left-0 flex flex-col gap-3 p-4 z-10">
         <div className="flex justify-between items-center w-full">
           <h1>Catch the drops</h1>
           <div>
