@@ -5,8 +5,8 @@ export default function DropGame() {
   return (
     <div>
       <Link href="/dropGame">
-        <div className="relative flex flex-col gap-3 p-3 text-center rounded-md">
-          <svg className="absolute inset-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none bg-gradient-to-b from-transparent via-lime-700 to-black opacity-20 skew-12 perspective-distant animate-pulse scale-125">
+        <div className="relative flex flex-col gap-3 p-3 text-center rounded-md overflow-hidden">
+          <svg className="absolute inset-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none bg-gradient-to-b from-transparent via-lime-700 to-black opacity-20 skew-12 perspective-distant animate-pulse scale-125">
             <defs>
               <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
                 <path d="M 50 0 L 0 0 0 50" fill="none" stroke="lime" strokeWidth="0.5" />
