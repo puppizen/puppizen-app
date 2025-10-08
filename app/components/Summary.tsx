@@ -46,7 +46,7 @@ export default function Summary() {
       
       <div className="flex justify-between items-center">
         <h1 className="mb-3 font-bold text-lg">Leaderboard</h1>
-        <Link href="/" className="my-bg-gray rounded-full px-4 py-1 mb-3 btn-blue4-active:active btn-translate-active:active">
+        <Link href="/" className="my-bg-gray rounded-full px-4 py-1 mb-3 btn-blue4-active btn-translate-active">
           Back
         </Link>
       </div>

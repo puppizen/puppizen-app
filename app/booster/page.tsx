@@ -10,13 +10,13 @@ export default function BoosterPage() {
     <div className="p-4">
       <div className="flex justify-between items-center">
         <h1 className="mb-3 font-bold text-lg ">Boost your rewards x2</h1>
-        <Link href="/tasks" className="my-bg-gray rounded-full px-4 py-1 mb-3">
+        <Link href="/tasks" className="my-bg-gray rounded-full px-4 py-1 mb-3 btn-blue4-active btn-translate-active">
             Back
         </Link>
       </div>
       
 
-      <div className="flex flex-row gap-1">
+      <div className="flex flex-col gap-1">
         {/* task reward booster */}
         <TaskBooster />
 
