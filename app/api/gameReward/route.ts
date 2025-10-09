@@ -1,4 +1,3 @@
-// api/verify/route
 
 import { NextRequest, NextResponse } from 'next/server';
 import connectDb from '@/lib/mongodb';
