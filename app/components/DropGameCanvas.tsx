@@ -195,14 +195,14 @@ export default function DropGameCanvas() {
       {gameOver && (
         <div className="absolute top-3/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 flex flex-col gap-3">
           <div className="text-center p-3 bg-black/40 backdrop-blur-md rounded-md w-full">
-            <p className="font-[100] text-amber-400">Your Score</p>
+            <p className="font-extralight text-amber-400">Your Score</p>
             <p className="text-6xl font-bold mt-2 text-amber-400">{score}</p>
             <p className="text-lg font-bold mt-5">{getEndMessage(score).head}</p>
-            <p className="font-[200] text-sm my-text-gray mt-1">{getEndMessage(score).text}</p>
+            <p className="font-light text-sm my-text-gray mt-1">{getEndMessage(score).text}</p>
           </div> 
           <div className="w-full flex flex-col gap-2">
-            <button className="bg-amber-400/40 py-1 rounded-full w-full">Claim</button>  
-            <button className="w-full py-2 bg-white/40 text-amber-400 rounded-full">Play again</button>
+            <button className="bg-amber-400 py-2 rounded-full w-full">Claim</button>  
+            <button className="w-full py-2 bg-white text-amber-400 rounded-full">Play again</button>
           </div>      
         </div>
       )}
