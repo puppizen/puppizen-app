@@ -34,7 +34,10 @@ export default function DropAnimate() {
       speed,
     };
 
-    setDrops((prev) => [...prev, newDrop]);
+    setDrops((prev) => {
+      const updated = [...prev, newDrop];
+      return updated.length > 50 ? updated.slice(-50) : updated;
+    });
   }
 
   // Animate drops falling
