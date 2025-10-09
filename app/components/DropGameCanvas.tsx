@@ -204,10 +204,10 @@ export default function DropGameCanvas() {
 
     if (isFrozen) {
       return (
-        <svg className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vh] h-[200vw] z-0 pointer-events-none bg-gradient-to-b from-transparent via-blue-800 to-black opacity-20 skew-12 perspective-distant animate-pulse scale-125">
+        <svg className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vh] h-[200vw] z-0 pointer-events-none bg-gradient-to-b from-transparent via-sky-700 to-black opacity-20 skew-12 perspective-distant animate-pulse scale-125">
           <defs>
             <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="blue" strokeWidth="0.5" />
+              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="white" strokeWidth="0.5" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#grid)" />
@@ -297,7 +297,7 @@ export default function DropGameCanvas() {
             <p className="font-light text-sm my-text-gray mt-1">{getEndMessage(score).text}</p>
           </div> 
           <div className="w-full flex flex-col gap-2">
-            <button onClick={handleClaimReward} className="bg-amber-400 text-black py-2 text-large rounded-full w-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 active:scale-75">Claim</button>  
+            <button onClick={handleClaimReward} className="bg-amber-400 text-black py-2 text-lg rounded-full w-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 active:scale-75">Claim</button>  
             <button className="w-full py-2 bg-black text-amber-400 rounded-full outline-0 text-lg transition delay-150 duration-300 ease-in-out active:-translate-y-1 active:scale-75">Play again</button>
           </div>      
         </div>
