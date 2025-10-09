@@ -24,6 +24,7 @@ export default function DropGameCanvas() {
   const [isFrozen, setIsFrozen] = useState(false);
   const [gameBooster, setGameBooster] = useState<number | null>(null);
   const [bombClicked, setBombClicked] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   useEffect(() => {
     const tgUser = window.Telegram.WebApp.initDataUnsafe?.user
@@ -235,6 +236,8 @@ export default function DropGameCanvas() {
   }
 
   const handleClaimReward = async () => {
+    setButtonClicked(true);
+    setTimeout(() => setButtonClicked(false), 300)
     const rewardSound = new Audio("/reward.mp3");
     const res = await fetch("/api/gameReward", {
       method: "POST",
@@ -245,8 +248,16 @@ export default function DropGameCanvas() {
     rewardSound.play();
 
     if (res.ok) {
-      console.log("rewardClaimed")
+      console.log("rewardClaimed");
     }
+  }
+
+  const handleRestartGame = async () => {
+    setScore(0);
+    setTimeLeft(30);
+    setGameOver(false);
+    setDrops([]);
+    setIsFrozen(false);
   }
 
   return (
@@ -297,8 +308,8 @@ export default function DropGameCanvas() {
             <p className="font-light text-sm my-text-gray mt-1">{getEndMessage(score).text}</p>
           </div> 
           <div className="w-full flex flex-col gap-2">
-            <button onClick={handleClaimReward} className="bg-amber-400 text-black py-2 text-lg rounded-full w-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 active:scale-75">Claim</button>  
-            <button className="w-full py-2 bg-black text-amber-400 rounded-full outline-0 text-lg transition delay-150 duration-300 ease-in-out active:-translate-y-1 active:scale-75">Play again</button>
+            <button onClick={handleClaimReward} className={`bg-amber-400 text-black py-2 text-lg rounded-full w-full outline-0 transition delay-150 duration-300 ease-in-out ${buttonClicked ? "active:-translate-y-1 active:scale-75" : ""}`}>Claim</button>  
+            <button onClick={handleRestartGame} className={`w-full py-2 bg-black text-amber-400 rounded-full outline-0 text-lg transition delay-150 duration-300 ease-in-out ${buttonClicked ? "-translate-y-1 scale-75" : ""}`}>Play again</button>
           </div>      
         </div>
       )}
