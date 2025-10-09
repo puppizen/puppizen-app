@@ -36,7 +36,7 @@ export default function DropAnimate() {
 
     setDrops((prev) => {
       const updated = [...prev, newDrop];
-      return updated.length > 50 ? updated.slice(-50) : updated;
+      return updated.length > 30 ? updated.slice(-30) : updated;
     });
   }
 
