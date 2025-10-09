@@ -244,7 +244,7 @@ export default function DropGameCanvas() {
     const res = await fetch("/api/gameReward", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId, score }),
+      body: JSON.stringify({ userId: userId, score }),
     })
 
     rewardSound.play();
