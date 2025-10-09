@@ -12,20 +12,22 @@ export async function POST(req: NextRequest) {
   }
 
   const user = await User.findOne({ userId: userId });
-  const referrer = user?.referredBy ? await User.findOne({ userId: user.referredBy }) : null;
 
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
+  
+  const referrer = user?.referredBy ? await User.findOne({ userId: user.referredBy }) : null;
 
   const rewardAmount = score;
+  const realScore = rewardAmount / user.gameBooster
 
   user.balance += rewardAmount
   await user.save();
 
   if (referrer) {
     const REFERRAL_PERCENTAGE = 0.1;
-    const REF_REWARD = (rewardAmount / user.gameBoster) * REFERRAL_PERCENTAGE;
+    const REF_REWARD = realScore * REFERRAL_PERCENTAGE;
     const refReward = REF_REWARD * referrer.gameBooster
 
     referrer.balance += refReward; 
