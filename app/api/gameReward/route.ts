@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Missing data' }, { status: 400 });
   }
 
-  const user = await User.findOne(userId);
+  const user = await User.findOne({userId: userId});
   const referrer = user?.referredBy ? await User.findOne({ userId: user.referredBy }) : null;
 
   if (!user) {
