@@ -16,11 +16,7 @@ interface Drop {
 export default function DropAnimate() {
   const [drops, setDrops] = useState<Drop[]>([]);
 
-  useEffect(() => {
-    createDrop("reward");
-    createDrop("bomb");
-  }, []);
-
+  // Create a new drop of the given type
   function createDrop(type: DropType) {
     const sizeOptions = {
       reward: [10, 15, 25],
@@ -41,6 +37,7 @@ export default function DropAnimate() {
     setDrops((prev) => [...prev, newDrop]);
   }
 
+  // Animate drops falling
   useEffect(() => {
     const animation = setInterval(() => {
       setDrops((prev) =>
@@ -51,6 +48,16 @@ export default function DropAnimate() {
     }, 30);
 
     return () => clearInterval(animation);
+  }, []);
+
+  // Continuously generate new drops
+  useEffect(() => {
+    const dropInterval = setInterval(() => {
+      const randomType: DropType = Math.random() > 0.5 ? "reward" : "bomb";
+      createDrop(randomType);
+    }, 500); // Adjust frequency as needed
+
+    return () => clearInterval(dropInterval);
   }, []);
 
   return (
