@@ -16,11 +16,27 @@ interface Drop {
 }
 
 export default function DropGameCanvas() {
+  const [userId, setUserId] = useState<number | null>(null);
   const [drops, setDrops] = useState<Drop[]>([]);
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
   const [gameOver, setGameOver] = useState(false);
   const [isFrozen, setIsFrozen] = useState(false);
+  const [gameBooster, setGameBooster] = useState<number | null>(null);
+
+  useEffect(() => {
+    const tgUser = window.Telegram.WebApp.initDataUnsafe?.user
+
+    if (tgUser.id) {
+      setUserId(tgUser.id)
+
+      fetch(`/api/balance?userId=${tgUser.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setGameBooster(data.gameBooster)
+      })
+    }
+  }, [])
 
   useEffect(() => {
     let bombCount = 0;
@@ -126,12 +142,21 @@ export default function DropGameCanvas() {
 
   function handleClick(id: string, type: DropType) {
     if (gameOver) return;
+    const addScore = (gameBooster ?? 1) * 1;
+    const claimSound = new Audio("/claim.mp3");
+    const freezeSound = new Audio("/freeze.mp3");
+    const bombSound = new Audio("/bomb.mp3");
 
-    if (type === "reward") setScore((s) => s + 1);
-    if (type === "reward2") setScore((s) => s + 1);
-    if (type === "reward3") setScore((s) => s + 1)
-    if (type === "bomb") setScore((s) => Math.max(0, s - 2));
+    if (type === "reward" || type === "reward2" || type === "reward3") {
+      claimSound.play();
+      setScore((s) => s + addScore);
+    }
+    if (type === "bomb") {
+      bombSound.play();
+      setScore((s) => Math.max(0, s - 2))
+    };
     if (type === "freeze") {
+      freezeSound.play();
       setIsFrozen(true);
       setTimeout(() => setIsFrozen(false), 3000);
     }
@@ -152,6 +177,21 @@ export default function DropGameCanvas() {
     if (score >= 20 && score <= 35) return {head: "Nice catch streak!", text: "You are building mommentum."};
     if (score > 35 && score <= 60) return {head: "You’re on fire!", text: "Great reflexes shown."};
     return {head: "You nailed it!", text: "Master of the drops."};
+  }
+
+  const handleClaimReward = async () => {
+    const rewardSound = new Audio("/reward.mp3");
+    const res = await fetch("/api/gameReward", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId }),
+    })
+
+    rewardSound.play();
+
+    if (res.ok) {
+      console.log("rewardClaimed")
+    }
   }
 
   return (
@@ -194,15 +234,15 @@ export default function DropGameCanvas() {
 
       {gameOver && (
         <div className="absolute top-3/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 flex flex-col gap-3">
-          <div className="text-center p-3 bg-black/40 backdrop-blur-md rounded-md w-full">
-            <p className="font-extralight text-amber-400">Your Score</p>
+          <div className="text-center p-3 bg-black/30 backdrop-blur-md rounded-md w-full">
+            <p className="font-thin text-amber-400">Your Score</p>
             <p className="text-6xl font-bold mt-2 text-amber-400">{score}</p>
             <p className="text-lg font-bold mt-5">{getEndMessage(score).head}</p>
             <p className="font-light text-sm my-text-gray mt-1">{getEndMessage(score).text}</p>
           </div> 
           <div className="w-full flex flex-col gap-2">
-            <button className="bg-amber-400 py-2 rounded-full w-full">Claim</button>  
-            <button className="w-full py-2 bg-white text-amber-400 rounded-full">Play again</button>
+            <button onClick={handleClaimReward} className="bg-amber-400 text-black py-2 rounded-full w-full">Claim</button>  
+            <button className="w-full py-2 bg-black text-amber-400 rounded-full">Play again</button>
           </div>      
         </div>
       )}
