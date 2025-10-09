@@ -5,13 +5,13 @@ import { User } from '@/models/user';
 
 export async function POST(req: NextRequest) {
   await connectDb();
-  const { userId, score, refReward } = await req.json();
+  const { userId, score} = await req.json();
 
-  if (!userId || !score || !refReward) {
+  if (!userId || !score) {
     return NextResponse.json({ error: 'Missing data' }, { status: 400 });
   }
 
-  const user = await User.findOne({userId: userId});
+  const user = await User.findOne({ userId: userId });
   const referrer = user?.referredBy ? await User.findOne({ userId: user.referredBy }) : null;
 
   if (!user) {

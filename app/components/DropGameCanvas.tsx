@@ -29,7 +29,7 @@ export default function DropGameCanvas() {
   const [rewardClaimed, setRewardClaimed] = useState(false);
 
   useEffect(() => {
-    const tgUser = window.Telegram.WebApp.initDataUnsafe?.user
+    const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
 
     if (tgUser.id) {
       setUserId(tgUser.id)
