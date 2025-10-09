@@ -255,7 +255,7 @@ export default function DropGameCanvas() {
     }
   }
 
-  const handleRestartGame = async () => {
+  function handleRestartGame() {
     setResetButton(true);
     setTimeout(() => setResetButton(false), 300)
 

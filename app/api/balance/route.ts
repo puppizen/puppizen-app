@@ -20,6 +20,7 @@ export async function GET(request: NextRequest) {
     lastClaimedAtStars: user.lastClaimedAtStars,
     taskBooster: user.taskBooster,
     checkInBooster: user.checkInBooster,
+    gameBooster: user.gameBooster,
   });
 }
 
