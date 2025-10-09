@@ -23,6 +23,7 @@ export default function DropGameCanvas() {
   const [gameOver, setGameOver] = useState(false);
   const [isFrozen, setIsFrozen] = useState(false);
   const [gameBooster, setGameBooster] = useState<number | null>(null);
+  const [bombClicked, setBombClicked] = useState(false);
 
   useEffect(() => {
     const tgUser = window.Telegram.WebApp.initDataUnsafe?.user
@@ -154,6 +155,8 @@ export default function DropGameCanvas() {
     if (type === "bomb") {
       bombSound.play();
       setScore((s) => Math.max(0, s - 2))
+      setBombClicked(true)
+      setTimeout(() => setBombClicked(false), 1000);
     };
     if (type === "freeze") {
       freezeSound.play();
@@ -170,6 +173,58 @@ export default function DropGameCanvas() {
     setTimeout(() => {
       setDrops((prev) => prev.filter((drop) => drop.id !== id));
     }, 300);
+  }
+
+  function renderBackgroundSVG() {
+    if (gameOver) {
+      return (
+        <svg className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vh] h-[200vw] z-0 pointer-events-none bg-gradient-to-b from-transparent via-amber-700 to-black opacity-20 skew-12 perspective-distant animate-pulse scale-125">
+          <defs>
+            <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="yellow" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+      );
+    }
+
+    if (bombClicked) {
+      return (
+        <svg className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vh] h-[200vw] z-0 pointer-events-none bg-gradient-to-b from-transparent via-red-700 to-black opacity-20 skew-12 perspective-distant animate-pulse scale-125">
+          <defs>
+            <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="red" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+      );
+    }
+
+    if (isFrozen) {
+      return (
+        <svg className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vh] h-[200vw] z-0 pointer-events-none bg-gradient-to-b from-transparent via-blue-800 to-black opacity-20 skew-12 perspective-distant animate-pulse scale-125">
+          <defs>
+            <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="blue" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+      );
+    }
+
+    return (
+      <svg className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vh] h-[200vw] z-0 pointer-events-none bg-gradient-to-b from-transparent via-lime-700 to-black opacity-20 skew-12 perspective-distant animate-pulse scale-125">
+        <defs>
+          <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="lime" strokeWidth="0.5" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+      </svg>
+    ) 
   }
 
   function getEndMessage(score: number): {head: string, text: string} {
@@ -196,6 +251,7 @@ export default function DropGameCanvas() {
 
   return (
     <div className="relative h-screen w-screen overflow-hidden">
+      {renderBackgroundSVG()}
         
       <div className="absolute w-full top-0 left-0 flex flex-col gap-3 p-4 z-10">
         <div className="flex justify-between items-center w-full">
