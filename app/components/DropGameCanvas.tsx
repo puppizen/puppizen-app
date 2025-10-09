@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,6 +13,7 @@ interface Drop {
   size: number;
   speed: number;
   clicked?: boolean;
+  showScore?: boolean;
 }
 
 export default function DropGameCanvas() {
@@ -154,6 +155,16 @@ export default function DropGameCanvas() {
     if (type === "reward" || type === "reward2" || type === "reward3") {
       claimSound.play();
       setScore((s) => s + addScore);
+
+      setDrops((prev) =>
+        prev.map((drop) =>
+          drop.id === id ? { ...drop, clicked: true, showScore: true } : drop
+        )
+      );
+
+      setTimeout(() => {
+        setDrops((prev) => prev.map((drop) => drop.id === id ? { ...drop, showScore: false } : drop));
+      }, 300);
     }
     if (type === "bomb") {
       bombSound.play();
@@ -289,20 +300,35 @@ export default function DropGameCanvas() {
 
       <div className="absolute -top-15 left-0 w-full h-full">
         {drops.map((drop) => (
-        <Image
-          key={drop.id}
-          src={`/${drop.type}.png`}
-          className={`absolute transition-transform duration-300  ${drop.clicked ? 'scale-125 opacity-0' : ''}`}
-          alt="drop"
-          style={{
-            left: drop.x,
-            top: drop.y,
-            width: drop.size + 10,
-            height: drop.size + 10,
-          }}
-          onClick={() => handleClick(drop.id, drop.type)}
-        />
-      ))}
+          <React.Fragment key={drop.id}>
+            <Image
+              key={drop.id}
+              src={`/${drop.type}.png`}
+              className={`absolute transition-transform duration-300  ${drop.clicked ? 'scale-125 opacity-0' : ''}`}
+              alt="drop"
+              style={{
+                left: drop.x,
+                top: drop.y,
+                width: drop.size + 10,
+                height: drop.size + 10,
+              }}
+              onClick={() => handleClick(drop.id, drop.type)}
+            />
+
+            {drop.showScore && (
+              <div
+                className="absolute text-amber font-thin text-xs animate-bounce"
+                style={{
+                  left: drop.x + drop.size / 2,
+                  top: drop.y - 20,
+                }}
+              >
+                + {gameBooster ?? 1}
+              </div>
+            )}
+
+          </React.Fragment>
+        ))}
       </div>
       
 
@@ -317,7 +343,7 @@ export default function DropGameCanvas() {
           <div className="w-full flex flex-col gap-2">
             <button onClick={rewardClaimed === true ? undefined : handleClaimReward} className={`bg-amber-400 text-black py-2 text-lg rounded-full w-full outline-0 transition delay-150 duration-300 ease-in-out ${claimButton ? "-translate-y-1 scale-75" : ""}`}>Claim</button>  
 
-            <button onClick={handleRestartGame} className={`w-full py-2 bg-black text-amber-400 rounded-full outline-0 text-lg transition delay-150 duration-300 ease-in-out ${resetButton ? "-translate-y-1 scale-75" : ""}`}>Play again</button>
+            <button onClick={rewardClaimed !== true ? undefined : handleRestartGame} className={`w-full py-2 bg-black text-amber-400 rounded-full outline-0 text-lg transition delay-150 duration-300 ease-in-out ${resetButton ? "-translate-y-1 scale-75" : ""}`}>Play again</button>
           </div>      
         </div>
       )}

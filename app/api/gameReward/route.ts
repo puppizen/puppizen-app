@@ -20,10 +20,12 @@ export async function POST(req: NextRequest) {
   const referrer = user?.referredBy ? await User.findOne({ userId: user.referredBy }) : null;
 
   const rewardAmount = score;
-  const realScore = rewardAmount / user.gameBooster
 
   user.balance += rewardAmount
   await user.save();
+
+  const roundScore = rewardAmount - (rewardAmount % 10)
+  const realScore = roundScore / user.gameBooster
 
   if (referrer) {
     const REFERRAL_PERCENTAGE = 0.1;
