@@ -26,6 +26,7 @@ export default function DropGameCanvas() {
   const [bombClicked, setBombClicked] = useState(false);
   const [claimButton, setClaimButton] = useState(false);
   const [resetButton, setResetButton] = useState(false);
+  const [rewardClaimed, setRewardClaimed] = useState(false);
 
   useEffect(() => {
     const tgUser = window.Telegram.WebApp.initDataUnsafe?.user
@@ -249,6 +250,7 @@ export default function DropGameCanvas() {
     rewardSound.play();
 
     if (res.ok) {
+      setRewardClaimed(true)
       console.log("rewardClaimed");
     }
   }
@@ -262,6 +264,7 @@ export default function DropGameCanvas() {
     setGameOver(false);
     setDrops([]);
     setIsFrozen(false);
+    setRewardClaimed(false);
   }
 
   return (
@@ -312,7 +315,7 @@ export default function DropGameCanvas() {
             <p className="font-light text-sm my-text-gray mt-1">{getEndMessage(score).text}</p>
           </div> 
           <div className="w-full flex flex-col gap-2">
-            <button onClick={handleClaimReward} className={`bg-amber-400 text-black py-2 text-lg rounded-full w-full outline-0 transition delay-150 duration-300 ease-in-out ${claimButton ? "-translate-y-1 scale-75" : ""}`}>Claim</button>  
+            <button onClick={rewardClaimed === true ? undefined : handleClaimReward} className={`bg-amber-400 text-black py-2 text-lg rounded-full w-full outline-0 transition delay-150 duration-300 ease-in-out ${claimButton ? "-translate-y-1 scale-75" : ""}`}>Claim</button>  
 
             <button onClick={handleRestartGame} className={`w-full py-2 bg-black text-amber-400 rounded-full outline-0 text-lg transition delay-150 duration-300 ease-in-out ${resetButton ? "-translate-y-1 scale-75" : ""}`}>Play again</button>
           </div>      
