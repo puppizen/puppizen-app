@@ -6,7 +6,7 @@ export default function DropGame() {
   return (
     <div className="h-50">
       <Link href="/dropGame">
-        <div className="relative flex flex-col gap-3 p-3 text-center rounded-md overflow-hidden">
+        <div className="relative rounded-md overflow-hidden h-full w-full">
           <svg className="absolute inset-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 -z-20 pointer-events-none bg-gradient-to-b from-transparent via-lime-700 to-black opacity-20 skew-12 perspective-distant animate-pulse scale-125">
             <defs>
               <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
@@ -20,9 +20,11 @@ export default function DropGame() {
             <DropAnimate />
           </div>
 
-          <span className="my-bg-dark text-xs rounded-full p-3">Coming soon</span>
-          <p className="text-lg font-medium">PUPPIZEN Drop</p>
-          <p className="text-xs my-text-gray">Catch the Drops</p>
+          <div className="absolute top-3/5 left-1/2 flex flex-col gap-3 text-center z-10">
+            <span className="my-bg-dark text-xs rounded-full p-3">Coming soon</span>
+            <p className="text-lg font-medium">PUPPIZEN Drop</p>
+            <p className="text-xs my-text-gray">Catch the Drops</p>
+          </div>
           
         </div>
       </Link>
