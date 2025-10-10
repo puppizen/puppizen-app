@@ -51,7 +51,8 @@ export default function DropGameCanvas() {
 
   useEffect(() => {
     if (gameTicket! <= 1) {
-      setErrorMessage("Not enough ticket!")
+      setErrorMessage("Not enough tickets!")
+      setPreGameCountdown(null);
     } else {
       if (preGameCountdown === null || gameStarted) return;
 
@@ -328,7 +329,7 @@ export default function DropGameCanvas() {
       setGameStarted(false);
       setPreGameCountdown(3);
     } else {
-      setErrorMessage("Not enough ticket!")
+      setErrorMessage("Not enough tickets!")
     }
 
     
@@ -411,14 +412,19 @@ export default function DropGameCanvas() {
       )}
 
       {errorMessage && (
-        <div className="absolute top-3/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 flex flex-col gap-3">
-          <p>{errorMessage}</p>
-          <p>Get more game tickets</p>
-          <Link href="/dailyReward" className="text-lg py-2 bg-black text-amber-400 rounded-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 scale-75">Daily Check-in</Link>
-          <div className="flex justify-center gap-2 items-center px-2 font-light"><hr className="my-border-gray w-full"/> <span>or</span> <hr className="my-border-gray w-full"/></div>
-          <Link href="/booster" className="text-lg py-2 bg-white text-amber-400 rounded-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 scale-75">Get Booster</Link>
-          <div className="flex justify-center gap-2 items-center px-2 font-light"><hr className="my-border-gray w-full"/> <span>or</span> <hr className="my-border-gray w-full"/></div>
-          <Link href="/buyTickets" className="text-lg py-2 bg-amber-500 text-white rounded-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 scale-75">Buy Tickets</Link>
+        <div className="absolute top-3/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 flex flex-col gap-3 text-center font-bold">
+          <p className="">{errorMessage}</p>
+          <p className="">Get more game tickets</p>
+
+          <Link href="/dailyReward" className="w-full text-lg py-2 bg-black text-amber-400 rounded-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 active:scale-75">Daily Check-in</Link>
+
+          <div className="flex justify-center gap-2 items-center px-5 font-light"><hr className="my-border-gray w-full"/> <span>or</span> <hr className="my-border-gray w-full"/></div>
+
+          <Link href="/booster" className="w-full text-lg py-2 bg-white text-amber-400 rounded-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 scale-75">Get Booster</Link>
+
+          <div className="flex justify-center gap-2 items-center px-5 font-light"><hr className="my-border-gray w-full"/> <span>or</span> <hr className="my-border-gray w-full"/></div>
+
+          <Link href="/buyTickets" className="w-full text-lg py-5 bg-amber-500 text-white rounded-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 scale-75">Buy Tickets</Link>
         </div>
       )}
       <div className="absolute bottom-5 left-0 z-10 px-4 flex justify-between items-center w-full">
