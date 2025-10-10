@@ -50,7 +50,7 @@ export default function DropGameCanvas() {
   }, [])
 
   useEffect(() => {
-    if (gameTicket! <= 1) {
+    if (gameTicket! < 1) {
       setErrorMessage("Not enough tickets!")
       setPreGameCountdown(null);
     } else {
