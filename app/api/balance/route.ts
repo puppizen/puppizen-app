@@ -21,6 +21,7 @@ export async function GET(request: NextRequest) {
     taskBooster: user.taskBooster,
     checkInBooster: user.checkInBooster,
     gameBooster: user.gameBooster,
+    gameTicket: user.gameTicket,
   });
 }
 

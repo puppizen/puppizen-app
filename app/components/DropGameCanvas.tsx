@@ -341,7 +341,7 @@ export default function DropGameCanvas() {
       </div>
 
       {preGameCountdown !== null && (
-        <div className="absolute inset-0 flex items-center justify-center z-20 bg-black bg-opacity-50 text-white text-6xl font-bold">
+        <div className="absolute inset-0 flex items-center justify-center z-0 bg-black/20 text-white text-6xl font-bold">
           {preGameCountdown > 0 ? preGameCountdown : "Go!"}
         </div>
       )}
@@ -401,7 +401,7 @@ export default function DropGameCanvas() {
         </div>
         <div className="flex items-center gap-2 relative">
           <span>{gameTicket}</span>
-          <Image src="/tickets.svg" width={24} height={24} alt="ticket" className="absolute inset-1/2 scale-110 rotate-y-25 rotate-z-30"></Image>
+          <Image src="/tickets.svg" width={24} height={24} alt="ticket" className="absolute scale-110 rotate-y-25 rotate-z-30"></Image>
         </div>        
       </div>
     </div>
