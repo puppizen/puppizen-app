@@ -14,7 +14,6 @@ interface Drop {
   speed: number;
   clicked?: boolean;
   showScore?: boolean;
-  scoreChange?: number;
 }
 
 export default function DropGameCanvas() {
@@ -29,6 +28,7 @@ export default function DropGameCanvas() {
   const [claimButton, setClaimButton] = useState(false);
   const [resetButton, setResetButton] = useState(false);
   const [rewardClaimed, setRewardClaimed] = useState(false);
+  const [scoreChange, setScoreChange] = useState(0);
 
   useEffect(() => {
     const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
@@ -153,19 +153,18 @@ export default function DropGameCanvas() {
     const freezeSound = new Audio("/freeze.mp3");
     const bombSound = new Audio("/bomb.mp3");
 
-    const scoreDelta: number = 0
-
     if (type === "reward" || type === "reward2" || type === "reward3") {
       claimSound.play();
-      const scoreDelta = addScore
-      setScore((s) => s + scoreDelta);
+      setScore((s) => s + addScore);
+      setScoreChange(addScore);
     }
     if (type === "bomb") {
       bombSound.play();
-      const scoreDelta = -2
-      setScore((s) => Math.max(0, s + scoreDelta))
+      setScore((s) => Math.max(0, s - 2))
       setBombClicked(true)
       setTimeout(() => setBombClicked(false), 1000);
+      const removeScore = -2
+      setScoreChange(removeScore)
     };
     if (type === "freeze") {
       freezeSound.play();
@@ -175,21 +174,19 @@ export default function DropGameCanvas() {
 
     setDrops((prev) =>
       prev.map((drop) =>
-        drop.id === id 
-          ? { 
-            ...drop, 
-            clicked: true, 
-            showScore: true,
-            scoreChange: scoreDelta !== 0 ? scoreDelta : undefined,
-          } 
-        : drop
+        drop.id === id ? { ...drop, clicked: true, showScore: true } : drop
       )
     );
 
     setTimeout(() => {
-      setDrops((prev) => prev.filter((drop) => drop.id !== id));
-      setDrops((prev) => prev.map((drop) => drop.id === id ? { ...drop, showScore: false, scoreChange: undefined } : drop));
+      setDrops((prev) => prev.map((drop) => drop.id === id ? { ...drop, showScore: false } : drop));
     }, 300);
+
+    setTimeout(() => {
+      setDrops((prev) => prev.filter((drop) => drop.id !== id));
+    }, 300);
+
+    
   }
 
   function renderBackgroundSVG() {
@@ -318,15 +315,15 @@ export default function DropGameCanvas() {
               onClick={() => handleClick(drop.id, drop.type)}
             />
 
-            {drop.showScore && drop.scoreChange !== undefined && (
+            {drop.showScore && (
               <div
-                className="absolute font-thin text-xs animate-bounce"
+                className="absolute text-amber-500 font-thin text-xs animate-bounce"
                 style={{
                   left: drop.x + drop.size / 2,
                   top: drop.y - 20,
                 }}
               >
-                <span className={drop.scoreChange! > 0 ? "text-amber-400" : "text-red-500"}>{drop.scoreChange! > 0 ? `+${drop.scoreChange}` : drop.scoreChange}</span>
+                <span className={scoreChange > 0 ? "text-amber-500" : "text-red-500"}>{scoreChange > 0 ? "+1" : "-2"}</span>
               </div>
             )}
 
