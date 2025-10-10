@@ -9,7 +9,7 @@ import Games from './components/Games';
 
 export default function Home() {
   return (
-    <div className="p-4 mb-15">
+    <div className="p-4 mb-15 max-w-screen">
       <UserTGData/>
 
       <div className='pt-5'>

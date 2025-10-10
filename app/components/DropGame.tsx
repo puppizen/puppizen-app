@@ -20,7 +20,7 @@ export default function DropGame() {
             <DropAnimate />
           </div>
 
-          <div className="absolute top-3/5 left-1/2 flex flex-col gap-3 text-center z-10">
+          <div className="absolute top-3/5 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-3 text-center z-10">
             <span className="my-bg-dark text-xs rounded-full p-3">Coming soon</span>
             <p className="text-lg font-medium">PUPPIZEN Drop</p>
             <p className="text-xs my-text-gray">Catch the Drops</p>
