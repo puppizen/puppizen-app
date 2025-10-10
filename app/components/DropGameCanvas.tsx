@@ -50,10 +50,7 @@ export default function DropGameCanvas() {
   }, [])
 
   useEffect(() => {
-    if (gameTicket! < 1) {
-      setErrorMessage("Not enough tickets!")
-      setPreGameCountdown(null);
-    } else {
+    if (gameTicket! >= 1) {
       if (preGameCountdown === null || gameStarted) return;
 
       if (preGameCountdown > 0) {
@@ -67,6 +64,9 @@ export default function DropGameCanvas() {
         setGameStarted(true);
         setPreGameCountdown(null);
       }
+    } else {
+      setErrorMessage("Not enough tickets!");
+      setPreGameCountdown(null);
     }
   }, [preGameCountdown, gameStarted, gameTicket]);
 
@@ -331,8 +331,6 @@ export default function DropGameCanvas() {
     } else {
       setErrorMessage("Not enough tickets!")
     }
-
-    
   }
 
   return (
