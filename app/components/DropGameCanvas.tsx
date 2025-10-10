@@ -29,7 +29,7 @@ export default function DropGameCanvas() {
   const [resetButton, setResetButton] = useState(false);
   const [rewardClaimed, setRewardClaimed] = useState(false);
   const [scoreChange, setScoreChange] = useState(0);
-  const [gameTicket, setGameTicket] = useState<number | null>(null);
+  const [gameTicket, setGameTicket] = useState<number | null>(1);
   const [preGameCountdown, setPreGameCountdown] = useState<number | null>(3);
   const [gameStarted, setGameStarted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -50,13 +50,14 @@ export default function DropGameCanvas() {
   }, [])
 
   useEffect(() => {
-    if (gameTicket! >= 1) {
+    if (gameTicket !== null && gameTicket >= 1) {
       if (preGameCountdown === null || gameStarted) return;
 
       if (preGameCountdown > 0) {
         const countdownTimer = setTimeout(() => {
           setPreGameCountdown((prev) => (prev !== null ? prev - 1 : null));
         }, 1000);
+
         return () => clearTimeout(countdownTimer);
       }
 
@@ -319,7 +320,7 @@ export default function DropGameCanvas() {
     setResetButton(true);
     setTimeout(() => setResetButton(false), 300)
 
-    if (gameTicket! >= 1) {
+    if (gameTicket !== null && gameTicket >= 1) {
       setScore(0);
       setTimeLeft(30);
       setGameOver(false);
