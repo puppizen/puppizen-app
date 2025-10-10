@@ -4,7 +4,7 @@ import DropAnimate from "./DropAnimate"
 
 export default function DropGame() {
   return (
-    <div>
+    <div className="h-50">
       <Link href="/dropGame">
         <div className="relative flex flex-col gap-3 p-3 text-center rounded-md overflow-hidden">
           <svg className="absolute inset-1/2 w-full h-full -translate-x-1/2 -translate-y-1/2 -z-20 pointer-events-none bg-gradient-to-b from-transparent via-lime-700 to-black opacity-20 skew-12 perspective-distant animate-pulse scale-125">

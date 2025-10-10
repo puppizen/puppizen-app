@@ -32,6 +32,7 @@ export default function DropGameCanvas() {
   const [gameTicket, setGameTicket] = useState<number | null>(null);
   const [preGameCountdown, setPreGameCountdown] = useState<number | null>(3);
   const [gameStarted, setGameStarted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
@@ -49,20 +50,22 @@ export default function DropGameCanvas() {
   }, [])
 
   useEffect(() => {
-    if (preGameCountdown === null || gameStarted) return;
+    if (gameTicket! >= 1) {
+      if (preGameCountdown === null || gameStarted) return;
 
-    if (preGameCountdown > 0) {
-      const countdownTimer = setTimeout(() => {
-        setPreGameCountdown((prev) => (prev !== null ? prev - 1 : null));
-      }, 1000);
-      return () => clearTimeout(countdownTimer);
-    }
+      if (preGameCountdown > 0) {
+        const countdownTimer = setTimeout(() => {
+          setPreGameCountdown((prev) => (prev !== null ? prev - 1 : null));
+        }, 1000);
+        return () => clearTimeout(countdownTimer);
+      }
 
-    if (preGameCountdown === 0) {
-      setGameStarted(true);
-      setPreGameCountdown(null);
+      if (preGameCountdown === 0) {
+        setGameStarted(true);
+        setPreGameCountdown(null);
+      }
     }
-  }, [preGameCountdown, gameStarted]);
+  }, [preGameCountdown, gameStarted, gameTicket]);
 
   useEffect(() => {
     if (!gameStarted) return;
@@ -310,14 +313,20 @@ export default function DropGameCanvas() {
     setResetButton(true);
     setTimeout(() => setResetButton(false), 300)
 
-    setScore(0);
-    setTimeLeft(30);
-    setGameOver(false);
-    setDrops([]);
-    setIsFrozen(false);
-    setRewardClaimed(false);
-    setGameStarted(false);
-    setPreGameCountdown(3);
+    if (gameTicket! >= 1) {
+      setScore(0);
+      setTimeLeft(30);
+      setGameOver(false);
+      setDrops([]);
+      setIsFrozen(false);
+      setRewardClaimed(false);
+      setGameStarted(false);
+      setPreGameCountdown(3);
+    } else {
+      setErrorMessage("Not enough ticket")
+    }
+
+    
   }
 
   return (
@@ -389,10 +398,23 @@ export default function DropGameCanvas() {
             <p className="font-light text-sm my-text-gray mt-1">{getEndMessage(score).text}</p>
           </div> 
           <div className="w-full flex flex-col gap-2">
-            <button onClick={rewardClaimed === true ? undefined : handleClaimReward} className={`bg-amber-400 text-black py-2 text-lg rounded-full w-full outline-0 transition delay-150 duration-300 ease-in-out ${claimButton ? "-translate-y-1 scale-75" : ""}`}>Claim</button>  
+            <button onClick={rewardClaimed === true ? undefined : handleClaimReward} className={`bg-amber-400 text-black py-2 text-lg rounded-full w-full outline-0 transition delay-150 duration-300 ease-in-out ${claimButton ? "-translate-y-1 scale-75" : ""}`}>Claim</button>
 
-            <button onClick={rewardClaimed !== true && gameTicket !== 0 ? undefined : handleRestartGame} className={`w-full py-2 bg-black text-amber-400 rounded-full outline-0 text-lg transition delay-150 duration-300 ease-in-out ${resetButton ? "-translate-y-1 scale-75" : ""}`}>Play again</button>
-          </div>      
+            <button onClick={rewardClaimed !== true && gameTicket! >= 1 ? undefined : handleRestartGame} className={`w-full py-2 bg-black text-amber-400 rounded-full outline-0 text-lg transition delay-150 duration-300 ease-in-out ${resetButton ? "-translate-y-1 scale-75" : ""}`}>Play again</button>
+          </div>
+        </div>
+      )}
+
+      {errorMessage && (
+        <div className="absolute top-3/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 flex flex-col gap-3">
+          <p>{errorMessage}</p>
+          <p>Get more game tickets</p>
+          <Link href="/dailyReward" className="text-lg py-2 bg-black text-amber-400 rounded-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 scale-75">Daily Check-in</Link>
+          <div className="flex justify-center gap-2 items-center px-2 font-light"><hr className="my-border-gray w-full"/> <span>or</span> <hr className="my-border-gray w-full"/></div>
+          <Link href="/booster" className="text-lg py-2 bg-white text-amber-400 rounded-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 scale-75">Get Booster</Link>
+          <div className="flex justify-center gap-2 items-center px-2 font-light"><hr className="my-border-gray w-full"/> <span>or</span> <hr className="my-border-gray w-full"/></div>
+          <Link href="/buyTickets" className="text-lg py-2 bg-amber-500 text-white rounded-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 scale-75">Buy Tickets</Link>
+          <div className="flex justify-center gap-2 items-center px-2 font-light"><hr className="my-border-gray w-full"/> <span>or</span> <hr className="my-border-gray w-full"/></div>
         </div>
       )}
       <div className="absolute bottom-5 left-0 z-10 px-4 flex justify-between items-center w-full">
