@@ -420,11 +420,11 @@ export default function DropGameCanvas() {
 
           <div className="flex justify-center gap-2 items-center px-5 font-light"><hr className="my-border-gray w-full"/> <span>or</span> <hr className="my-border-gray w-full"/></div>
 
-          <Link href="/booster" className="w-full text-lg py-2 bg-white text-amber-400 rounded-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 scale-75">Get Booster</Link>
+          <Link href="/booster" className="w-full text-lg py-2 bg-white text-amber-400 rounded-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 active:scale-75">Get Booster</Link>
 
           <div className="flex justify-center gap-2 items-center px-5 font-light"><hr className="my-border-gray w-full"/> <span>or</span> <hr className="my-border-gray w-full"/></div>
 
-          <Link href="/buyTickets" className="w-full text-lg py-5 bg-amber-500 text-white rounded-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 scale-75">Buy Tickets</Link>
+          <Link href="/buyTickets" className="w-full text-lg py-2 bg-amber-500 text-white rounded-full outline-0 transition delay-150 duration-300 ease-in-out active:-translate-y-1 active:scale-75">Buy Tickets</Link>
         </div>
       )}
       <div className="absolute bottom-5 left-0 z-10 px-4 flex justify-between items-center w-full">
