@@ -155,6 +155,7 @@ export async function POST(req: NextRequest) {
         starsPaidToday: 0,
         lastStarsPaidAt: null,
         lastClaimedAtStars: null,
+        gameTicket: 3
       });
 
       const referrer = await User.findOne({ refCode: referralCode });

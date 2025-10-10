@@ -29,6 +29,9 @@ export default function DropGameCanvas() {
   const [resetButton, setResetButton] = useState(false);
   const [rewardClaimed, setRewardClaimed] = useState(false);
   const [scoreChange, setScoreChange] = useState(0);
+  const [gameTicket, setGameTicket] = useState(0);
+  const [preGameCountdown, setPreGameCountdown] = useState<number | null>(3);
+  const [gameStarted, setGameStarted] = useState(false);
 
   useEffect(() => {
     const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
@@ -39,12 +42,31 @@ export default function DropGameCanvas() {
       fetch(`/api/balance?userId=${tgUser.id}`)
       .then((res) => res.json())
       .then((data) => {
-        setGameBooster(data.gameBooster)
+        setGameBooster(data.gameBooster);
+        setGameTicket(data.gameTicket);
       })
     }
   }, [])
 
   useEffect(() => {
+    if (preGameCountdown === null || gameStarted) return;
+
+    if (preGameCountdown > 0) {
+      const countdownTimer = setTimeout(() => {
+        setPreGameCountdown((prev) => (prev !== null ? prev - 1 : null));
+      }, 1000);
+      return () => clearTimeout(countdownTimer);
+    }
+
+    if (preGameCountdown === 0) {
+      setGameStarted(true);
+      setPreGameCountdown(null);
+    }
+  }, [preGameCountdown, gameStarted]);
+
+  useEffect(() => {
+    if (!gameStarted) return;
+
     let bombCount = 0;
     let freezeCount = 0;
     let rewardCount = 0;
@@ -105,7 +127,7 @@ export default function DropGameCanvas() {
       clearInterval(reward2Interval);
       clearInterval(reward3Interval);
     };
-  }, [gameOver]);
+  }, [gameOver, gameStarted]);
 
   function createDrop(type: DropType) {
     const sizeOptions = {
@@ -157,6 +179,16 @@ export default function DropGameCanvas() {
       claimSound.play();
       setScore((s) => s + addScore);
       setScoreChange(addScore);
+
+      setDrops((prev) =>
+        prev.map((drop) =>
+          drop.id === id ? { ...drop, clicked: true, showScore: true } : drop
+        )
+      );
+
+      setTimeout(() => {
+        setDrops((prev) => prev.map((drop) => drop.id === id ? { ...drop, showScore: false } : drop));
+      }, 300);
     }
     if (type === "bomb") {
       bombSound.play();
@@ -165,6 +197,16 @@ export default function DropGameCanvas() {
       setTimeout(() => setBombClicked(false), 1000);
       const removeScore = -2
       setScoreChange(removeScore)
+
+      setDrops((prev) =>
+        prev.map((drop) =>
+          drop.id === id ? { ...drop, clicked: true, showScore: true } : drop
+        )
+      );
+
+      setTimeout(() => {
+        setDrops((prev) => prev.map((drop) => drop.id === id ? { ...drop, showScore: false } : drop));
+      }, 300);
     };
     if (type === "freeze") {
       freezeSound.play();
@@ -174,19 +216,17 @@ export default function DropGameCanvas() {
 
     setDrops((prev) =>
       prev.map((drop) =>
-        drop.id === id ? { ...drop, clicked: true, showScore: true } : drop
+        drop.id === id ? { ...drop, clicked: true } : drop
       )
     );
 
     setTimeout(() => {
-      setDrops((prev) => prev.map((drop) => drop.id === id ? { ...drop, showScore: false } : drop));
+      setDrops((prev) => prev.map((drop) => drop.id === id ? { ...drop } : drop));
     }, 300);
 
     setTimeout(() => {
       setDrops((prev) => prev.filter((drop) => drop.id !== id));
     }, 300);
-
-    
   }
 
   function renderBackgroundSVG() {
@@ -276,6 +316,8 @@ export default function DropGameCanvas() {
     setDrops([]);
     setIsFrozen(false);
     setRewardClaimed(false);
+    setGameStarted(false);
+    setPreGameCountdown(3);
   }
 
   return (
@@ -297,6 +339,12 @@ export default function DropGameCanvas() {
           <span>Score: {score}</span>
         </div>
       </div>
+
+      {preGameCountdown !== null && (
+        <div className="absolute inset-0 flex items-center justify-center z-20 bg-black bg-opacity-50 text-white text-6xl font-bold">
+          {preGameCountdown > 0 ? preGameCountdown : "Go!"}
+        </div>
+      )}
 
       <div className="absolute -top-15 left-0 w-full h-full">
         {drops.map((drop) => (
@@ -347,7 +395,15 @@ export default function DropGameCanvas() {
           </div>      
         </div>
       )}
-      <p className="absolute bottom-0 left-0 z-10 px-4">This game is still under development. All points earned will not be calculated</p>
+      <div className="absolute bottom-0 left-0 z-10 px-4 flex justify-between items-center">
+        <div>
+          <Image src="/speaker.svg" width={24} height={24} alt="volume"></Image>
+        </div>
+        <div className="flex items-center gap-2 relative">
+          <span>{gameTicket}</span>
+          <Image src="/tickets.svg" width={24} height={24} alt="ticket" className="absolute inset-1/2 scale-110 rotate-y-25 rotate-z-30"></Image>
+        </div>        
+      </div>
     </div>
   );
 }

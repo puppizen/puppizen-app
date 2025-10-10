@@ -25,7 +25,8 @@ export async function POST(req: NextRequest) {
 
   const rewardAmount = score;
 
-  user.balance += rewardAmount
+  user.balance += rewardAmount;
+  user.gameTicket -= 1;
   await user.save();
 
   const roundScore = rewardAmount - (rewardAmount % 10)

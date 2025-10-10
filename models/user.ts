@@ -42,6 +42,10 @@ const userSchema = new Schema({
     type: Number,
     default: 1,
   },
+  gameTicket: {
+    type: Number,
+    default: 3
+  },
   totalStarsPaid: {
     type: Number,
     default: 0
