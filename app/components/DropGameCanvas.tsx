@@ -14,6 +14,7 @@ interface Drop {
   speed: number;
   clicked?: boolean;
   showScore?: boolean;
+  scoreChange?: number;
 }
 
 export default function DropGameCanvas() {
@@ -152,23 +153,17 @@ export default function DropGameCanvas() {
     const freezeSound = new Audio("/freeze.mp3");
     const bombSound = new Audio("/bomb.mp3");
 
+    const scoreDelta: number = 0
+
     if (type === "reward" || type === "reward2" || type === "reward3") {
       claimSound.play();
-      setScore((s) => s + addScore);
-
-      setDrops((prev) =>
-        prev.map((drop) =>
-          drop.id === id ? { ...drop, clicked: true, showScore: true } : drop
-        )
-      );
-
-      setTimeout(() => {
-        setDrops((prev) => prev.map((drop) => drop.id === id ? { ...drop, showScore: false } : drop));
-      }, 300);
+      const scoreDelta = addScore
+      setScore((s) => s + scoreDelta);
     }
     if (type === "bomb") {
       bombSound.play();
-      setScore((s) => Math.max(0, s - 2))
+      const scoreDelta = -2
+      setScore((s) => Math.max(0, s + scoreDelta))
       setBombClicked(true)
       setTimeout(() => setBombClicked(false), 1000);
     };
@@ -180,12 +175,20 @@ export default function DropGameCanvas() {
 
     setDrops((prev) =>
       prev.map((drop) =>
-        drop.id === id ? { ...drop, clicked: true } : drop
+        drop.id === id 
+          ? { 
+            ...drop, 
+            clicked: true, 
+            showScore: true,
+            scoreChange: scoreDelta !== 0 ? scoreDelta : undefined,
+          } 
+        : drop
       )
     );
 
     setTimeout(() => {
       setDrops((prev) => prev.filter((drop) => drop.id !== id));
+      setDrops((prev) => prev.map((drop) => drop.id === id ? { ...drop, showScore: false, scoreChange: undefined } : drop));
     }, 300);
   }
 
@@ -315,15 +318,15 @@ export default function DropGameCanvas() {
               onClick={() => handleClick(drop.id, drop.type)}
             />
 
-            {drop.showScore && (
+            {drop.showScore && drop.scoreChange !== undefined && (
               <div
-                className="absolute text-amber font-thin text-xs animate-bounce"
+                className="absolute font-thin text-xs animate-bounce"
                 style={{
                   left: drop.x + drop.size / 2,
                   top: drop.y - 20,
                 }}
               >
-                + {gameBooster ?? 1}
+                <span className={drop.scoreChange! > 0 ? "text-amber-400" : "text-red-500"}>{drop.scoreChange! > 0 ? `+${drop.scoreChange}` : drop.scoreChange}</span>
               </div>
             )}
 
