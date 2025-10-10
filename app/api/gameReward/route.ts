@@ -24,9 +24,10 @@ export async function POST(req: NextRequest) {
   const referrer = user?.referredBy ? await User.findOne({ userId: user.referredBy }) : null;
 
   const rewardAmount = score;
+  const removeTicket = -1
 
   user.balance += rewardAmount;
-  user.gameTicket -= 1;
+  user.gameTicket += removeTicket;
   await user.save();
 
   const roundScore = rewardAmount - (rewardAmount % 10)

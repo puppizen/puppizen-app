@@ -29,7 +29,7 @@ export default function DropGameCanvas() {
   const [resetButton, setResetButton] = useState(false);
   const [rewardClaimed, setRewardClaimed] = useState(false);
   const [scoreChange, setScoreChange] = useState(0);
-  const [gameTicket, setGameTicket] = useState(0);
+  const [gameTicket, setGameTicket] = useState<number | null>(null);
   const [preGameCountdown, setPreGameCountdown] = useState<number | null>(3);
   const [gameStarted, setGameStarted] = useState(false);
 
@@ -391,7 +391,7 @@ export default function DropGameCanvas() {
           <div className="w-full flex flex-col gap-2">
             <button onClick={rewardClaimed === true ? undefined : handleClaimReward} className={`bg-amber-400 text-black py-2 text-lg rounded-full w-full outline-0 transition delay-150 duration-300 ease-in-out ${claimButton ? "-translate-y-1 scale-75" : ""}`}>Claim</button>  
 
-            <button onClick={rewardClaimed !== true ? undefined : handleRestartGame} className={`w-full py-2 bg-black text-amber-400 rounded-full outline-0 text-lg transition delay-150 duration-300 ease-in-out ${resetButton ? "-translate-y-1 scale-75" : ""}`}>Play again</button>
+            <button onClick={rewardClaimed !== true && gameTicket !== 0 ? undefined : handleRestartGame} className={`w-full py-2 bg-black text-amber-400 rounded-full outline-0 text-lg transition delay-150 duration-300 ease-in-out ${resetButton ? "-translate-y-1 scale-75" : ""}`}>Play again</button>
           </div>      
         </div>
       )}
