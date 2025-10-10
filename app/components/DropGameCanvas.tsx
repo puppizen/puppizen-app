@@ -399,9 +399,9 @@ export default function DropGameCanvas() {
         <div>
           <Image src="/speaker.svg" width={24} height={24} alt="volume"></Image>
         </div>
-        <div className="flex items-center gap-2 relative">
+        <div className="flex items-center gap-2">
           <span className="font-light">{gameTicket}</span>
-          <Image src="/tickets.svg" width={24} height={24} alt="ticket" className="absolute rotate-y-25 rotate-z-30"></Image>
+          <Image src="/tickets.svg" width={28} height={28} alt="ticket" className=""></Image>
         </div>        
       </div>
     </div>
