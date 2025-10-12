@@ -150,7 +150,7 @@ export default function DropGameCanvas() {
       bomb: [45, 50, 55],
     };
     const size = sizeOptions[type][Math.floor(Math.random() * 3)];
-    const speed = type === "bomb" ? 3 : 4 + Math.random() * 4;
+    const speed = type === "bomb" ? 3 : 5 + Math.random() * 5;
 
     const screenWidth = window.innerWidth
 
@@ -327,7 +327,7 @@ export default function DropGameCanvas() {
 
     if (gameTicket !== null && gameTicket >= 1) {
       setScore(0);
-      setTimeLeft(30);
+      setTimeLeft(25);
       setGameOver(false);
       setDrops([]);
       setIsFrozen(false);
@@ -437,14 +437,14 @@ export default function DropGameCanvas() {
         </div>
         
         {getBooster && (
-          <div className="animate-bounce">
-            <Link className="text-amber-400 text-lg font-bold" href="/booster">Get Booster x2</Link>
+          <div className="animate-bounce text-center">
+            <Link className="text-amber-400 text-lg font-light" href="/booster">Get Booster x2</Link>
           </div>
         )}
 
         <div className="flex items-center gap-2">
           <span className="font-light">{gameTicket}</span>
-          <Image src="/tickets.svg" width={28} height={28} alt="ticket" className=""></Image>
+          <Image src="/tickets.svg" width={28} height={28} alt="ticket" className="-rotate-45"></Image>
         </div>
       </div>
     </div>
