@@ -42,5 +42,8 @@ export async function POST(req: NextRequest) {
     await referrer.save();
   }
 
-  return NextResponse.json({ success: true });
+  return NextResponse.json({ 
+    success: true,
+    gameTicket: user.gameTicket,
+  });
 }
