@@ -33,6 +33,7 @@ export default function DropGameCanvas() {
   const [preGameCountdown, setPreGameCountdown] = useState<number | null>(3);
   const [gameStarted, setGameStarted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [getBooster, setGetBooster] = useState(false);
 
   useEffect(() => {
     const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
@@ -46,8 +47,12 @@ export default function DropGameCanvas() {
         setGameBooster(data.gameBooster);
         setGameTicket(data.gameTicket);
       })
+
+      if (gameBooster !== null && gameBooster < 2) {
+        setGetBooster(true)
+      }
     }
-  }, [])
+  }, [gameBooster])
 
   useEffect(() => {
     if (preGameCountdown === null || gameStarted) return;
@@ -237,7 +242,7 @@ export default function DropGameCanvas() {
   }
 
   function renderBackgroundSVG() {
-    if (gameOver) {
+    if (gameOver || !gameStarted) {
       return (
         <svg className="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vh] h-[200vw] z-0 pointer-events-none bg-gradient-to-b from-transparent via-amber-700 to-black opacity-20 skew-12 perspective-distant animate-pulse scale-125">
           <defs>
@@ -394,7 +399,7 @@ export default function DropGameCanvas() {
       </div>
       
 
-      {gameOver && (
+      {gameOver && !errorMessage && (
         <div className="absolute top-3/5 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 flex flex-col gap-3">
           <div className="text-center p-3 bg-black/30 backdrop-blur-md rounded-md w-full">
             <p className="font-thin text-amber-400/40">Your Score</p>
@@ -430,10 +435,17 @@ export default function DropGameCanvas() {
         <div>
           <Image src="/speaker.svg" width={24} height={24} alt="volume"></Image>
         </div>
+        
+        {getBooster && (
+          <div className="animate-bounce">
+            <Link className="text-amber-400 text-lg font-bold" href="/booster">Get Booster x2</Link>
+          </div>
+        )}
+
         <div className="flex items-center gap-2">
           <span className="font-light">{gameTicket}</span>
           <Image src="/tickets.svg" width={28} height={28} alt="ticket" className=""></Image>
-        </div>        
+        </div>
       </div>
     </div>
   );
