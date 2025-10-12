@@ -32,6 +32,7 @@ export async function POST(request: NextRequest) {
   const REWARD_AMOUNT = REWARD * BOOSTER;
   user.balance += REWARD_AMOUNT;
   user.lastClaimedAtStars = today;
+  user.gameTicket += 10
 
   await user.save();
 
