@@ -16,10 +16,6 @@ export async function POST(req: NextRequest) {
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
-
-  if (user.username !== "JT_Puppizen") {
-    return NextResponse.json({ error: 'Game still under development' }, { status: 404 });
-  }
   
   const referrer = user?.referredBy ? await User.findOne({ userId: user.referredBy }) : null;
 

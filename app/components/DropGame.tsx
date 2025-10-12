@@ -1,8 +1,23 @@
 'use client'
+import React, { useState, useEffect } from 'react'
 import Link from "next/link"
 import DropAnimate from "./DropAnimate"
+import Image from "next/image"
 
 export default function DropGame() {
+  const [gameTicket, setGameTicket] = useState<number | null>(null)
+
+  useEffect(() => {
+    const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
+
+    if (tgUser.id) {
+      fetch(`/api/balance?userId=${tgUser.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setGameTicket(data.gameTicket);
+      })
+    }
+  }, [])
   return (
     <div className="h-50">
       <Link href="/dropGame">
@@ -20,10 +35,15 @@ export default function DropGame() {
             <DropAnimate />
           </div>
 
+          <div className="absolute top-5 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex items-center gap-2 p-3">
+            <p className="text-white/40 font-light">{gameTicket}</p>
+            <Image className="-rotate-45" src="/tickets.svg" width={18} height={18} alt="tickets"/>
+          </div>
+
           <div className="absolute top-3/5 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex flex-col gap-3 text-center p-3">
             <p className="text-lg font-medium">Drops</p>
             <p className="text-xs my-text-gray">Catch the Drops</p>
-            <span className="my-bg-dark text-xs rounded-full p-3">Coming soon</span>
+            <span className="bg-gray-500/35 text-xs rounded-full p-3">Start Playing</span>
           </div>
           
         </div>
