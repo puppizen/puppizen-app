@@ -38,10 +38,10 @@ export default function DropGame() {
           <div className="absolute top-3/5 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex flex-col gap-3 text-center p-3">
             <p className="text-lg font-medium">Drops</p>
             <p className="text-xs my-text-gray">Catch the Drops</p>
-            <div className="relative mt-2">
+            <div className="relative mt-2 w-full">
               <span className="bg-gray-500/35 text-xs rounded-full p-3">Start Playing</span>
 
-              <div className="absolute -top-2 right-3 flex items-center gap-2 p-3 rotate-45 bg-black/40">
+              <div className="absolute -top-2 right-3 flex items-center gap-2 py-0.5 px-1 rotate-10 bg-black rounded-full">
                 <p className="text-white/40 font-light text-xs">{gameTicket}</p>
                 <Image className="-rotate-45" src="/tickets.svg" width={12} height={12} alt="tickets"/>
               </div>
