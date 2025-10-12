@@ -35,8 +35,8 @@ export default function DropGame() {
             <DropAnimate />
           </div>
 
-          <div className="absolute top-2 right-5 flex items-center gap-1 py-0.5 px-1 rotate-15 bg-black rounded-full">
-            <p className="text-white/40 font-light text-xs">{gameTicket}</p>
+          <div className="absolute top-5 right-5 flex items-center gap-1 py-0.5 px-1 rotate-10 bg-black rounded-full">
+            <p className="text-white/75 font-light text-xs">{gameTicket}</p>
             <Image className="-rotate-35" src="/tickets.svg" width={12} height={12} alt="tickets"/>
           </div>
 
