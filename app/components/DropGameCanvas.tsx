@@ -20,7 +20,7 @@ export default function DropGameCanvas() {
   const [userId, setUserId] = useState<number | null>(null);
   const [drops, setDrops] = useState<Drop[]>([]);
   const [score, setScore] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(30);
+  const [timeLeft, setTimeLeft] = useState(25);
   const [gameOver, setGameOver] = useState(false);
   const [isFrozen, setIsFrozen] = useState(false);
   const [gameBooster, setGameBooster] = useState<number | null>(null);
@@ -150,7 +150,7 @@ export default function DropGameCanvas() {
       bomb: [45, 50, 55],
     };
     const size = sizeOptions[type][Math.floor(Math.random() * 3)];
-    const speed = type === "bomb" ? 3 : 5 + Math.random() * 5;
+    const speed = type === "bomb" ? 3 : 7 + Math.random() * 7;
 
     const screenWidth = window.innerWidth
 
@@ -301,9 +301,9 @@ export default function DropGameCanvas() {
   }
 
   const handleClaimReward = async () => {
+    const rewardSound = new Audio("/reward.mp3");
     setClaimButton(true);
     setTimeout(() => setClaimButton(false), 300)
-    const rewardSound = new Audio("/reward.mp3");
     const res = await fetch("/api/gameReward", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
