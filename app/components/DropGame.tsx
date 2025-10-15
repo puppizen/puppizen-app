@@ -29,7 +29,7 @@ export default function DropGame() {
       .then((data) => {
         setGameTicket(data.gameTicket);
         localStorage.removeItem(cacheKey);
-        localStorage.setItem(cacheKey, JSON.stringify(data));
+        localStorage.setItem(cacheKey, JSON.stringify(data.gameTicket));
         setLoading(false);
       })
     }
