@@ -28,7 +28,7 @@ export default function GameRewardBooster() {
   }, [])
 
   const handleClaimWithStars = async () => {
-    const res = await fetch("/api/invoiceLinkBoasterX", {
+    const res = await fetch("/api/invoiceLinkBoaster5", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId }),
@@ -40,8 +40,8 @@ export default function GameRewardBooster() {
     const listener = async (event: InvoiceClosedEvent) => {
       if (event.status === "paid") {
 
-        console.log("Calling api/paymentSuccessful2")
-        const res = await fetch("/api/paymentSuccessful", {
+        console.log("Calling api/paymentSuccessful4")
+        const res = await fetch("/api/paymentSuccessful4", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userId }),

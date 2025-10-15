@@ -5,19 +5,36 @@ import DropAnimate from "./DropAnimate"
 import Image from "next/image"
 
 export default function DropGame() {
-  const [gameTicket, setGameTicket] = useState<number | null>(null)
+  const [gameTicket, setGameTicket] = useState<number | null>(null);
+  const [cachedTickets, setCachedTickets] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
 
+    const cacheKey = `cachedTickets-${tgUser.id}`
+
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        setCachedTickets(parsed)
+      } catch (err) {
+        console.error('Failed to parse cached tickets:', err);
+      }
+    }
     if (tgUser.id) {
       fetch(`/api/balance?userId=${tgUser.id}`)
       .then((res) => res.json())
       .then((data) => {
         setGameTicket(data.gameTicket);
+        setLoading(false);
       })
     }
   }, [])
+
+  const userGameTicket = loading ? cachedTickets : gameTicket;
+
   return (
     <div className="h-50">
       <Link href="/dropGame">
@@ -35,8 +52,8 @@ export default function DropGame() {
             <DropAnimate />
           </div>
 
-          <div className="absolute top-5 right-5 flex items-center gap-1 py-0.5 px-1 rotate-10 bg-black rounded-full">
-            <p className="text-white/75 font-light text-xs">{gameTicket}</p>
+          <div className="absolute top-5 right-5 flex items-center gap-1 p-1 rotate-10 bg-black rounded-full">
+            <p className="text-white/85 font-light text-xs">{userGameTicket}</p>
             <Image className="-rotate-35" src="/tickets.svg" width={12} height={12} alt="tickets"/>
           </div>
 
