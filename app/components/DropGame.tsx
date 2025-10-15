@@ -28,6 +28,8 @@ export default function DropGame() {
       .then((res) => res.json())
       .then((data) => {
         setGameTicket(data.gameTicket);
+        localStorage.removeItem(cacheKey);
+        localStorage.setItem(cacheKey, JSON.stringify(data));
         setLoading(false);
       })
     }
@@ -52,7 +54,7 @@ export default function DropGame() {
             <DropAnimate />
           </div>
 
-          <div className="absolute top-5 right-5 flex items-center gap-1 p-1 rotate-10 bg-black rounded-full">
+          <div className="absolute top-5 right-5 flex items-center gap-1 py-1 px-2 rotate-10 bg-black rounded-full">
             <p className="text-white/85 font-light text-xs">{userGameTicket}</p>
             <Image className="-rotate-35" src="/tickets.svg" width={12} height={12} alt="tickets"/>
           </div>
