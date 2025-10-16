@@ -14,11 +14,7 @@ export default function DropGame() {
     const cacheKey = `cachedTickets-${tgUser.id}`
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
-      try {
-        setCachedTickets(Number(cached));
-      } catch (err) {
-        console.error('Failed to parse cached tickets:', err);
-      }
+      setCachedTickets(Number(cached));
     }
     if (tgUser.id) {
       fetch(`/api/balance?userId=${tgUser.id}`)
@@ -29,7 +25,7 @@ export default function DropGame() {
         localStorage.setItem(cacheKey, data.gameTicket.toString());
       })
     }
-  }, [])
+  }, []);
 
   const userGameTicket = cachedTickets || gameTicket;
 

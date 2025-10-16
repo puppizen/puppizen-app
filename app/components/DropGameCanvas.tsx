@@ -302,6 +302,8 @@ export default function DropGameCanvas() {
 
   const handleClaimReward = async () => {
     const rewardSound = new Audio("/reward.mp3");
+    rewardSound.play();
+    
     setClaimButton(true);
     setTimeout(() => setClaimButton(false), 300)
     const res = await fetch("/api/gameReward", {
@@ -309,8 +311,6 @@ export default function DropGameCanvas() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId: userId, score }),
     })
-
-    rewardSound.play();
 
     const data = await res.json()
 
