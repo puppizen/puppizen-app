@@ -7,18 +7,15 @@ import Image from "next/image"
 export default function DropGame() {
   const [gameTicket, setGameTicket] = useState<number | null>(null);
   const [cachedTickets, setCachedTickets] = useState<number | null>(null);
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const tgUser = window.Telegram?.WebApp?.initDataUnsafe?.user;
 
     const cacheKey = `cachedTickets-${tgUser.id}`
-
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
       try {
-        const parsed = JSON.parse(cached);
-        setCachedTickets(parsed)
+        setCachedTickets(Number(cached));
       } catch (err) {
         console.error('Failed to parse cached tickets:', err);
       }
@@ -30,12 +27,11 @@ export default function DropGame() {
         setGameTicket(data.gameTicket);
         localStorage.removeItem(cacheKey);
         localStorage.setItem(cacheKey, data.gameTicket.toString());
-        setLoading(false);
       })
     }
   }, [])
 
-  const userGameTicket = loading ? cachedTickets : gameTicket;
+  const userGameTicket = cachedTickets || gameTicket;
 
   return (
     <div className="h-50">
