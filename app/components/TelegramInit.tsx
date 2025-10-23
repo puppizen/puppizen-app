@@ -1,10 +1,9 @@
 'use client';
 import { useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { BackButton } from '@twa-dev/sdk/react';
 
 export default function TelegramInit() {
-  const router = useRouter();
   const pathname = usePathname();
   const isHome = pathname === '/' || pathname === '/home';
 
@@ -32,7 +31,7 @@ export default function TelegramInit() {
 
   return (
     <>
-      {!isHome && <BackButton onClick={() => router.back()} />}
+      {!isHome && <BackButton onClick={() => window.history.back()} />}
     </>
   );
 }

@@ -15,7 +15,6 @@ interface TelegramWebAppThemeParams {
 }
 
 interface TelegramWebAppBackButton {
-  text: string;
   isVisible: boolean;
   show(): void;
   hide(): void;
