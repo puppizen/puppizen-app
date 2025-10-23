@@ -1,10 +1,12 @@
 'use client';
 import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import { BackButton } from '@twa-dev/sdk/react';
 
 export default function TelegramInit() {
   const router = useRouter();
   const pathname = usePathname();
+  const isHome = pathname === '/' || pathname === '/home';
 
   useEffect(() => {
     const tg = window.Telegram?.WebApp;
@@ -13,20 +15,24 @@ export default function TelegramInit() {
     tg.ready();
     tg.expand();
 
-    if (pathname === '/' || pathname === '/home') {
-      // Show Close button on home page
-      tg.BackButton.hide();
+    if (isHome) {
+      tg.MainButton.setText("Close");
+      tg.MainButton.show();
+      tg.MainButton.onClick(() => tg.close());
     } else {
-      // Show Back button on other pages
-      tg.BackButton.show();
-      tg.BackButton.onClick(() => router.back());
+      tg.MainButton.hide();
+      tg.MainButton.offClick();
     }
 
     return () => {
-      tg.BackButton.offClick();
-      tg.BackButton.hide();
+      tg.MainButton.offClick();
+      tg.MainButton.hide();
     };
-  }, [pathname, router]);
+  }, [isHome]);
 
-  return null;
+  return (
+    <>
+      {!isHome && <BackButton onClick={() => router.back()} />}
+    </>
+  );
 }
