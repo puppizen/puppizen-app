@@ -11,7 +11,6 @@ export default function TelegramInit(){
 
     tg.ready();
     tg.expand();
-    tg.close();
     tg.BackButton.show();
     tg.BackButton.onClick(() => {
       router.back() // or use router.back() if you prefer navigation

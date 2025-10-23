@@ -75,4 +75,4 @@ declare global {
   }
 }
   
-  export {};
+export {};
