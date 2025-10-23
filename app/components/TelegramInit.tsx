@@ -14,14 +14,10 @@ export default function TelegramInit() {
     tg.expand();
 
     if (pathname === '/' || pathname === '/home') {
-      // Show MainButton as Close
+      // Show Close button on home page
       tg.BackButton.hide();
-      tg.MainButton.setText("Close");
-      tg.MainButton.show()
-      tg.MainButton.onClick(() => tg.close());
     } else {
-      // Show BackButton
-      tg.MainButton.hide();
+      // Show Back button on other pages
       tg.BackButton.show();
       tg.BackButton.onClick(() => router.back());
     }
@@ -29,8 +25,6 @@ export default function TelegramInit() {
     return () => {
       tg.BackButton.offClick();
       tg.BackButton.hide();
-      tg.MainButton.offClick();
-      tg.MainButton.hide();
     };
   }, [pathname, router]);
 
