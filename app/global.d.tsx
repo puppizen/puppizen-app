@@ -14,14 +14,6 @@ interface TelegramWebAppThemeParams {
   button_text_color?: string;
 }
 
-interface TelegramWebAppCloseButton {
-  isVisible: boolean;
-  show(): void;
-  hide(): void;
-  onClick(callback: () => void): void;
-  offClick(callback?: () => void): void;
-}
-
 interface TelegramWebAppBackButton {
   isVisible: boolean;
   show(): void;
@@ -59,7 +51,7 @@ interface TelegramWebApp {
   close(): void;
   themeParams: TelegramWebAppThemeParams;
   BackButton: TelegramWebAppBackButton;
-  CloseButton: TelegramWebAppCloseButton;
+  // CloseButton: TelegramWebAppCloseButton;
   MainButton: TelegramWebAppMainButton;
   openInvoice(invoiceLink: string): void;
   onEvent(event: 'invoiceClosed', listener: (event: InvoiceClosedEvent) => Promise<void>): void;

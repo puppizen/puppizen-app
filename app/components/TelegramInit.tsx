@@ -16,10 +16,8 @@ export default function TelegramInit() {
     if (pathname === '/' || pathname === '/home') {
       // Show Close button on home page
       tg.BackButton.hide();
-      tg.CloseButton.show();
     } else {
       // Show Back button on other pages
-      tg.CloseButton.hide();
       tg.BackButton.show();
       tg.BackButton.onClick(() => router.back());
     }
@@ -27,7 +25,6 @@ export default function TelegramInit() {
     return () => {
       tg.BackButton.offClick();
       tg.BackButton.hide();
-      tg.CloseButton.hide();
     };
   }, [pathname, router]);
 
