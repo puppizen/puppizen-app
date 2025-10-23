@@ -8,6 +8,8 @@ export default function TelegramInit() {
   const isHome = pathname === '/' || pathname === '/home';
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const tg = window.Telegram?.WebApp;
     if (!tg) return;
 
