@@ -8,8 +8,6 @@ export default function TelegramInit() {
   const isHome = pathname === '/' || pathname === '/home';
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-
     const tg = window.Telegram?.WebApp;
     if (!tg) return;
 
@@ -31,9 +29,5 @@ export default function TelegramInit() {
     };
   }, [isHome]);
 
-  return (
-    <>
-      {!isHome && <BackButton onClick={() => window.history.back()} />}
-    </>
-  );
+  return isHome ? null : <BackButton onClick={() => window.history.back()} />
 }
