@@ -11,10 +11,11 @@ export default function TelegramInit(){
 
     tg.ready();
     tg.expand();
-    tg.BackButton.show();
     tg.BackButton.onClick(() => {
       router.back() // or use router.back() if you prefer navigation
     });
+    tg.BackButton.show();
+    
 
     return () => {
       tg.BackButton.hide();
@@ -28,5 +29,8 @@ export default function TelegramInit(){
     // root.style.setProperty('--tg-button-text-color', tg.themeParams?.button_text_color || '#ffffff');
   }, [router]);
 
-  return null;
+  return (
+    <>
+    </>
+  );
 }
