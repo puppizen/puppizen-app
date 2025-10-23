@@ -20,6 +20,7 @@ body {
   color: var(--foreground);
   font-family: 'Righteous', sans-serif;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .my-border-blue {

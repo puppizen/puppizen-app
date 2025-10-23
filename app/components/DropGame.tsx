@@ -21,8 +21,8 @@ export default function DropGame() {
       .then((res) => res.json())
       .then((data) => {
         setGameTicket(data.gameTicket);
-        localStorage.setItem(cacheKey, data.gameTicket.toString());
-      })
+        localStorage.setItem(cacheKey, data.gameTicket.toString())
+      });
     }
   }, []);
 
