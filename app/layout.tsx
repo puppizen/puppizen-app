@@ -4,7 +4,7 @@ import "./globals.css";
 import Script from "next/script";
 
 import { TonProvider } from "./components/TonProvider";
-import TelegramInitWrapper from "./components/TelegramInitWrapper";
+import TelegramInit from "./components/TelegramInit";
 
 const righteous = Righteous({
   subsets: ["latin"],
@@ -35,7 +35,7 @@ export default function RootLayout({
         className={`${righteous.className} antialiased`}
       >
         <TonProvider>
-          <TelegramInitWrapper />
+          <TelegramInit />
           {children}
           
         </TonProvider>
