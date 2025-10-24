@@ -31,8 +31,8 @@ export default function TelegramInit() {
 
   useEffect(() => {
     TelegramAnalytics.init({
-        token: 'YOUR_TOKEN',
-        appName: 'ANALYTICS_IDENTIFIER',
+        token: 'eyJhcHBfbmFtZSI6InB1cHBpemVuIiwiYXBwX3VybCI6Imh0dHBzOi8vdC5tZS9QdXBwaXplbkJvdCIsImFwcF9kb21haW4iOiJodHRwczovL3B1cHBpemVuLWFwcC52ZXJjZWwuYXBwLyJ9!USCqBE5HvhCDrqFw7BtISkeaRLWhTzUn1mGTywNIwj0=',
+        appName: 'Puppizen',
     });
   }, [])
 
