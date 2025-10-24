@@ -1,6 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import TelegramAnalytics from '@telegram-apps/analytics'
 
 export default function TelegramInit() {
   const router = useRouter();
@@ -27,6 +28,13 @@ export default function TelegramInit() {
       tg.BackButton.hide();
     };
   }, [pathname, router]);
+
+  useEffect(() => {
+    TelegramAnalytics.init({
+        token: 'YOUR_TOKEN',
+        appName: 'ANALYTICS_IDENTIFIER',
+    });
+  }, [])
 
   return null;
 }

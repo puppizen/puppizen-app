@@ -12,7 +12,7 @@ interface TelegramWebAppThemeParams {
   link_color?: string;
   button_color?: string;
   button_text_color?: string;
-}
+};
 
 interface TelegramWebAppBackButton {
   isVisible: boolean;
@@ -75,5 +75,5 @@ declare global {
     };
   }
 }
-  
+
 export {};

@@ -5,7 +5,6 @@ import Script from "next/script";
 
 import { TonProvider } from "./components/TonProvider";
 import TelegramInit from "./components/TelegramInit";
-
 const righteous = Righteous({
   subsets: ["latin"],
   weight: "400",
