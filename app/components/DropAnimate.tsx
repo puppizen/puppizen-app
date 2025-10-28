@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-type DropType = "reward" | "bomb";
+type DropType = "reward2" | "bomb";
 
 interface Drop {
   id: string;
@@ -19,7 +19,7 @@ export default function DropAnimate() {
   // Create a new drop of the given type
   function createDrop(type: DropType) {
     const sizeOptions = {
-      reward: [10, 15, 25],
+      reward2: [10, 15, 25],
       bomb: [10, 15, 20],
     };
     const size = sizeOptions[type][Math.floor(Math.random() * sizeOptions[type].length)];
@@ -56,7 +56,7 @@ export default function DropAnimate() {
   // Continuously generate new drops
   useEffect(() => {
     const dropInterval = setInterval(() => {
-      const randomType: DropType = Math.random() > 0.5 ? "reward" : "bomb";
+      const randomType: DropType = Math.random() > 0.5 ? "reward2" : "bomb";
       createDrop(randomType);
     }, 500); // Adjust frequency as needed
 
