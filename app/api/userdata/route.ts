@@ -20,5 +20,6 @@ export async function GET(request: NextRequest) {
     totalStarsPaid: user.totalStarsPaid,
     totalAdsWatched: user.totalAdsWatched,
     airdrop: user.airdrop,
+    gamesPlayed: user.gamesPlayed
   })
 }

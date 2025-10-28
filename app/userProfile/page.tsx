@@ -13,7 +13,8 @@ type UserData = {
   totalStarsPaid: number,
   totalAdsWatched: number,
   taskCompleted: number,
-  referrals: number
+  referrals: number,
+  gamesPlayed: number
 }
 
 export default function UserProfile() {
@@ -98,6 +99,9 @@ export default function UserProfile() {
                 </div>
                 <div className="p-3 my-bg-gray rounded-md">
                   <p className="flex justify-between items-center"><span>Ads Watched</span> <span>{displayData.totalAdsWatched}</span></p>
+                </div>
+                <div className="p-3 my-bg-gray rounded-md">
+                  <p className="flex justify-between items-center"><span>Games Played</span> <span>{displayData.gamesPlayed}</span></p>
                 </div>
               </div>
           </div>
