@@ -45,10 +45,10 @@ export default function UserTGData() {
   return (
     <div className="flex justify-between">
       <Link href='/userProfile'>
-        <div className="flex items-center gap-2 relative">
+        <div className="flex items-center gap-2">
           {user.photoUrl && (
             <Image
-              className="my-border-blue rounded-full ml-1"
+              className="my-border-blue rounded-full"
               width={36}
               height={36}
               src={user.photoUrl}
@@ -57,12 +57,12 @@ export default function UserTGData() {
           )}
           <p className="">{user.username}</p>
 
-          <div className="absolute left-0 -top-0.5">
+          {/* <div className="absolute left-0 -top-0.5">
             <span className="relative flex items-center justify-center size-3">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75"></span>
               <span className="relative inline-flex size-2.5 rounded-full bg-red-500"></span>
             </span>
-          </div>
+          </div> */}
         </div>
       </Link>
       <TonConnectButton />

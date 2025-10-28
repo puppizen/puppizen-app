@@ -3,10 +3,10 @@ import Image from "next/image";
 
 export default function ShortCut() {
   return (
-    <div className="grid grid-cols-4 gap-y-3 w-full">
+    <div className="grid grid-cols-4 gap-y-3 w-full">      
       <Link href='/leaderboard'>
-        <div className='flex flex-col items-center gap-4'>
-          <div className="bg-gray-600/40 rounded-full p-3">
+        <div className='flex flex-col items-center gap-2'>
+          <div className="bg-gray-600/40 rounded-full p-4">
             <Image src='/trophy.svg' width={24} height={24} alt=''></Image>
           </div>
           
@@ -52,7 +52,7 @@ export default function ShortCut() {
           
           <span className='text-xs font-thin'>Publish</span>
         </div>
-        <p className="absolute top-1 -right-0.5 text-[10px] bg-amber-500 text-black/60 font-thin px-1 rounded-full">Soon</p>
+        <p className="absolute top-1 right-0 text-[10px] bg-amber-500 text-black/60 font-thin px-1 rounded-full">Soon</p>
       </Link>
     </div>
   )
