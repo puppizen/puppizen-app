@@ -25,7 +25,7 @@ export default function Home() {
       <div className='pt-8'>
         <UserBalance />
 
-        <div className='pt-8'>
+        <div className='pt-10'>
           <ShortCut />
         </div>
 
