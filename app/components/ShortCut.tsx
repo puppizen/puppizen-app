@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function ShortCut() {
   return (
-    <div className="grid grid-cols-4 w-full">
+    <div className="grid grid-cols-4 gap-y-3 w-full">
       <Link href='/leaderboard'>
         <div className='flex flex-col items-center gap-4'>
           <div className="bg-gray-600/40 rounded-full p-3">
@@ -52,7 +52,7 @@ export default function ShortCut() {
           
           <span className='text-xs font-thin'>Publish</span>
         </div>
-        <p className="absolute top-1 -right-2 text-[8px] bg-amber-500 text-black/60 font-thin p-1">Soon</p>
+        <p className="absolute top-1 -right-0.5 text-[10px] bg-amber-500 text-black/60 font-thin px-1 rounded-full">Soon</p>
       </Link>
     </div>
   )
