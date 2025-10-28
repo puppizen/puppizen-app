@@ -2,9 +2,9 @@ import Footer from './components/Footer'
 import CountDownTimer from './components/Countdown';
 import UserTGData from './components/UserTGData';
 import UserBalance from './components/Balance';
-import Link from 'next/link';
 import Image from 'next/image';
 import Games from './components/Games';
+import ShortCut from './components/ShortCut';
 
 
 export default function Home() {
@@ -25,20 +25,8 @@ export default function Home() {
       <div className='pt-8'>
         <UserBalance />
 
-        <div className='pt-8 flex gap-5'>
-          <Link href='/leaderboard'  className='flex flex-row justify-between p-3 rounded-md my-bg-gradient btn-translate-active w-full items-center'>
-            <div className='flex items-center gap-2'>
-              <Image src='/trophy.svg' width={20} height={20} alt=''></Image>
-              <span className='font-medium'>Leaderboard</span>
-            </div>
-          </Link>
-          
-          <Link href='/presale' className='flex flex-row justify-between p-3 rounded-md my-bg-gradient btn-translate-active w-full items-center'>
-            <div className='flex items-center gap-2'>
-              <Image src='/puppizen-coin.png' width={20} height={20} alt=''></Image>
-              <span className='font-medium'>Join Presale</span>
-            </div>
-          </Link>
+        <div className='pt-8'>
+          <ShortCut />
         </div>
 
         <div className='pt-6'>

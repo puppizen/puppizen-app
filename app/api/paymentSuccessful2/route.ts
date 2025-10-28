@@ -34,7 +34,8 @@ export async function POST(req: NextRequest) {
 
   const STARS_BACK_PERCENTAGE = 0.1;
   const starsReward = REQUIRED_STARS * STARS_BACK_PERCENTAGE;
-  user.starsBalance += starsReward
+  user.starsBalance += starsReward;
+  user.gameTicket += 20;
 
   await user.save();
 
