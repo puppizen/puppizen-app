@@ -5,7 +5,7 @@ export default function ShortCut() {
   return (
     <div className="grid grid-cols-4 w-full">
       <Link href='/leaderboard'>
-        <div className='flex flex-col items-center gap-2'>
+        <div className='flex flex-col items-center gap-4'>
           <div className="bg-gray-600/40 rounded-full p-3">
             <Image src='/trophy.svg' width={24} height={24} alt=''></Image>
           </div>
@@ -16,7 +16,7 @@ export default function ShortCut() {
 
       <Link href='/presale'>
         <div className='flex flex-col items-center gap-2'>
-          <div className="bg-gray-600/40 rounded-full p-3">
+          <div className="bg-gray-600/40 rounded-full p-4">
             <Image src='/presale.svg' width={24} height={24} alt=''></Image>
           </div>
           
@@ -26,7 +26,7 @@ export default function ShortCut() {
 
       <Link href='/userProfile'>
         <div className='flex flex-col items-center gap-2'>
-          <div className="bg-gray-600/40 rounded-full p-3">
+          <div className="bg-gray-600/40 rounded-full p-4">
             <Image src='/profile.svg' width={24} height={24} alt=''></Image>
           </div>
           
@@ -36,12 +36,23 @@ export default function ShortCut() {
 
       <Link href='/booster'>
         <div className='flex flex-col items-center gap-2'>
-          <div className="bg-gray-600/40 rounded-full p-3">
+          <div className="bg-gray-600/40 rounded-full p-4">
             <Image src='/boostImage.png' width={24} height={24} alt=''></Image>
           </div>
           
           <span className='text-xs font-thin'>Booster</span>
         </div>
+      </Link>
+
+      <Link href='/' className="relative">
+        <div className='flex flex-col items-center gap-2'>
+          <div className="bg-gray-600/40 rounded-full p-4">
+            <Image src='/plus.svg' width={24} height={24} alt=''></Image>
+          </div>
+          
+          <span className='text-xs font-thin'>Publish</span>
+        </div>
+        <p className="absolute top-1 -right-2 text-[8px] bg-amber-500 text-black/60 font-thin p-1">Soon</p>
       </Link>
     </div>
   )

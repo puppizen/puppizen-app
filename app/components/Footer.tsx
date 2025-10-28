@@ -16,7 +16,7 @@ export default function Footer() {
   ]
 
   return (
-    <div className="my-bg-dark fixed bottom-0 right-0 left-0 px-2">
+    <div className="my-bg-dark fixed bottom-0 left-0">
       <div className="grid grid-cols-5 p-3 w-full">
         {navItems.map(({ href, label, icon }) => {
           const isActive = pathname === href
@@ -30,7 +30,7 @@ export default function Footer() {
               } transition-all duration-200 ease-in-out`}
             >
               <Image src={icon} width={20} height={20} alt={label} />
-              <span className="my-text-white text-xs font-light tracking-wider">{label}</span>
+              <span className="my-text-white text-xs font-thin">{label}</span>
 
               {isTaskLink && (
                 <div className="absolute -right-0.5 -top-0.5">
