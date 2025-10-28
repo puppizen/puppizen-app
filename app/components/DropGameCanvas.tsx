@@ -112,21 +112,21 @@ export default function DropGameCanvas() {
 
     const rewardInterval = setInterval(() => {
       if (!gameOver && rewardCount < 50) {
-        createDrop("reward");
+        createDrop("reward2");
         rewardCount++
       }
     }, 1000);
 
     const reward2Interval = setInterval(() => {
       if (!gameOver && reward2Count < 50) {
-        createDrop("reward");
+        createDrop("reward2");
         reward2Count++
       }
     }, 1000);
 
     const reward3Interval = setInterval(() => {
       if (!gameOver && reward3Count < 50) {
-        createDrop("reward");
+        createDrop("reward3");
         reward3Count++
       }
     }, 2000);
