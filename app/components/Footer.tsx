@@ -16,7 +16,7 @@ export default function Footer() {
   ]
 
   return (
-    <div className="my-bg-dark fixed bottom-0 left-0">
+    <div className="my-bg-dark fixed bottom-0 left-0 w-full">
       <div className="grid grid-cols-5 p-3 w-full">
         {navItems.map(({ href, label, icon }) => {
           const isActive = pathname === href
