@@ -37,7 +37,7 @@ export default function ShortCut() {
       <Link href='/booster'>
         <div className='flex flex-col items-center gap-2'>
           <div className="bg-gray-600/40 rounded-full p-4">
-            <Image src='/boostImage.png' width={24} height={24} alt=''></Image>
+            <Image src='/boostImage.png' width={24} height={24} alt='' className="motion-safe:animate-pulse"></Image>
           </div>
           
           <span className='text-xs font-thin'>Booster</span>
