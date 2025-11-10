@@ -7,7 +7,7 @@ export function TonProvider({ children }: { children: React.ReactNode }) {
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}
         actionsConfiguration={{
-            twaReturnUrl: 'http://t.me/PuppizenBot/Earn. '
+            twaReturnUrl: 'http://t.me/PuppizenBot/Earn'
         }}
     >
       {children}
