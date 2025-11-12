@@ -29,7 +29,7 @@ export async function verifyTonTransaction(
   destinationAddress: string,
   expectedAmountNanoTON: string,
   approximateTimestamp: number
-): Promise<{ success: boolean; actualSender?: string; transaction?: TonTransaction }> {
+): Promise<{ is_success: boolean; actualSender?: string; transaction?: TonTransaction }> {
   try {
     const address = new TonWeb.utils.Address(destinationAddress);
     const transactions: TonTransaction[] = await tonweb.getTransactions(address, 10);
@@ -47,14 +47,14 @@ export async function verifyTonTransaction(
       )[0];
 
       const actualSender = mostRecent.in_msg?.source;
-      const success = mostRecent.description?.exit_code === 0 || mostRecent.description?.exit_code === undefined;
+      const is_success = mostRecent.description?.exit_code === 0 || mostRecent.description?.exit_code === undefined;
 
-      return { success, actualSender, transaction: mostRecent };
+      return { is_success, actualSender, transaction: mostRecent };
     }
 
-    return { success: false };
+    return { is_success: false };
   } catch (error) {
     console.error('Verification error:', error);
-    return { success: false };
+    return { is_success: false };
   }
 }

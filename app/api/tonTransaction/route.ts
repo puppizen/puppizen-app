@@ -3,6 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { User } from "@/models/user";
 import connectDb from "@/lib/mongodb";
 
+const REWARD_AMOUNT = 500;
+
 export async function POST(req: NextRequest) {
   await connectDb();
   const { userId, destinationAddress, expectedAmountNanoTON, approximateTimestamp } = await req.json();
@@ -19,8 +21,8 @@ export async function POST(req: NextRequest) {
 
     const result = await verifyTonTransaction(destinationAddress, expectedAmountNanoTON, approximateTimestamp);
 
-    if (result.success) {
-      user.balance += 500;
+    if (result.is_success === true) {
+      user.balance += REWARD_AMOUNT;
       await user.save();
 
       return NextResponse.json({
