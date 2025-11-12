@@ -44,7 +44,7 @@ export default function UserTGData() {
 
   const handleSend = async () => {
     try {
-      await tonConnectUI.sendTransaction({
+      const transaction = {
         validUntil: Math.floor(Date.now() / 1000) + 60,
         messages: [
           {
@@ -52,7 +52,32 @@ export default function UserTGData() {
             amount: "10000000"
           },
         ],
-      });
+      };
+
+      const result = await tonConnectUI.sendTransaction(transaction);
+
+      if (result?.boc) {
+        const res = await fetch("/api/tonTransaction", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            userId: user.userId,
+            destinationAddress: "UQCAngnr4rdL1TDFfZipwKArn__G_TH2Rg1QO9wjR3MuzALz",
+            expectedAmountNanoTON: "10000000",
+            approximateTimestamp: Math.floor(Date.now() / 1000),
+          }),
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          // ✅ Transaction verified — show reward success
+          console.log("Reward granted to:", data.actualSender);
+        } else {
+          // ❌ Transaction not found or invalid
+          console.log("Transaction verification failed");
+        }
+      }
     } catch (error) {
       console.error("Transaction failed:", error);
     }
