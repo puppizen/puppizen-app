@@ -32,12 +32,12 @@ export async function verifyTonTransaction(
 ): Promise<{ is_success: boolean; actualSender?: string; transaction?: TonTransaction }> {
   try {
     const address = new TonWeb.utils.Address(destinationAddress);
-    const transactions: TonTransaction[] = await tonweb.getTransactions(address, 10);
+    const transactions: TonTransaction[] = await tonweb.getTransactions(address, 50);
 
     const matches = transactions.filter((tx) => {
       const msg = tx.in_msg;
       const valueMatch = BigInt(msg?.value || '0') === BigInt(expectedAmountNanoTON);
-      const timeMatch = Math.abs(tx.utime - approximateTimestamp) < 60;
+      const timeMatch = Math.abs(tx.utime - approximateTimestamp) < 300;
       return valueMatch && timeMatch;
     });
 

@@ -22,6 +22,10 @@ const userSchema = new Schema({
   profile_url: {
     type: String,
   },
+  userWallet: {
+    type: String,
+    default: 0
+  },
   balance: { 
     type: Number, 
     default: 10 

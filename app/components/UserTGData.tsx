@@ -42,50 +42,31 @@ export default function UserTGData() {
     }
   }, []);
 
-  const handleSend = async () => {
-    try {
-      const transaction = {
-        validUntil: Math.floor(Date.now() / 1000) + 60,
-        messages: [
-          {
-            address: "UQCAngnr4rdL1TDFfZipwKArn__G_TH2Rg1QO9wjR3MuzALz",
-            amount: "10000000"
-          },
-        ],
-      };
+  useEffect(() => {
+    const wallet = tonConnectUI.wallet;
 
-      const result = await tonConnectUI.sendTransaction(transaction);
-
-      if (result?.boc) {
-        const res = await fetch("/api/tonTransaction", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            userId: user.userId,
-            destinationAddress: "UQCAngnr4rdL1TDFfZipwKArn__G_TH2Rg1QO9wjR3MuzALz",
-            expectedAmountNanoTON: "10000000",
-            approximateTimestamp: Math.floor(Date.now() / 1000),
-          }),
+    if (wallet?.account?.address && user.userId !== 0) {
+      fetch('/api/user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: user.userId,
+          walletAddress: wallet.account.address
+        }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log('Wallet saved:', data);
+        })
+        .catch(err => {
+          console.error('Wallet save failed:', err);
         });
-
-        const data = await res.json();
-
-        if (data.success) {
-          // ✅ Transaction verified — show reward success
-          console.log("Reward granted to:", data.actualSender);
-        } else {
-          // ❌ Transaction not found or invalid
-          console.log("Transaction verification failed");
-        }
-      }
-    } catch (error) {
-      console.error("Transaction failed:", error);
     }
-  };
+  }, [tonConnectUI.wallet, user.userId])
 
   return (
     <div className="flex justify-between">
-      <div className="flex items-center gap-2" onClick={handleSend}>
+      <div className="flex items-center gap-2">
         {user.photoUrl && (
           <Image
             className="my-border-blue rounded-full"
@@ -108,3 +89,45 @@ export default function UserTGData() {
     </div>
   );
 }
+
+// const handleSend = async () => {
+  //   try {
+  //     const transaction = {
+  //       validUntil: Math.floor(Date.now() / 1000) + 60,
+  //       messages: [
+  //         {
+  //           address: "UQCAngnr4rdL1TDFfZipwKArn__G_TH2Rg1QO9wjR3MuzALz",
+  //           amount: "10000000"
+  //         },
+  //       ],
+  //     };
+
+  //     const result = await tonConnectUI.sendTransaction(transaction);
+
+  //     if (result?.boc) {
+  //       const res = await fetch("/api/tonTransaction", {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify({
+  //           userId: user.userId,
+  //           destinationAddress: "UQCAngnr4rdL1TDFfZipwKArn__G_TH2Rg1QO9wjR3MuzALz",
+  //           expectedAmountNanoTON: "10000000",
+  //           approximateTimestamp: Math.floor(Date.now() / 1000),
+  //         }),
+  //       });
+
+  //       const data = await res.json();
+
+  //       if (data.success) {
+  //         // ✅ Transaction verified — show reward success
+  //         console.log("Reward granted to:", data.actualSender);
+  //       } else {
+  //         // ❌ Transaction not found or invalid
+  //         console.log("Transaction verification failed");
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Transaction failed:", error);
+  //   }
+  // };
+

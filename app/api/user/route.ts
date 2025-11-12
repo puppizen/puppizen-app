@@ -36,6 +36,7 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   const userId = Number(body.userId);
   const profile_url = body.profile_url || await fetchTelegramProfilePic(userId);
+  const userWallet = body.walletAddress
 
   console.log('Incoming request...');
   console.log('userId:', userId);
@@ -56,7 +57,8 @@ export async function POST(request: NextRequest) {
       {
         $set: {
           referralLink,
-          profile_url
+          profile_url,
+          userWallet,
         }
       }
     )
